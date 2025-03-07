@@ -1,0 +1,62 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.user-butt {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.use-bu {
+  width: 150px;
+  height: 50px;
+  border-radius: 6px;
+  border: 2px solid transparent;
+  background: #184645;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 🔥 Hover Effect */
+.use-bu:hover {
+  background: #13615f;
+  transform: scale(1.05);
+}
+
+/* 🎬 Click Effect */
+.use-bu:active {
+  transform: scale(0.95);
+}
+
+/* ✅ Active Button (Add an underline glow effect) */
+.use-bu.active {
+  border: 2px black solid;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+  position: relative;
+}
+
+/* ✨ Glow Animation */
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+  }
+}
+
+.use-bu.active {
+  animation: glow 1s infinite alternate;
+}

@@ -1,0 +1,804 @@
+@media screen and (max-width: 605px) {
+  .log-form {
+    width: 530px;
+    height: 66px;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    border-width: 1px;
+    border: 1px solid var(--Greyscale-Border-Disabled, #aba9aa);
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 15px;
+    letter-spacing: -1%;
+    vertical-align: middle;
+    color: var(--Greyscale-Text-Disabled, #777475);
+  }
+  .log-but {
+    width: 530px;
+    height: 56px;
+    border-radius: 4px;
+    padding: 16px 20px;
+    background: var(--Green-500, #184645);
+    border: none;
+    font-family: "Spline Sans", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 15px;
+    letter-spacing: -1%;
+    text-align: center;
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.3sease-in-out;
+    margin-top: 3rem;
+  }
+  .google-but {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 530px;
+    height: 56px;
+    gap: 10px;
+    border-radius: 4px;
+    padding-top: 16px;
+    padding-right: 20px;
+    padding-bottom: 16px;
+    padding-left: 20px;
+    border-width: 2px;
+    font-family: Spline Sans;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 15px;
+    letter-spacing: -1%;
+    text-align: center;
+    vertical-align: middle;
+    margin-top: 2rem;
+    cursor: pointer;
+    border: 2px solid var(--Green-400, #3d6463);
+  }
+}
+@media screen and (max-width: 532px) {
+  .log-form {
+    width: 510px;
+    height: 66px;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    border-width: 1px;
+    border: 1px solid var(--Greyscale-Border-Disabled, #aba9aa);
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 15px;
+    letter-spacing: -1%;
+    vertical-align: middle;
+    color: var(--Greyscale-Text-Disabled, #777475);
+  }
+  .log-but {
+    width: 510px;
+    height: 56px;
+    border-radius: 4px;
+    padding: 16px 20px;
+    background: var(--Green-500, #184645);
+    border: none;
+    font-family: "Spline Sans", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 15px;
+    letter-spacing: -1%;
+    text-align: center;
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.3sease-in-out;
+    margin-top: 3rem;
+  }
+  .google-but {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 510px;
+    height: 56px;
+    gap: 10px;
+    border-radius: 4px;
+    padding-top: 16px;
+    padding-right: 20px;
+    padding-bottom: 16px;
+    padding-left: 20px;
+    border-width: 2px;
+    font-family: Spline Sans;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 15px;
+    letter-spacing: -1%;
+    text-align: center;
+    vertical-align: middle;
+    margin-top: 2rem;
+    cursor: pointer;
+    border: 2px solid var(--Green-400, #3d6463);
+  }
+}
+@media screen and (max-width: 520px) {
+  .log-form {
+    width: 500px;
+    height: 66px;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    border-width: 1px;
+    border: 1px solid var(--Greyscale-Border-Disabled, #aba9aa);
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 15px;
+    letter-spacing: -1%;
+    vertical-align: middle;
+    color: var(--Greyscale-Text-Disabled, #777475);
+  }
+  .log-but {
+    width: 500px;
+    height: 56px;
+    border-radius: 4px;
+    padding: 16px 20px;
+    background: var(--Green-500, #184645);
+    border: none;
+    font-family: "Spline Sans", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 15px;
+    letter-spacing: -1%;
+    text-align: center;
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.3sease-in-out;
+    margin-top: 3rem;
+  }
+  .google-but {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 500px;
+    height: 56px;
+    gap: 10px;
+    border-radius: 4px;
+    padding-top: 16px;
+    padding-right: 20px;
+    padding-bottom: 16px;
+    padding-left: 20px;
+    border-width: 2px;
+    font-family: Spline Sans;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 15px;
+    letter-spacing: -1%;
+    text-align: center;
+    vertical-align: middle;
+    margin-top: 2rem;
+    cursor: pointer;
+    border: 2px solid var(--Green-400, #3d6463);
+  }
+}
+@media screen and (max-width: 518px) {
+  .login-head2 {
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 30px;
+    letter-spacing: 0%;
+    text-align: center;
+    vertical-align: middle;
+  }
+  .log-form {
+    width: 480px;
+    height: 66px;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    border-width: 1px;
+    border: 1px solid var(--Greyscale-Border-Disabled, #aba9aa);
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 15px;
+    letter-spacing: -1%;
+    vertical-align: middle;
+    color: var(--Greyscale-Text-Disabled, #777475);
+  }
+  .log-but {
+    width: 480px;
+    height: 56px;
+    border-radius: 4px;
+    padding: 16px 20px;
+    background: var(--Green-500, #184645);
+    border: none;
+    font-family: "Spline Sans", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 15px;
+    letter-spacing: -1%;
+    text-align: center;
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.3sease-in-out;
+    margin-top: 3rem;
+  }
+  .google-but {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 480px;
+    height: 56px;
+    gap: 10px;
+    border-radius: 4px;
+    padding-top: 16px;
+    padding-right: 20px;
+    padding-bottom: 16px;
+    padding-left: 20px;
+    border-width: 2px;
+    font-family: Spline Sans;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 15px;
+    letter-spacing: -1%;
+    text-align: center;
+    vertical-align: middle;
+    margin-top: 2rem;
+    cursor: pointer;
+    border: 2px solid var(--Green-400, #3d6463);
+  }
+}
+@media screen and (max-width: 491px) {
+  .login-head2 {
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 30px;
+    letter-spacing: 0%;
+    text-align: center;
+    vertical-align: middle;
+  }
+  .log-form {
+    width: 450px;
+    height: 56px;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    border-width: 1px;
+    border: 1px solid var(--Greyscale-Border-Disabled, #aba9aa);
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 15px;
+    letter-spacing: -1%;
+    vertical-align: middle;
+    color: var(--Greyscale-Text-Disabled, #777475);
+  }
+  .log-but {
+    width: 450px;
+    height: 50px;
+    border-radius: 4px;
+    padding: 16px 20px;
+    background: var(--Green-500, #184645);
+    border: none;
+    font-family: "Spline Sans", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 15px;
+    letter-spacing: -1%;
+    text-align: center;
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.3sease-in-out;
+    margin-top: 3rem;
+  }
+  .google-but {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 450px;
+    height: 50px;
+    gap: 10px;
+    border-radius: 4px;
+    padding-top: 16px;
+    padding-right: 20px;
+    padding-bottom: 16px;
+    padding-left: 20px;
+    border-width: 2px;
+    font-family: Spline Sans;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 15px;
+    letter-spacing: -1%;
+    text-align: center;
+    vertical-align: middle;
+    margin-top: 2rem;
+    cursor: pointer;
+    border: 2px solid var(--Green-400, #3d6463);
+  }
+}
+@media screen and (max-width: 462px) {
+  .login-head2 {
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 30px;
+    letter-spacing: 0%;
+    text-align: center;
+    vertical-align: middle;
+    width: 430px;
+  }
+  .log-form {
+    width: 430px;
+    height: 50px;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    border-width: 1px;
+    border: 1px solid var(--Greyscale-Border-Disabled, #aba9aa);
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 15px;
+    letter-spacing: -1%;
+    vertical-align: middle;
+    color: var(--Greyscale-Text-Disabled, #777475);
+  }
+  .log-but {
+    width: 430px;
+    height: 50px;
+    border-radius: 4px;
+    padding: 16px 20px;
+    background: var(--Green-500, #184645);
+    border: none;
+    font-family: "Spline Sans", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 15px;
+    letter-spacing: -1%;
+    text-align: center;
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.3sease-in-out;
+    margin-top: 3rem;
+  }
+  .google-but {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 430px;
+    height: 50px;
+    gap: 10px;
+    border-radius: 4px;
+    padding-top: 16px;
+    padding-right: 20px;
+    padding-bottom: 16px;
+    padding-left: 20px;
+    border-width: 2px;
+    font-family: Spline Sans;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 15px;
+    letter-spacing: -1%;
+    text-align: center;
+    vertical-align: middle;
+    margin-top: 2rem;
+    cursor: pointer;
+    border: 2px solid var(--Green-400, #3d6463);
+  }
+}
+@media screen and (max-width: 430px) {
+  .login-head2 {
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 30px;
+    letter-spacing: 0%;
+    text-align: center;
+    vertical-align: middle;
+    width: 400px;
+  }
+  .log-form {
+    width: 400px;
+    height: 45px;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    border-width: 1px;
+    border: 1px solid var(--Greyscale-Border-Disabled, #aba9aa);
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 15px;
+    letter-spacing: -1%;
+    vertical-align: middle;
+    color: var(--Greyscale-Text-Disabled, #777475);
+  }
+  .log-but {
+    width: 400px;
+    height: 45px;
+    border-radius: 4px;
+    padding: 16px 20px;
+    background: var(--Green-500, #184645);
+    border: none;
+    font-family: "Spline Sans", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 15px;
+    letter-spacing: -1%;
+    text-align: center;
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.3sease-in-out;
+    margin-top: 3rem;
+  }
+  .google-but {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
+    height: 45px;
+    gap: 10px;
+    border-radius: 4px;
+    padding-top: 16px;
+    padding-right: 20px;
+    padding-bottom: 16px;
+    padding-left: 20px;
+    border-width: 2px;
+    font-family: Spline Sans;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 15px;
+    letter-spacing: -1%;
+    text-align: center;
+    vertical-align: middle;
+    margin-top: 2rem;
+    cursor: pointer;
+    border: 2px solid var(--Green-400, #3d6463);
+  }
+}
+@media screen and (max-width: 401px) {
+  .login-head2 {
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 30px;
+    letter-spacing: 0%;
+    text-align: center;
+    vertical-align: middle;
+    width: 380px;
+  }
+  .log-form {
+    width: 360px;
+    height: 40px;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    border-width: 1px;
+    border: 1px solid var(--Greyscale-Border-Disabled, #aba9aa);
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 10px;
+    letter-spacing: -1%;
+    vertical-align: middle;
+    color: var(--Greyscale-Text-Disabled, #777475);
+  }
+  .log-but {
+    width: 360px;
+    height: 40px;
+    border-radius: 4px;
+    padding: 16px 20px;
+    background: var(--Green-500, #184645);
+    border: none;
+    font-family: "Spline Sans", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 15px;
+    letter-spacing: -1%;
+    text-align: center;
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.3sease-in-out;
+    margin-top: 3rem;
+  }
+  .google-but {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 360px;
+    height: 40px;
+    gap: 10px;
+    border-radius: 4px;
+    padding-top: 16px;
+    padding-right: 20px;
+    padding-bottom: 16px;
+    padding-left: 20px;
+    border-width: 2px;
+    font-family: Spline Sans;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 15px;
+    letter-spacing: -1%;
+    text-align: center;
+    vertical-align: middle;
+    margin-top: 2rem;
+    cursor: pointer;
+    border: 2px solid var(--Green-400, #3d6463);
+  }
+  .use-bu {
+    width: 150px;
+    height: 30px;
+    border-radius: 6px;
+    border: 2px solid transparent;
+    background: #184645;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3sease-in-out;
+    position: relative;
+    overflow: hidden;
+  }
+}
+@media screen and (max-width: 380px) {
+  .login-head2 {
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 30px;
+    letter-spacing: 0%;
+    text-align: center;
+    vertical-align: middle;
+    width: 360px;
+  }
+  .log-form {
+    width: 340px;
+    height: 40px;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    border-width: 1px;
+    border: 1px solid var(--Greyscale-Border-Disabled, #aba9aa);
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 10px;
+    letter-spacing: -1%;
+    vertical-align: middle;
+    color: var(--Greyscale-Text-Disabled, #777475);
+  }
+  .log-but {
+    width: 340px;
+    height: 40px;
+    border-radius: 4px;
+    padding: 16px 20px;
+    background: var(--Green-500, #184645);
+    border: none;
+    font-family: "Spline Sans", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 15px;
+    letter-spacing: -1%;
+    text-align: center;
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.3sease-in-out;
+    margin-top: 3rem;
+  }
+  .google-but {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 340px;
+    height: 40px;
+    gap: 10px;
+    border-radius: 4px;
+    padding-top: 16px;
+    padding-right: 20px;
+    padding-bottom: 16px;
+    padding-left: 20px;
+    border-width: 2px;
+    font-family: Spline Sans;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 15px;
+    letter-spacing: -1%;
+    text-align: center;
+    vertical-align: middle;
+    margin-top: 2rem;
+    cursor: pointer;
+    border: 2px solid var(--Green-400, #3d6463);
+  }
+  .use-bu {
+    width: 150px;
+    height: 30px;
+    border-radius: 6px;
+    border: 2px solid transparent;
+    background: #184645;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3sease-in-out;
+    position: relative;
+    overflow: hidden;
+  }
+}
+@media screen and (max-width: 361px) {
+  .login-head2 {
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 30px;
+    letter-spacing: 0%;
+    text-align: center;
+    vertical-align: middle;
+    width: 340px;
+  }
+  .log-form {
+    width: 330px;
+    height: 40px;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    border-width: 1px;
+    border: 1px solid var(--Greyscale-Border-Disabled, #aba9aa);
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 10px;
+    letter-spacing: -1%;
+    vertical-align: middle;
+    color: var(--Greyscale-Text-Disabled, #777475);
+  }
+  .log-but {
+    width: 330px;
+    height: 40px;
+    border-radius: 4px;
+    padding: 16px 20px;
+    background: var(--Green-500, #184645);
+    border: none;
+    font-family: "Spline Sans", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 15px;
+    letter-spacing: -1%;
+    text-align: center;
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.3sease-in-out;
+    margin-top: 3rem;
+  }
+  .google-but {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 330px;
+    height: 40px;
+    gap: 10px;
+    border-radius: 4px;
+    padding-top: 16px;
+    padding-right: 20px;
+    padding-bottom: 16px;
+    padding-left: 20px;
+    border-width: 2px;
+    font-family: Spline Sans;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 15px;
+    letter-spacing: -1%;
+    text-align: center;
+    vertical-align: middle;
+    margin-top: 2rem;
+    cursor: pointer;
+    border: 2px solid var(--Green-400, #3d6463);
+  }
+  .use-bu {
+    width: 150px;
+    height: 50px;
+    border-radius: 6px;
+    border: 2px solid transparent;
+    background: #184645;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3sease-in-out;
+    position: relative;
+    overflow: hidden;
+  }
+}
+@media screen and (max-width: 341px) {
+  .login-head {
+    font-family: Playfair Display;
+    font-weight: 700;
+    font-size: 33px;
+    line-height: 120%;
+    letter-spacing: -4%;
+    text-align: center;
+    vertical-align: middle;
+    color: var(--Green-700, #10302f);
+  }
+  .login-head2 {
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 30px;
+    letter-spacing: 0%;
+    text-align: center;
+    vertical-align: middle;
+    width: 320px;
+  }
+  .log-form {
+    width: 300px;
+    height: 40px;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    border-width: 1px;
+    border: 1px solid var(--Greyscale-Border-Disabled, #aba9aa);
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 10px;
+    letter-spacing: -1%;
+    vertical-align: middle;
+    color: var(--Greyscale-Text-Disabled, #777475);
+  }
+  .log-but {
+    width: 300px;
+    height: 40px;
+    border-radius: 4px;
+    padding: 16px 20px;
+    background: var(--Green-500, #184645);
+    border: none;
+    font-family: "Spline Sans", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 15px;
+    letter-spacing: -1%;
+    text-align: center;
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.3sease-in-out;
+    margin-top: 3rem;
+  }
+  .google-but {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    height: 40px;
+    gap: 10px;
+    border-radius: 4px;
+    padding-top: 16px;
+    padding-right: 20px;
+    padding-bottom: 16px;
+    padding-left: 20px;
+    border-width: 2px;
+    font-family: Spline Sans;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 15px;
+    letter-spacing: -1%;
+    text-align: center;
+    vertical-align: middle;
+    margin-top: 2rem;
+    cursor: pointer;
+    border: 2px solid var(--Green-400, #3d6463);
+  }
+  .use-bu {
+    width: 150px;
+    height: 50px;
+    border-radius: 6px;
+    border: 2px solid transparent;
+    background: #184645;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3sease-in-out;
+    position: relative;
+    overflow: hidden;
+  }
+}
