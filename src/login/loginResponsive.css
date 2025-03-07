@@ -540,6 +540,90 @@
     overflow: hidden;
   }
 }
+@media screen and (max-width: 394px) {
+  .login-head2 {
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 30px;
+    letter-spacing: 0%;
+    text-align: center;
+    vertical-align: middle;
+    width: 360px;
+  }
+  .log-form {
+    width: 340px;
+    height: 40px;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    border-width: 1px;
+    border: 1px solid var(--Greyscale-Border-Disabled, #aba9aa);
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 10px;
+    letter-spacing: -1%;
+    vertical-align: middle;
+    color: var(--Greyscale-Text-Disabled, #777475);
+  }
+  .log-but {
+    width: 340px;
+    height: 40px;
+    border-radius: 4px;
+    padding: 16px 20px;
+    background: var(--Green-500, #184645);
+    border: none;
+    font-family: "Spline Sans", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 15px;
+    letter-spacing: -1%;
+    text-align: center;
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.3sease-in-out;
+    margin-top: 3rem;
+  }
+  .google-but {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 340px;
+    height: 40px;
+    gap: 10px;
+    border-radius: 4px;
+    padding-top: 16px;
+    padding-right: 20px;
+    padding-bottom: 16px;
+    padding-left: 20px;
+    border-width: 2px;
+    font-family: Spline Sans;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 15px;
+    letter-spacing: -1%;
+    text-align: center;
+    vertical-align: middle;
+    margin-top: 2rem;
+    cursor: pointer;
+    border: 2px solid var(--Green-400, #3d6463);
+  }
+  .use-bu {
+    width: 150px;
+    height: 30px;
+    border-radius: 6px;
+    border: 2px solid transparent;
+    background: #184645;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3sease-in-out;
+    position: relative;
+    overflow: hidden;
+  }
+}
 @media screen and (max-width: 380px) {
   .login-head2 {
     font-family: "Nunito Sans", sans-serif;
