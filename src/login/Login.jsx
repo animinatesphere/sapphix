@@ -5,6 +5,7 @@ import "../login/login.css";
 import "../login/loginResponsive.css";
 import google from "../assets/Google sign.png";
 import UserButtons from "../component/UserButtons";
+import { meta } from "@eslint/js";
 
 const Login = () => {
   // const navigate = useNavigate();
@@ -49,18 +50,31 @@ const Login = () => {
   };
 
   // Handle Google Login
-  const handleGoogleLogin = async () => {
-    const redirectUrl = `${window.location.origin}/dashboard`;
+  // const handleGoogleLogin = async () => {
+  //   const redirectUrl = `${window.location.origin}/dashboard`;
 
+  //   const { error } = await supabase.auth.signInWithOAuth({
+  //     provider: "google",
+  //     options: {
+  //       redirectTo: redirectUrl,
+  //     },
+  //   });
+
+  //   if (error) {
+  //     setMessage(error.message);
+  //   }
+  // };
+
+  const redirectUrl = import.meta.env.NEXT_PUBLIC_REDIRECT_URL; // Uses the right URL automatically
+
+  const handleGoogleLogin = async () => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
-      options: {
-        redirectTo: redirectUrl,
-      },
+      options: { redirectTo: redirectUrl },
     });
 
     if (error) {
-      setMessage(error.message);
+      console.error("Login error:", error.message);
     }
   };
 

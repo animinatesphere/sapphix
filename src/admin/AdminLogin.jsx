@@ -49,21 +49,32 @@ const AdminLogin = () => {
   };
 
   // Handle Google Login
-  const handleGoogleLogin = async () => {
-    const redirectUrl = `${window.location.origin}/admindashboard`;
+  // const handleGoogleLogin = async () => {
+  //   const redirectUrl = `${window.location.origin}/admindashboard`;
 
+  //   const { error } = await supabase.auth.signInWithOAuth({
+  //     provider: "google",
+  //     options: {
+  //       redirectTo: redirectUrl,
+  //     },
+  //   });
+
+  //   if (error) {
+  //     setMessage(error.message);
+  //   }
+  // };
+  const redirectUrl = import.meta.env.NEXT_PUBLIC_REDIRECT_URL; // Uses the right URL automatically
+
+  const handleGoogleLogin = async () => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
-      options: {
-        redirectTo: redirectUrl,
-      },
+      options: { redirectTo: redirectUrl },
     });
 
     if (error) {
-      setMessage(error.message);
+      console.error("Login error:", error.message);
     }
   };
-
   return (
     <div className="login-container">
       <h2 className="login-head">Welcome to Sapphix</h2>
