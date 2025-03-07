@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import { AuthProvider, AuthContext } from "./Auttts/AuthContext";
 import Login from "./login/Login";
-import Dashboard from "./page/Dashboard";
+import Dashboard from "./Page/Dashboard";
 import { useContext } from "react";
 import AdminLogin from "./admin/AdminLogin";
 import AdminDashboard from "./admin/AdminDashboard";
