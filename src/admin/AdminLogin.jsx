@@ -79,7 +79,7 @@ const AdminLogin = () => {
   };
 
   const handleGoogleLogin = async () => {
-    const redirectUrl = `${getURL()}admindashboard`; // Use getURL() dynamically
+    const redirectUrl = `${getURL()}dashboard`; // Use getURL() dynamically
 
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",

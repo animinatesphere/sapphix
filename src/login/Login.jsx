@@ -49,47 +49,17 @@ const Login = () => {
   };
 
   // Handle Google Login
-  // const handleGoogleLogin = async () => {
-  //   const redirectUrl = `${window.location.origin}/dashboard`;
-
-  //   const { error } = await supabase.auth.signInWithOAuth({
-  //     provider: "google",
-  //     options: {
-  //       redirectTo: redirectUrl,
-  //     },
-  //   });
-
-  //   if (error) {
-  //     setMessage(error.message);
-  //   }
-  // };
-  const getURL = () => {
-    let url =
-      import.meta.env.VITE_REDIRECT_URL ?? // Use environment variable in Vite
-      import.meta.env.VITE_VERCEL_URL ?? // Use Vercel deployment URL
-      "https://sapphix-q1xz.vercel.app"; // Default to localhost in development
-
-    // Ensure URL starts with "https://" when deployed
-    url = url.startsWith("http") ? url : `https://${url}`;
-
-    // Ensure URL ends with "/"
-    url = url.endsWith("/") ? url : `${url}/`;
-
-    return url;
-  };
-
   const handleGoogleLogin = async () => {
-    const url = `${getURL()}dashboard`; // Use getURL() dynamically
+    const redirectUrl = `${window.location.origin}/dashboard`;
 
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: url, // Pass the correct redirect URL
+        redirectTo: redirectUrl,
       },
     });
 
     if (error) {
-      console.error("Google Login Error:", error.message);
       setMessage(error.message);
     }
   };
