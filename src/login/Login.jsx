@@ -67,7 +67,7 @@ const Login = () => {
     let url =
       import.meta.env.VITE_REDIRECT_URL ?? // Use environment variable in Vite
       import.meta.env.VITE_VERCEL_URL ?? // Use Vercel deployment URL
-      "http://localhost:3000"; // Default to localhost in development
+      "https://sapphix-q1xz.vercel.app"; // Default to localhost in development
 
     // Ensure URL starts with "https://" when deployed
     url = url.startsWith("http") ? url : `https://${url}`;
