@@ -79,12 +79,12 @@ const Login = () => {
   };
 
   const handleGoogleLogin = async () => {
-    const redirectUrl = `${getURL()}dashboard`; // Use getURL() dynamically
+    const url = `${getURL()}dashboard`; // Use getURL() dynamically
 
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: redirectUrl, // Pass the correct redirect URL
+        redirectTo: url, // Pass the correct redirect URL
       },
     });
 
