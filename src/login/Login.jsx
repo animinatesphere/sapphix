@@ -5,7 +5,6 @@ import "../login/login.css";
 import "../login/loginResponsive.css";
 import google from "../assets/Google sign.png";
 import UserButtons from "../component/UserButtons";
-import { meta } from "@eslint/js";
 
 const Login = () => {
   // const navigate = useNavigate();
@@ -64,20 +63,34 @@ const Login = () => {
   //     setMessage(error.message);
   //   }
   // };
+  const getURL = () => {
+    let url =
+      import.meta.env.VITE_REDIRECT_URL ?? // Use environment variable in Vite
+      import.meta.env.VITE_VERCEL_URL ?? // Use Vercel deployment URL
+      "http://localhost:3000"; // Default to localhost in development
 
-  const redirectUrl =
-    import.meta.env.NODE_ENV === "development"
-      ? "http://localhost:3000/dashboard"
-      : "https://sapphix-q1xz.vercel.app/dashboard";
+    // Ensure URL starts with "https://" when deployed
+    url = url.startsWith("http") ? url : `https://${url}`;
+
+    // Ensure URL ends with "/"
+    url = url.endsWith("/") ? url : `${url}/`;
+
+    return url;
+  };
 
   const handleGoogleLogin = async () => {
+    const redirectUrl = `${getURL()}dashboard`; // Use getURL() dynamically
+
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
-      options: { redirectTo: redirectUrl },
+      options: {
+        redirectTo: redirectUrl, // Pass the correct redirect URL
+      },
     });
 
     if (error) {
-      console.error("Login error:", error.message);
+      console.error("Google Login Error:", error.message);
+      setMessage(error.message);
     }
   };
 
