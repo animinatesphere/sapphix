@@ -66,7 +66,7 @@ const AdminLogin = () => {
   const redirectUrl =
     import.meta.env.NODE_ENV === "development"
       ? "http://localhost:3000/dashboard"
-      : "https://sapphix-q1xz.vercel.app/dashboard";
+      : "https://sapphix-q1xz.vercel.app/admindashboard";
 
   const handleGoogleLogin = async () => {
     const { error } = await supabase.auth.signInWithOAuth({
