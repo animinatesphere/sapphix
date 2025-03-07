@@ -63,7 +63,10 @@ const AdminLogin = () => {
   //     setMessage(error.message);
   //   }
   // };
-  const redirectUrl = import.meta.env.NEXT_PUBLIC_REDIRECT_URL; // Uses the right URL automatically
+  const redirectUrl =
+    import.meta.env.NODE_ENV === "development"
+      ? "http://localhost:3000/dashboard"
+      : "https://sapphix-q1xz.vercel.app/dashboard";
 
   const handleGoogleLogin = async () => {
     const { error } = await supabase.auth.signInWithOAuth({
