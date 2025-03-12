@@ -52,6 +52,9 @@ const Login = () => {
   const handleGoogleLogin = async () => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
+      options: {
+        redirectTo: window.location.origin + "/dashboard", // Dynamically set URL
+      },
     });
 
     if (error) {
