@@ -1,0 +1,22 @@
+.loading-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #f7c6e8, #f06292);
+  color: #ffffff;
+  text-align: center;
+}
+
+.dancing-woman {
+  font-size: 60px;
+}
+
+.loading-text {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  margin-top: 15px;
+  opacity: 0.8;
+}

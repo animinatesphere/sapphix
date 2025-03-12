@@ -8,18 +8,19 @@ import { AuthProvider, AuthContext } from "./Auttts/AuthContext";
 import { CartProvider } from "./component/CartContext";
 import Login from "./login/Login";
 import Dashboard from "../src/Page/DashBoard";
-import { useContext } from "react";
+// import { useContext } from "react";
 import AdminLogin from "./admin/AdminLogin";
 import AdminDashboard from "./admin/AdminDashboard";
 import ProductListing from "./women/ProductListing";
 import ProductDetails from "./component/ProductDetails";
-import HandleAuthRedirect from "./component/HandleAuthRedirect";
+import ProtectedRoute from "./component/ProtectedRoute";
+// import HandleAuthRedirect from "./component/HandleAuthRedirect";
 
-const ProtectedRoute = ({ children }) => {
-  const { user, loading } = useContext(AuthContext);
-  if (loading) return <p>Loading...</p>;
-  return user ? children : <Navigate to="/login" />;
-};
+// const ProtectedRoute = ({ children }) => {
+//   const { user, loading } = useContext(AuthContext);
+//   if (loading) return <p>Loading...</p>;
+//   return user ? children : <Navigate to="/login" />;
+// };
 
 function App() {
   return (
@@ -31,9 +32,6 @@ function App() {
             <Route path="/Admin-Login" element={<AdminLogin />} />
             <Route path="/women" element={<ProductListing />} />
             <Route path="/product/:id" element={<ProductDetails />} />
-
-            {/* Handle Supabase OAuth Redirect */}
-            <Route path="/auth/callback" element={<HandleAuthRedirect />} />
 
             <Route
               path="/dashboard"

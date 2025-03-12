@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { supabase } from "../../supabase";
 import "../login/login.css";
 import "../login/loginResponsive.css";
@@ -6,43 +7,25 @@ import google from "../assets/Google sign.png";
 import UserButtons from "../component/UserButtons";
 
 const Login = () => {
-  const [input, setInput] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const navigate = useNavigate(); // Used to redirect users
 
-  // Function to check if input is email or phone
-  const isEmail = (input) => /\S+@\S+\.\S+/.test(input);
-  const isPhone = (input) => /^\+?[1-9]\d{9,14}$/.test(input); // E.164 format
-
-  // Handle Email/Phone Login
+  // Handle Email & Password Login
   const handleSubmit = async (event) => {
     event.preventDefault();
     setMessage("");
 
-    if (isEmail(input)) {
-      // Email Login (Magic Link)
-      const { error } = await supabase.auth.signInWithOtp({
-        email: input,
-        options: { shouldCreateUser: true },
-      });
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
 
-      if (error) {
-        setMessage(error.message);
-      } else {
-        setMessage("A login link has been sent to your email.");
-      }
-    } else if (isPhone(input)) {
-      // Phone Login (OTP)
-      const { error } = await supabase.auth.signInWithOtp({
-        phone: input,
-      });
-
-      if (error) {
-        setMessage(error.message);
-      } else {
-        setMessage("OTP has been sent to your phone.");
-      }
+    if (error) {
+      setMessage(error.message);
     } else {
-      setMessage("Please enter a valid email or phone number.");
+      navigate("/dashboard"); // Redirect to Dashboard after login
     }
   };
 
@@ -51,7 +34,7 @@ const Login = () => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: `${window.location.origin}/auth/callback`, // Redirect to the handler
+        redirectTo: `${window.location.origin}/auth/callback`, // Redirect after Google login
       },
     });
 
@@ -63,9 +46,7 @@ const Login = () => {
   return (
     <div className="login-container">
       <h2 className="login-head">Welcome to Sapphix</h2>
-      <p className="login-head2">
-        Type your e-mail or phone number to log in or create a Sapphix account.
-      </p>
+      <p className="login-head2">Log in with your email and password</p>
 
       {message && (
         <div className="message-box">
@@ -75,16 +56,25 @@ const Login = () => {
 
       <form onSubmit={handleSubmit}>
         <input
-          type="text"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="Email or Mobile Number*"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Email*"
+          required
+          className="log-form"
+        />
+        <br />
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password*"
           required
           className="log-form"
         />
         <br />
         <button type="submit" className="log-but">
-          Continue
+          Log In
         </button>
       </form>
 

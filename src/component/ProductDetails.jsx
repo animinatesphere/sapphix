@@ -1,24 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { motion } from "framer-motion";
 import Products from "../component/Products";
 import { FaStar } from "react-icons/fa";
-import cartIcon from "../assets/Cart.png";
 import store from "../foestaimages/store.png";
 import "../componentcss/ProductDetails.css";
 import NavbarHead from "../navbar-component/NavbarHead";
 import Navbar from "../navbar-component/navbar";
 import Similar from "./Similar";
-import FooterSection from "./FooterSection";
 import { useCart } from "./CartContext";
 
 const ProductDetails = () => {
   const { id } = useParams();
-  const product = Products.find((p) => p.id === parseInt(id));
-
-  if (!product) return <h2>Product not found</h2>;
-
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true); // Loading state
   const [quantity, setQuantity] = useState(1);
   const stock = 12; // Example stock value
+  const { addToCart } = useCart();
+
+  useEffect(() => {
+    // Simulate fetching product details
+    setTimeout(() => {
+      const foundProduct = Products.find((p) => p.id === parseInt(id));
+      setProduct(foundProduct);
+      setLoading(false);
+    }, 2000); // Simulated API delay (2s)
+  }, [id]);
 
   const increaseQuantity = () => {
     if (quantity < stock) setQuantity(quantity + 1);
@@ -27,7 +34,37 @@ const ProductDetails = () => {
   const decreaseQuantity = () => {
     if (quantity > 1) setQuantity(quantity - 1);
   };
-  const { addToCart } = useCart();
+
+  // Animated Loading Screen
+  if (loading) {
+    return (
+      <motion.div
+        className="loading-screen"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <motion.div
+          className="loading-icon"
+          animate={{ scale: [1, 1.1, 1], rotate: [0, 10, -10, 0] }}
+          transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+        >
+          🛍️
+        </motion.div>
+        <motion.h2
+          className="loading-text"
+          animate={{ opacity: [0, 1, 0] }}
+          transition={{ repeat: Infinity, duration: 2 }}
+        >
+          Finding the best deals for you...
+        </motion.h2>
+      </motion.div>
+    );
+  }
+
+  if (!product) return <h2>Product not found</h2>;
+
   return (
     <>
       <NavbarHead />
@@ -36,7 +73,6 @@ const ProductDetails = () => {
         Women / Clothing / <span className="title-name">{product.name}</span>
       </h1>
       <div className="product-details">
-        {/* Left Side: Product Images */}
         <div className="product-images">
           <img src={product.image} alt={product.name} className="main-image" />
           <div className="thumbnails">
@@ -46,12 +82,10 @@ const ProductDetails = () => {
           </div>
         </div>
 
-        {/* Right Side: Product Info */}
         <div className="product-info">
           <h1>{product.name}</h1>
           <p className="description">{product.description}</p>
 
-          {/* Rating Section */}
           <div className="rating">
             {Array.from({ length: 5 }).map((_, i) => (
               <FaStar
@@ -64,7 +98,6 @@ const ProductDetails = () => {
             <span className="re">({product.reviews})</span>
           </div>
 
-          {/* Color Selection */}
           <h3 className="co">Choose a Color</h3>
           <div className="color-options">
             {product.colors.map((color, index) => (
@@ -76,7 +109,6 @@ const ProductDetails = () => {
             ))}
           </div>
 
-          {/* Size Selection */}
           <h3 className="six">Select Size</h3>
           <div className="size-options">
             {product.sizes.map((size) => (
@@ -86,7 +118,6 @@ const ProductDetails = () => {
             ))}
           </div>
 
-          {/* Quantity Selection */}
           <div className="quantity-section">
             <h3 className="quan">Quantity</h3>
             <div className="quantity-paren">
@@ -107,15 +138,13 @@ const ProductDetails = () => {
             </div>
           </div>
 
-          {/* Actions (Buy Now & Add to Cart) */}
           <div className="actions">
             <button className="buy-now">Buy Now</button>
             <button className="add-to-cart" onClick={() => addToCart(product)}>
-              <img src={cartIcon} alt="Cart" /> Add to Cart
+              Add to Cart
             </button>
           </div>
 
-          {/* Free Delivery Section */}
           <div className="free-delivery">
             <img src={store} alt="" />
             <div className="deli">
@@ -128,7 +157,6 @@ const ProductDetails = () => {
         </div>
       </div>
       <Similar />
-      <FooterSection />
     </>
   );
 };

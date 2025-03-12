@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useCart } from "../component/CartContext";
 import { Link } from "react-router-dom";
 import "../women/ProductListing.css";
@@ -6,8 +6,9 @@ import Navbar from "../navbar-component/navbar";
 import NavbarHead from "../navbar-component/NavbarHead";
 import Products from "../component/Products";
 import cart from "../assets/Cart.png";
-import { FaStar, FaRegStar } from "react-icons/fa"; // Import star icons
+import { FaStar, FaRegStar } from "react-icons/fa";
 import FooterSection from "../component/FooterSection";
+import ProductListingLoading from "../women/ProductListingLoading";
 
 const categories = ["Clothing", "Bags", "Accessories", "Headwear"];
 
@@ -15,20 +16,25 @@ const ProductListing = () => {
   const { addToCart } = useCart();
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 9; // Show 3 products per page
+  const [loading, setLoading] = useState(true);
+  const itemsPerPage = 9;
 
-  // **🔍 Search Functionality**
+  useEffect(() => {
+    setTimeout(() => setLoading(false), 2000); // Simulate API delay
+  }, []);
+
   const filteredProducts = Products.filter((product) =>
     product.name.toLowerCase().includes(search.toLowerCase())
   );
 
-  // **📌 Pagination Logic**
   const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const displayedProducts = filteredProducts.slice(
     startIndex,
     startIndex + itemsPerPage
   );
+
+  if (loading) return <ProductListingLoading />;
 
   return (
     <>
@@ -142,7 +148,6 @@ const ProductListing = () => {
                 &lt; Previous
               </button>
               <div>
-                {/* Numbered Pages */}
                 {[...Array(totalPages)].map((_, index) => (
                   <button
                     key={index}
