@@ -4,6 +4,7 @@ import cart from "../assets/Cart.png";
 import { useCart } from "../component/CartContext";
 import { Link } from "react-router-dom";
 import { FaStar, FaRegStar } from "react-icons/fa";
+import FooterSection from "./FooterSection";
 const Similar = () => {
   const { addToCart } = useCart();
   return (
@@ -45,6 +46,7 @@ const Similar = () => {
           </div>
         ))}
       </div>
+      <FooterSection />
     </>
   );
 };
