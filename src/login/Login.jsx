@@ -1,13 +1,11 @@
 import { useState } from "react";
 import { supabase } from "../../supabase";
-// import { Link, useNavigate } from "react-router-dom";
 import "../login/login.css";
 import "../login/loginResponsive.css";
 import google from "../assets/Google sign.png";
 import UserButtons from "../component/UserButtons";
 
 const Login = () => {
-  // const navigate = useNavigate();
   const [input, setInput] = useState("");
   const [message, setMessage] = useState("");
 
@@ -24,13 +22,13 @@ const Login = () => {
       // Email Login (Magic Link)
       const { error } = await supabase.auth.signInWithOtp({
         email: input,
-        options: { shouldCreateUser: true }, // Creates a new user if not exists
+        options: { shouldCreateUser: true },
       });
 
       if (error) {
         setMessage(error.message);
       } else {
-        setMessage("Link sent to your email.");
+        setMessage("A login link has been sent to your email.");
       }
     } else if (isPhone(input)) {
       // Phone Login (OTP)
@@ -41,19 +39,21 @@ const Login = () => {
       if (error) {
         setMessage(error.message);
       } else {
-        setMessage("OTP sent to your phone.");
+        setMessage("OTP has been sent to your phone.");
       }
     } else {
-      setMessage("Invalid email or phone number format.");
+      setMessage("Please enter a valid email or phone number.");
     }
   };
 
   // Handle Google Login
   const handleGoogleLogin = async () => {
+    setMessage(""); // Clear previous messages
+
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: window.location.origin + "/dashboard", // Dynamically set URL
+        redirectTo: `${window.location.origin}/dashboard`, // Use correct redirect URL
       },
     });
 
@@ -68,41 +68,18 @@ const Login = () => {
       <p className="login-head2">
         Type your e-mail or phone number to log in or create a Sapphix account.
       </p>
-      <br />
+
       {message && (
-        <span
-          style={{
-            position: "absolute",
-            top: "1%",
-            right: "1%",
-            backgroundColor: "#f8d7da",
-            color: "#721c24",
-            padding: "8px 12px",
-            borderRadius: "8px",
-            boxShadow: "0px 2px 6px rgba(0,0,0,0.2)",
-            fontSize: "14px",
-            fontWeight: "bold",
-          }}
-        >
-          <button
-            style={{
-              background: "transparent",
-              border: "none",
-              color: "inherit",
-              fontSize: "inherit",
-              cursor: "pointer",
-            }}
-          >
-            {message}
-          </button>
-        </span>
+        <div className="message-box">
+          <span>{message}</span>
+        </div>
       )}
 
       <form onSubmit={handleSubmit}>
         <input
-          onChange={(e) => setInput(e.target.value)}
-          value={input}
           type="text"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
           placeholder="Email or Mobile Number*"
           required
           className="log-form"
@@ -112,12 +89,15 @@ const Login = () => {
           Continue
         </button>
       </form>
+
       <p className="co">By continuing, you agree to Sapphix</p>
-      <p className="te">Terms and Conditions </p>
+      <p className="te">Terms and Conditions</p>
+
       <button onClick={handleGoogleLogin} className="google-but">
-        <img src={google} alt="" />
+        <img src={google} alt="Google Logo" />
         Log in with Google
       </button>
+
       <UserButtons />
     </div>
   );
