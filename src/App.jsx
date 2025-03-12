@@ -39,7 +39,7 @@ function App() {
 
             <Route path="/product/:id" element={<ProductDetails />} />
             <Route
-              path="/dashboard"
+              path="/"
               element={
                 <ProtectedRoute>
                   <Dashboard />
@@ -54,7 +54,7 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            <Route path="*" element={<Navigate to="/dashboard" />} />
+            <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </Router>
       </CartProvider>
