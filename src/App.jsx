@@ -17,8 +17,12 @@ import ProductDetails from "./component/ProductDetails";
 
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
+
+  // Show loading state while checking user authentication
   if (loading) return <p>Loading...</p>;
-  return user ? children : <Navigate to="/login" />;
+
+  // If no user is found, redirect to login
+  return user ? children : <Navigate to="/login" replace />;
 };
 
 function App() {
