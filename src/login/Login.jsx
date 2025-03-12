@@ -48,12 +48,10 @@ const Login = () => {
 
   // Handle Google Login
   const handleGoogleLogin = async () => {
-    setMessage(""); // Clear previous messages
-
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: `${window.location.origin}/`, // Use correct redirect URL
+        redirectTo: `${window.location.origin}/auth/callback`, // Redirect to the handler
       },
     });
 

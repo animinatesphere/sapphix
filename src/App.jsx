@@ -13,33 +13,30 @@ import AdminLogin from "./admin/AdminLogin";
 import AdminDashboard from "./admin/AdminDashboard";
 import ProductListing from "./women/ProductListing";
 import ProductDetails from "./component/ProductDetails";
-// import Navbar from "./navbar-component/navbar";
+import HandleAuthRedirect from "./component/HandleAuthRedirect";
 
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
-
-  // Show loading state while checking user authentication
   if (loading) return <p>Loading...</p>;
-
-  // If no user is found, redirect to login
-  return user ? children : <Navigate to="/login" replace />;
+  return user ? children : <Navigate to="/login" />;
 };
 
 function App() {
   return (
     <AuthProvider>
       <CartProvider>
-        {" "}
-        {/* Wrap everything with CartProvider */}
         <Router>
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/Admin-Login" element={<AdminLogin />} />
             <Route path="/women" element={<ProductListing />} />
-
             <Route path="/product/:id" element={<ProductDetails />} />
+
+            {/* Handle Supabase OAuth Redirect */}
+            <Route path="/auth/callback" element={<HandleAuthRedirect />} />
+
             <Route
-              path="/"
+              path="/dashboard"
               element={
                 <ProtectedRoute>
                   <Dashboard />
@@ -54,7 +51,7 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            <Route path="*" element={<Navigate to="/" />} />
+            <Route path="*" element={<Navigate to="/dashboard" />} />
           </Routes>
         </Router>
       </CartProvider>

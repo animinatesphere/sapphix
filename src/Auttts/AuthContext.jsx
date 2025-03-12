@@ -1,13 +1,11 @@
 import { createContext, useEffect, useState } from "react";
 import { supabase } from "../../supabase";
-import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const getSession = async () => {
@@ -21,11 +19,15 @@ export const AuthProvider = ({ children }) => {
     getSession();
 
     const { data: authListener } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
-        setUser(session?.user || null);
-        if (session) {
-          localStorage.setItem("supabase-auth-token", JSON.stringify(session)); // Store user session
-          navigate("/dashboard"); // Redirect to dashboard after login
+      async (_event, session) => {
+        if (session?.user && !localStorage.getItem("loggedIn")) {
+          setUser(session.user);
+          localStorage.setItem("supabase-auth-token", JSON.stringify(session));
+          localStorage.setItem("loggedIn", "true"); // ✅ Prevents infinite reload loop
+          window.location.href = "/dashboard";
+        } else if (!session) {
+          localStorage.removeItem("loggedIn");
+          setUser(null);
         }
       }
     );
@@ -33,7 +35,7 @@ export const AuthProvider = ({ children }) => {
     return () => {
       authListener.subscription.unsubscribe();
     };
-  }, [navigate]);
+  }, []);
 
   return (
     <AuthContext.Provider value={{ user, loading }}>
