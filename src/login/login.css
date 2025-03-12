@@ -172,3 +172,122 @@
   color: red;
   font-family: Spline Sans;
 } */
+
+/* login */
+/* Email & Password Input Fields */
+.log-form {
+  width: 578px;
+  height: 66px;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  border-width: 1px;
+  border: 1px solid var(--Greyscale-Border-Disabled, #aba9aa);
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: -1%;
+  vertical-align: middle;
+  color: var(--Greyscale-Text-Disabled, #777475);
+  transition: all 0.3s ease-in-out;
+}
+
+/* Add Focus Effect */
+.log-form:focus {
+  border: 1px solid var(--Green-500, #184645);
+  outline: none;
+  box-shadow: 0 0 10px rgba(24, 70, 69, 0.3);
+}
+
+/* Password Input Field */
+.pass-form {
+  width: 578px;
+  height: 66px;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  border-width: 1px;
+  border: 1px solid var(--Greyscale-Border-Disabled, #aba9aa);
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: -1%;
+  vertical-align: middle;
+  color: var(--Greyscale-Text-Disabled, #777475);
+  transition: all 0.3s ease-in-out;
+  margin-top: 1.5rem;
+}
+
+/* Add Focus Effect */
+.pass-form:focus {
+  border: 1px solid var(--Green-500, #184645);
+  outline: none;
+  box-shadow: 0 0 10px rgba(24, 70, 69, 0.3);
+}
+
+/* Login Button */
+.submit-but {
+  width: 578px;
+  height: 56px;
+  border-radius: 4px;
+  padding: 16px 20px;
+  background: var(--Green-500, #184645);
+  border: none;
+  font-family: "Spline Sans", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 15px;
+  letter-spacing: -1%;
+  text-align: center;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  margin-top: 3rem;
+}
+
+.submit-but:hover {
+  background: #13615f;
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(24, 70, 69, 0.3);
+}
+
+.submit-but:active {
+  transform: scale(0.95);
+  background: #0e3d3c;
+  box-shadow: none;
+}
+
+/* Animating the Login Button */
+.submit-but:hover {
+  animation: pulse 1.2s infinite;
+}
+
+/* Placeholder Styling */
+.log-form::placeholder,
+.pass-form::placeholder {
+  color: #aba9aa;
+  font-size: 14px;
+  font-weight: 400;
+  opacity: 0.8;
+}
+
+/* Add Spacing Between Fields */
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Error Message Styling */
+.error-message {
+  color: red;
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 14px;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+/* login */
