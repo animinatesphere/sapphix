@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "../component/CartContext";
 import eagle from "../assets/Sapphix logo editable 1.png";
@@ -6,10 +6,12 @@ import profile from "../assets/Profile.png";
 import wishlist from "../assets/Wishlist.png";
 import cart from "../assets/Cart.png";
 import SearchBar from "../componentcss/SearchBar";
+import CartSidebar from "../component/CartSidebar";
 import "../navbar-component/navbar2.css";
 
 const Navbar = () => {
-  const { cartItems, wishlistItems } = useCart(); // Get cart and wishlist state
+  const { cartItems, wishlistItems } = useCart();
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   return (
     <>
@@ -21,7 +23,7 @@ const Navbar = () => {
             <div className="harm-1"></div>
           </div>
           <div className="nav-left-image">
-            <img src={eagle} alt="" />
+            <img src={eagle} alt="Logo" />
           </div>
           <div className="nav-left-link">
             <ul>
@@ -36,16 +38,17 @@ const Navbar = () => {
           <SearchBar />
           <div className="right-nav-images">
             <div className="nav-images">
-              <img src={profile} alt="" />
+              <img src={profile} alt="Profile" />
             </div>
             <div className="nav-images">
-              <img src={wishlist} alt="" />
+              <img src={wishlist} alt="Wishlist" />
               {wishlistItems.length > 0 && (
                 <span className="wishlist-count">{wishlistItems.length}</span>
               )}
             </div>
-            <div className="nav-images">
-              <img src={cart} alt="" />
+            {/* Cart Icon Clickable */}
+            <div className="nav-images" onClick={() => setIsCartOpen(true)}>
+              <img src={cart} alt="Cart" />
               {cartItems.length > 0 && (
                 <span className="cart-count">{cartItems.length}</span>
               )}
@@ -53,6 +56,9 @@ const Navbar = () => {
           </div>
         </div>
       </div>
+
+      {/* Sidebar Component */}
+      <CartSidebar isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
     </>
   );
 };

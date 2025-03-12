@@ -9,6 +9,7 @@ import NavbarHead from "../navbar-component/NavbarHead";
 import Navbar from "../navbar-component/navbar";
 import Similar from "./Similar";
 import FooterSection from "./FooterSection";
+import { useCart } from "./CartContext";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -26,7 +27,7 @@ const ProductDetails = () => {
   const decreaseQuantity = () => {
     if (quantity > 1) setQuantity(quantity - 1);
   };
-
+  const { addToCart } = useCart();
   return (
     <>
       <NavbarHead />
@@ -109,7 +110,7 @@ const ProductDetails = () => {
           {/* Actions (Buy Now & Add to Cart) */}
           <div className="actions">
             <button className="buy-now">Buy Now</button>
-            <button className="add-to-cart">
+            <button className="add-to-cart" onClick={() => addToCart(product)}>
               <img src={cartIcon} alt="Cart" /> Add to Cart
             </button>
           </div>

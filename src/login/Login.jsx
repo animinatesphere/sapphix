@@ -50,13 +50,8 @@ const Login = () => {
 
   // Handle Google Login
   const handleGoogleLogin = async () => {
-    const redirectUrl = `${"https://sapphix-q1xz.vercel.app/"}/dashboard`;
-
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
-      options: {
-        redirectTo: redirectUrl,
-      },
     });
 
     if (error) {
