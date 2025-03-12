@@ -1,11 +1,13 @@
 import { createContext, useEffect, useState } from "react";
 import { supabase } from "../../supabase";
+import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true); // Initially true
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getSession = async () => {
@@ -13,23 +15,25 @@ export const AuthProvider = ({ children }) => {
         data: { session },
       } = await supabase.auth.getSession();
       setUser(session?.user || null);
-      setLoading(false); // Set loading to false after session check
+      setLoading(false);
     };
 
     getSession();
 
-    // Listen for auth state changes
     const { data: authListener } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
+      async (event, session) => {
         setUser(session?.user || null);
-        setLoading(false); // Stop loading when session updates
+        if (session) {
+          localStorage.setItem("supabase-auth-token", JSON.stringify(session)); // Store user session
+          navigate("/dashboard"); // Redirect to dashboard after login
+        }
       }
     );
 
     return () => {
-      authListener.subscription?.unsubscribe();
+      authListener.subscription.unsubscribe();
     };
-  }, []);
+  }, [navigate]);
 
   return (
     <AuthContext.Provider value={{ user, loading }}>
