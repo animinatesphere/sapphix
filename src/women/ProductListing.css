@@ -1,0 +1,351 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.bread p {
+  font-family: inter;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 145%;
+  letter-spacing: 0%;
+  vertical-align: middle;
+  position: absolute;
+  padding-top: 3rem;
+  padding-left: 3rem;
+}
+/* Layout */
+.product-listing {
+  display: flex;
+  padding: 20px;
+  margin-top: 5rem;
+}
+
+.sidebar {
+  width: 250px;
+  padding: 20px;
+  /* background-color: #f8f8f8; */
+}
+.filter-parent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px var(--light-grey-100, #eaeaea) solid;
+  border-bottom: 1px var(--light-grey-100, #eaeaea) solid;
+  padding-top: 1rem;
+}
+.fil {
+  font-family: inter;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 145%;
+  letter-spacing: 0%;
+  text-align: right;
+  vertical-align: middle;
+  color: var(--Text-Title, #0f0f0e);
+}
+.sort-options {
+  display: flex;
+  align-items: center;
+}
+.sort {
+  font-family: Inter;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 145%;
+  letter-spacing: 0%;
+  text-align: center;
+  vertical-align: middle;
+  color: var(--Green-500, #184645);
+}
+.sort-options p {
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 145%;
+  letter-spacing: 0%;
+  text-align: right;
+  vertical-align: middle;
+  color: var(--Text-Title, #0f0f0e);
+}
+.product-container {
+  flex: 1;
+  padding: 0 20px;
+}
+
+/* Sidebar */
+.sidebar-title {
+  font-family: inter;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 120%;
+  letter-spacing: -2%;
+  vertical-align: middle;
+}
+
+/* .search-bar {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  margin-top: 2rem;
+} */
+.search-bar {
+  border: none;
+}
+.search-container2 {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--light-grey-400, #cdcdcd);
+  border-radius: 3px;
+  padding: 8px 12px;
+  width: 225px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+  background: var(--Color, #ffffff);
+  margin-top: 2rem;
+}
+
+.search-icon {
+  width: 18px;
+  height: 18px;
+  color: #6b7280;
+}
+
+.search-bar {
+  margin-left: 8px;
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 145%;
+  letter-spacing: 0%;
+  vertical-align: middle;
+}
+
+.search-input::placeholder {
+  color: var(--Text-Disabled, #4d4c4a);
+}
+
+.category-btn {
+  display: flex;
+  align-items: center;
+  gap: 10rem;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 10px 0;
+  font-size: 16px;
+  cursor: pointer;
+  color: #333;
+  transition: 0.3s;
+  font-family: inter;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 145%;
+  letter-spacing: 0%;
+  vertical-align: middle;
+  border-bottom: 1px var(--light-grey-100, #eaeaea) solid;
+  margin-top: 2rem;
+}
+.plus {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 25px;
+  font-family: inter;
+}
+
+.category-btn:hover {
+  color: #000;
+  font-weight: bold;
+}
+
+/* Filters */
+.filters {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.filter-btn {
+  background: none;
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* .sort-options {
+  text-align: right;
+  font-size: 14px;
+  margin-bottom: 15px;
+} */
+
+/* Product Grid */
+.product-grid {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 3rem;
+}
+
+.product-card {
+  width: 286px;
+  /* border: 1px solid #ddd; */
+  padding: 18px;
+  border-radius: 5px;
+  /* background: #fff; */
+
+  text-align: center;
+  padding-top: 1rem;
+}
+
+.product-image {
+  width: 286px;
+  height: 286px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.title-price {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.product-title {
+  font-family: inter;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 145%;
+  letter-spacing: 0%;
+}
+.product-price {
+  font-family: inter;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 120%;
+  letter-spacing: -2%;
+  text-align: right;
+  vertical-align: middle;
+  /* text-decoration: line-through; */
+}
+.product-color {
+  font-family: inter;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 145%;
+  letter-spacing: 0%;
+  text-align: left;
+  color: var(--Text-Subtitle, #242322);
+}
+
+/* Ratings */
+.product-rating {
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  margin-bottom: 10px;
+}
+
+.star {
+  color: #ddd;
+  font-size: 14px;
+  margin-right: 3px;
+}
+
+.star.filled {
+  color: #f4b400;
+}
+
+.review-count {
+  font-size: 14px;
+  color: #666;
+  margin-left: 5px;
+}
+
+/* Add to Cart */
+.add-to-cart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 36px;
+  gap: 10px;
+  padding-top: 8px;
+  padding-right: 12px;
+  padding-bottom: 8px;
+  padding-left: 12px;
+  border-radius: 16px;
+  border-width: 1.5px;
+  background: var(--Color, #ffffff);
+  border: 1.5px solid #d0d5dd;
+  font-family: inter;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 145%;
+  letter-spacing: 0%;
+  text-align: center;
+  vertical-align: middle;
+  color: var(--Text-Caption, #4d4c4a);
+}
+
+.cart-icon {
+  width: 20px;
+  margin-right: 8px;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.pagination-btn {
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 8px 15px;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.pagination-btn:hover {
+  background: #f4f4f4;
+}
+
+.pagination-btn:disabled {
+  background: #eee;
+  cursor: not-allowed;
+}
+
+.page-number {
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.page-number:hover {
+  background: #f4f4f4;
+}
+
+.page-number.active {
+  border: 2px solid orange;
+  background: #fff;
+  font-weight: bold;
+}

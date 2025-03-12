@@ -1,0 +1,37 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Spline+Sans:wght@300..700&display=swap");
+
+.search-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--light-grey-400, #cdcdcd);
+  border-radius: 3px;
+  padding: 8px 12px;
+  width: 365px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+  background: var(--Color, #ffffff);
+}
+
+.search-icon {
+  width: 18px;
+  height: 18px;
+  color: #6b7280;
+}
+
+.search-input {
+  margin-left: 8px;
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 145%;
+  letter-spacing: 0%;
+  vertical-align: middle;
+}
+
+.search-input::placeholder {
+  color: var(--Text-Disabled, #4d4c4a);
+}

@@ -5,11 +5,15 @@ import {
   Navigate,
 } from "react-router-dom";
 import { AuthProvider, AuthContext } from "./Auttts/AuthContext";
+import { CartProvider } from "./component/CartContext";
 import Login from "./login/Login";
 import Dashboard from "../src/Page/DashBoard";
 import { useContext } from "react";
 import AdminLogin from "./admin/AdminLogin";
 import AdminDashboard from "./admin/AdminDashboard";
+import ProductListing from "./women/ProductListing";
+import ProductDetails from "./component/ProductDetails";
+// import Navbar from "./navbar-component/navbar";
 
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
@@ -20,30 +24,36 @@ const ProtectedRoute = ({ children }) => {
 function App() {
   return (
     <AuthProvider>
-      <Router>
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/Admin-Login" element={<AdminLogin />} />
-          <Route
-            path="/dashboard"
-            element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/admindashboard"
-            element={
-              <ProtectedRoute>
-                <AdminDashboard />
-              </ProtectedRoute>
-            }
-          />
-          <Route path="*" element={<Navigate to="/dashboard" />} />
-          <Route path="*" element={<Navigate to="/admindashboard" />} />
-        </Routes>
-      </Router>
+      <CartProvider>
+        {" "}
+        {/* Wrap everything with CartProvider */}
+        <Router>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/Admin-Login" element={<AdminLogin />} />
+            <Route path="/women" element={<ProductListing />} />
+
+            <Route path="/product/:id" element={<ProductDetails />} />
+            <Route
+              path="/dashboard"
+              element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admindashboard"
+              element={
+                <ProtectedRoute>
+                  <AdminDashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="*" element={<Navigate to="/dashboard" />} />
+          </Routes>
+        </Router>
+      </CartProvider>
     </AuthProvider>
   );
 }

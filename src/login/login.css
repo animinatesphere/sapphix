@@ -165,10 +165,10 @@
   border: 2px solid var(--Green-400, #3d6463);
 }
 /* notification css */
-span {
+/* span {
   position: absolute;
   top: 1%;
   right: 1%;
   color: red;
   font-family: Spline Sans;
-}
+} */

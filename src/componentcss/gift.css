@@ -1,0 +1,821 @@
+.gift-container {
+  display: flex;
+  /* align-items: center; */
+  width: fit-content;
+  gap: 10px;
+  margin: 0 auto;
+  margin-top: 2rem;
+}
+.gif1 {
+  background-image: linear-gradient(
+      300deg,
+      rgba(0, 0, 0, 0) 10%,
+      rgba(0, 0, 0, 0.55) 20.58%
+    ),
+    url(/src//foestaimages/13_8d808684-401c-46d2-adfa-dfb619e65437.webp);
+  width: 550px;
+  height: 634px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.gift1-text {
+  padding-top: 80%;
+  padding-left: 5%;
+}
+.gift1-text p {
+  font-family: Inter;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 120%;
+  letter-spacing: -4%;
+  vertical-align: middle;
+  color: #ffffff;
+}
+.gif-but {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.gift2-con {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.gift-2-1 {
+  background-image: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.55) 74.58%
+    ),
+    url(/src//assets/scarf1.jpg);
+  width: 521px;
+  height: 334px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.gift-2-2 {
+  background-image: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.55) 74.58%
+    ),
+    url(/src//assets/scarf2.jpg);
+  width: 521px;
+  height: 264px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.gif {
+  background-color: transparent;
+}
+.gif {
+  width: 138px;
+  height: 50px;
+  border-radius: 8px;
+  padding-top: 10px;
+  padding-right: 20px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  gap: 7px;
+  background: transparent;
+  font-family: "Spline Sans", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 150%;
+  letter-spacing: -1%;
+  color: #f5f5f5;
+  border: none;
+  margin-left: 2rem;
+}
+
+.gift2-1-text p,
+.gift2-2-text p {
+  font-family: "Spline Sans", sans-serif;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 50px;
+  letter-spacing: -4%;
+  vertical-align: middle;
+  color: #ffffff;
+  margin-top: 30%;
+  padding-left: 2rem;
+}
+
+@media screen and (max-width: 1096px) {
+  .gift-container {
+    display: flex;
+    /* align-items: center; */
+    width: fit-content;
+    gap: 10px;
+    margin: 0 auto;
+    margin-top: 2rem;
+  }
+  .gif1 {
+    background-image: linear-gradient(
+        300deg,
+        rgba(0, 0, 0, 0) 10%,
+        rgba(0, 0, 0, 0.55) 20.58%
+      ),
+      url(/src//foestaimages/13_8d808684-401c-46d2-adfa-dfb619e65437.webp);
+    width: 400px;
+    height: 634px;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  .gift-2-1 {
+    background-image: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.55) 74.58%
+      ),
+      url(/src//assets/scarf1.jpg);
+    width: 450px;
+    height: 334px;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  .gift-2-2 {
+    background-image: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.55) 74.58%
+      ),
+      url(/src//assets/scarf2.jpg);
+    width: 450px;
+    height: 264px;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  .gift1-text p {
+    font-family: Inter;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 120%;
+    letter-spacing: -4%;
+    vertical-align: middle;
+    color: #ffffff;
+  }
+  .gift2-1-text p,
+  .gift2-2-text p {
+    font-family: "Spline Sans", sans-serif;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 50px;
+    letter-spacing: -4%;
+    vertical-align: middle;
+    color: #ffffff;
+    margin-top: 30%;
+    padding-left: 2rem;
+  }
+}
+@media screen and (max-width: 875px) {
+  .gift-container {
+    display: flex;
+    /* align-items: center; */
+    width: fit-content;
+    gap: 10px;
+    margin: 0 auto;
+    margin-top: 2rem;
+  }
+  .gif1 {
+    background-image: linear-gradient(
+        300deg,
+        rgba(0, 0, 0, 0) 10%,
+        rgba(0, 0, 0, 0.55) 20.58%
+      ),
+      url(/src//foestaimages/13_8d808684-401c-46d2-adfa-dfb619e65437.webp);
+    width: 350px;
+    height: 634px;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  .gift-2-1 {
+    background-image: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.55) 74.58%
+      ),
+      url(/src//assets/scarf1.jpg);
+    width: 360px;
+    height: 334px;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  .gift-2-2 {
+    background-image: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.55) 74.58%
+      ),
+      url(/src//assets/scarf2.jpg);
+    width: 360px;
+    height: 264px;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  .gift1-text p {
+    font-family: Inter;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 120%;
+    letter-spacing: -4%;
+    vertical-align: middle;
+    color: #ffffff;
+  }
+  .gift2-1-text p,
+  .gift2-2-text p {
+    font-family: "Spline Sans", sans-serif;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 50px;
+    letter-spacing: -4%;
+    vertical-align: middle;
+    color: #ffffff;
+    margin-top: 30%;
+    padding-left: 2rem;
+  }
+}
+@media screen and (max-width: 799px) {
+  .gift-container {
+    display: flex;
+    /* align-items: center; */
+    width: fit-content;
+    gap: 10px;
+    margin: 0 auto;
+    margin-top: 2rem;
+  }
+  .gif1 {
+    background-image: linear-gradient(
+        300deg,
+        rgba(0, 0, 0, 0) 10%,
+        rgba(0, 0, 0, 0.55) 20.58%
+      ),
+      url(/src//foestaimages/13_8d808684-401c-46d2-adfa-dfb619e65437.webp);
+    width: 280px;
+    height: 504px;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  .gift-2-1 {
+    background-image: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.55) 74.58%
+      ),
+      url(/src//assets/scarf1.jpg);
+    width: 360px;
+    height: 240px;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  .gift-2-2 {
+    background-image: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.55) 74.58%
+      ),
+      url(/src//assets/scarf2.jpg);
+    width: 360px;
+    height: 240px;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  .gift1-text p {
+    font-family: Inter;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 120%;
+    letter-spacing: -4%;
+    vertical-align: middle;
+    color: #ffffff;
+  }
+  .gift2-1-text p,
+  .gift2-2-text p {
+    font-family: "Spline Sans", sans-serif;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 50px;
+    letter-spacing: -4%;
+    vertical-align: middle;
+    color: #ffffff;
+    margin-top: 30%;
+    padding-left: 2rem;
+  }
+}
+@media screen and (max-width: 668px) {
+  .gift-container {
+    display: flex;
+    /* align-items: center; */
+    width: fit-content;
+    gap: 10px;
+    margin: 0 auto;
+    margin-top: 2rem;
+  }
+  .gif1 {
+    background-image: linear-gradient(
+        300deg,
+        rgba(0, 0, 0, 0) 10%,
+        rgba(0, 0, 0, 0.55) 20.58%
+      ),
+      url(/src//foestaimages/13_8d808684-401c-46d2-adfa-dfb619e65437.webp);
+    width: 240px;
+    height: 504px;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  .gift-2-1 {
+    background-image: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.55) 74.58%
+      ),
+      url(/src//assets/scarf1.jpg);
+    width: 300px;
+    height: 240px;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  .gift-2-2 {
+    background-image: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.55) 74.58%
+      ),
+      url(/src//assets/scarf2.jpg);
+    width: 300px;
+    height: 240px;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  .gift1-text p {
+    font-family: Inter;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 120%;
+    letter-spacing: -4%;
+    vertical-align: middle;
+    color: #ffffff;
+  }
+  .gift2-1-text p,
+  .gift2-2-text p {
+    font-family: "Spline Sans", sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 50px;
+    letter-spacing: -4%;
+    vertical-align: middle;
+    color: #ffffff;
+    margin-top: 30%;
+    padding-left: 2rem;
+  }
+}
+@media screen and (max-width: 568px) {
+  .gift-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .gif1 {
+    background-image: linear-gradient(
+        300deg,
+        rgba(0, 0, 0, 0) 10%,
+        rgba(0, 0, 0, 0.55) 20.58%
+      ),
+      url(/src//foestaimages/13_8d808684-401c-46d2-adfa-dfb619e65437.webp);
+    width: 500px;
+    height: 444px;
+    margin: 0 auto;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  .gift-2-1 {
+    background-image: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.55) 74.58%
+      ),
+      url(/src//assets/scarf1.jpg);
+    width: 500px;
+    height: 444px;
+    margin: 0 auto;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  .gift-2-2 {
+    background-image: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.55) 74.58%
+      ),
+      url(/src//assets/scarf2.jpg);
+    width: 500px;
+    height: 444px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+  }
+  .gift1-text p {
+    font-family: Inter;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 120%;
+    letter-spacing: -4%;
+    vertical-align: middle;
+    color: #ffffff;
+  }
+  .gift1-text {
+    padding-top: 40%;
+    padding-left: 1%;
+  }
+  .butt-prop {
+    width: 138px;
+    height: 50px;
+    border-radius: 8px;
+    padding-top: 10px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    gap: 7px;
+    background: var(--Green-500, #184645);
+    font-family: "Spline Sans", sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 150%;
+    letter-spacing: -1%;
+    color: #f5f5f5;
+    border: none;
+    margin-left: 0rem;
+  }
+  .gift2-1-text p,
+  .gift2-2-text p {
+    font-family: "Spline Sans", sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 50px;
+    letter-spacing: -4%;
+    vertical-align: middle;
+    color: #ffffff;
+    margin-top: 30%;
+    padding-left: 0rem;
+  }
+}
+@media screen and (max-width: 522px) {
+  .gift-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .gif1 {
+    background-image: linear-gradient(
+        300deg,
+        rgba(0, 0, 0, 0) 10%,
+        rgba(0, 0, 0, 0.55) 20.58%
+      ),
+      url(/src//foestaimages/13_8d808684-401c-46d2-adfa-dfb619e65437.webp);
+    width: 400px;
+    height: 444px;
+    margin: 0 auto;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  .gift-2-1 {
+    background-image: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.55) 74.58%
+      ),
+      url(/src//assets/scarf1.jpg);
+    width: 400px;
+    height: 444px;
+    margin: 0 auto;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  .gift-2-2 {
+    background-image: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.55) 74.58%
+      ),
+      url(/src//assets/scarf2.jpg);
+    width: 400px;
+    height: 344px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+  }
+  .gift1-text p {
+    font-family: Inter;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 120%;
+    letter-spacing: -4%;
+    vertical-align: middle;
+    color: #ffffff;
+    text-align: center;
+    margin-left: 1rem;
+  }
+  .gift1-text {
+    padding-top: 40%;
+    padding-left: 1%;
+  }
+  .butt-prop {
+    width: 138px;
+    height: 50px;
+    border-radius: 8px;
+    padding-top: 10px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    gap: 7px;
+    background: var(--Green-500, #184645);
+    font-family: "Spline Sans", sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 150%;
+    letter-spacing: -1%;
+    color: #f5f5f5;
+    border: none;
+    margin-left: 10rem;
+  }
+  .gift2-1-text p,
+  .gift2-2-text p {
+    font-family: "Spline Sans", sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 50px;
+    letter-spacing: -4%;
+    vertical-align: middle;
+    color: #ffffff;
+    margin-top: 30%;
+    padding-left: 6rem;
+  }
+}
+@media screen and (max-width: 522px) {
+  .gift-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .gif1 {
+    background-image: linear-gradient(
+        300deg,
+        rgba(0, 0, 0, 0) 10%,
+        rgba(0, 0, 0, 0.55) 20.58%
+      ),
+      url(/src//foestaimages/13_8d808684-401c-46d2-adfa-dfb619e65437.webp);
+    width: 350px;
+    height: 444px;
+    margin: 0 auto;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  .gift-2-1 {
+    background-image: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.55) 74.58%
+      ),
+      url(/src//assets/scarf1.jpg);
+    width: 350px;
+    height: 444px;
+    margin: 0 auto;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  .gift-2-2 {
+    background-image: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.55) 74.58%
+      ),
+      url(/src//assets/scarf2.jpg);
+    width: 350px;
+    height: 444px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+  }
+  .gift1-text p {
+    font-family: Inter;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 120%;
+    letter-spacing: -4%;
+    vertical-align: middle;
+    color: #ffffff;
+    text-align: center;
+    margin-left: 1rem;
+  }
+  .gift1-text {
+    padding-top: 40%;
+    padding-left: 1%;
+  }
+  .butt-prop {
+    width: 138px;
+    height: 50px;
+    border-radius: 8px;
+    padding-top: 10px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    gap: 7px;
+    background: var(--Green-500, #184645);
+    font-family: "Spline Sans", sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 150%;
+    letter-spacing: -1%;
+    color: #f5f5f5;
+    border: none;
+    margin-left: 10rem;
+  }
+  .gift2-1-text p,
+  .gift2-2-text p {
+    font-family: "Spline Sans", sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 50px;
+    letter-spacing: -4%;
+    vertical-align: middle;
+    color: #ffffff;
+    margin-top: 30%;
+    padding-left: 6rem;
+  }
+}
+@media screen and (max-width: 400px) {
+  .gift-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .gif1 {
+    background-image: linear-gradient(
+        300deg,
+        rgba(0, 0, 0, 0) 10%,
+        rgba(0, 0, 0, 0.55) 20.58%
+      ),
+      url(/src//foestaimages/13_8d808684-401c-46d2-adfa-dfb619e65437.webp);
+    width: 350px;
+    height: 264px;
+    margin: 0 auto;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  .gift-2-1 {
+    background-image: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.55) 74.58%
+      ),
+      url(/src//assets/scarf1.jpg);
+    width: 350px;
+    height: 264px;
+    margin: 0 auto;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  .gift-2-2 {
+    background-image: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.55) 74.58%
+      ),
+      url(/src//assets/scarf2.jpg);
+    width: 350px;
+    height: 264px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+  }
+  .gift1-text p {
+    font-family: Inter;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 120%;
+    letter-spacing: -4%;
+    vertical-align: middle;
+    color: #ffffff;
+  }
+  .gift1-text {
+    padding-top: 40%;
+    padding-left: 1%;
+  }
+  .butt-prop {
+    width: 138px;
+    height: 50px;
+    border-radius: 8px;
+    padding-top: 10px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    gap: 7px;
+    background: var(--Green-500, #184645);
+    font-family: "Spline Sans", sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 150%;
+    letter-spacing: -1%;
+    color: #f5f5f5;
+    border: none;
+    margin-left: 10rem;
+  }
+  .gift2-1-text p,
+  .gift2-2-text p {
+    font-family: "Spline Sans", sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 50px;
+    letter-spacing: -4%;
+    vertical-align: middle;
+    color: #ffffff;
+    margin-top: 30%;
+    padding-left: 6rem;
+  }
+}
+@media screen and (max-width: 371px) {
+  .gift-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .gif1 {
+    background-image: linear-gradient(
+        300deg,
+        rgba(0, 0, 0, 0) 10%,
+        rgba(0, 0, 0, 0.55) 20.58%
+      ),
+      url(/src//foestaimages/13_8d808684-401c-46d2-adfa-dfb619e65437.webp);
+    width: 320px;
+    height: 264px;
+    margin: 0 auto;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  .gift-2-1 {
+    background-image: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.55) 74.58%
+      ),
+      url(/src//assets/scarf1.jpg);
+    width: 320px;
+    height: 264px;
+    margin: 0 auto;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  .gift-2-2 {
+    background-image: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.55) 74.58%
+      ),
+      url(/src//assets/scarf2.jpg);
+    width: 320px;
+    height: 264px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+  }
+  .gift1-text p {
+    font-family: Inter;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 120%;
+    letter-spacing: -4%;
+    vertical-align: middle;
+    color: #ffffff;
+  }
+  .gift1-text {
+    padding-top: 40%;
+    padding-left: 1%;
+  }
+  .butt-prop {
+    width: 138px;
+    height: 50px;
+    border-radius: 8px;
+    padding-top: 10px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    gap: 7px;
+    background: var(--Green-500, #184645);
+    font-family: "Spline Sans", sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 150%;
+    letter-spacing: -1%;
+    color: #f5f5f5;
+    border: none;
+    margin-left: 8rem;
+  }
+  .gift2-1-text p,
+  .gift2-2-text p {
+    font-family: "Spline Sans", sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 50px;
+    letter-spacing: -4%;
+    vertical-align: middle;
+    color: #ffffff;
+    margin-top: 30%;
+    padding-left: 5rem;
+  }
+}

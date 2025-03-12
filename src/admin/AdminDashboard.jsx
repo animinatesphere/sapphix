@@ -5,7 +5,7 @@ const signOut = async () => {
 };
 const AdminDashboard = () => {
   return (
-    <div className="flex">
+    <div className="">
       <p>AdminDashboard</p>
       <button onClick={signOut}>signout</button>
     </div>
