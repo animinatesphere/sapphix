@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useCart } from "../component/CartContext";
 import { Link } from "react-router-dom";
 import "../women/ProductListing.css";
-import Navbar from "../navbar-component/navbar";
+import Navbar from "../navbar-component/Navbars1";
 import NavbarHead from "../navbar-component/NavbarHead";
-import Products from "../component/Products";
 import cart from "../assets/Cart.png";
 import { FaStar, FaRegStar } from "react-icons/fa";
 import FooterSection from "../component/FooterSection";
 import ProductListingLoading from "../women/ProductListingLoading";
+import { supabase } from "../../supabase";
 
 const categories = ["Clothing", "Bags", "Accessories", "Headwear"];
 
@@ -17,13 +17,26 @@ const ProductListing = () => {
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
+  const [products, setProducts] = useState([]);
   const itemsPerPage = 9;
 
+  // Fetch products from Supabase
   useEffect(() => {
-    setTimeout(() => setLoading(false), 2000); // Simulate API delay
+    const fetchProducts = async () => {
+      setLoading(true);
+      const { data, error } = await supabase.from("products").select("*"); // Adjust table name if different
+      if (error) {
+        console.error("Error fetching products:", error.message);
+      } else {
+        setProducts(data);
+      }
+      setLoading(false);
+    };
+
+    fetchProducts();
   }, []);
 
-  const filteredProducts = Products.filter((product) =>
+  const filteredProducts = products.filter((product) =>
     product.name.toLowerCase().includes(search.toLowerCase())
   );
 
@@ -41,27 +54,13 @@ const ProductListing = () => {
       <NavbarHead />
       <Navbar />
       <div className="bread">
-        <p>Home /Women /Lifestyle</p>
+        <p>Home / Women / Lifestyle</p>
       </div>
       <div className="product-listing">
         {/* Sidebar */}
         <aside className="sidebar">
           <h3 className="sidebar-title">Lifestyle</h3>
           <div className="search-container2">
-            <svg
-              className="search-icon"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M21 21l-4.35-4.35m1.15-4.15a7 7 0 1 0-14 0 7 7 0 0 0 14 0z"
-              />
-            </svg>
             <input
               type="text"
               className="search-bar"
@@ -91,6 +90,7 @@ const ProductListing = () => {
               <p>Sort by:</p> <span className="sort">Most Popular</span>
             </div>
           </div>
+
           {/* Product Grid */}
           <div className="product-grid">
             {displayedProducts.length > 0 ? (
@@ -137,7 +137,7 @@ const ProductListing = () => {
             )}
           </div>
 
-          {/* 📌 Pagination */}
+          {/* Pagination */}
           {totalPages > 1 && (
             <div className="pagination">
               <button

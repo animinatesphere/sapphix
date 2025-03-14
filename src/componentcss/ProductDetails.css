@@ -8,6 +8,14 @@
   color: #ffffff;
   text-align: center;
 }
+.color-circle.selected {
+  border: 3px solid black;
+}
+
+.size-btn.selected {
+  background-color: black;
+  color: white;
+}
 
 .loading-icon {
   font-size: 50px;

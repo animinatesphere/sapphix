@@ -6,15 +6,17 @@ import { FaStar } from "react-icons/fa";
 import store from "../foestaimages/store.png";
 import "../componentcss/ProductDetails.css";
 import NavbarHead from "../navbar-component/NavbarHead";
-import Navbar from "../navbar-component/navbar";
+import Navbar from "../navbar-component/Navbars1";
 import Similar from "./Similar";
 import { useCart } from "./CartContext";
 
 const ProductDetails = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
-  const [loading, setLoading] = useState(true); // Loading state
+  const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
+  const [selectedColor, setSelectedColor] = useState(null);
+  const [selectedSize, setSelectedSize] = useState(null);
   const stock = 12; // Example stock value
   const { addToCart } = useCart();
 
@@ -24,7 +26,7 @@ const ProductDetails = () => {
       const foundProduct = Products.find((p) => p.id === parseInt(id));
       setProduct(foundProduct);
       setLoading(false);
-    }, 2000); // Simulated API delay (2s)
+    }, 2000);
   }, [id]);
 
   const increaseQuantity = () => {
@@ -35,7 +37,7 @@ const ProductDetails = () => {
     if (quantity > 1) setQuantity(quantity - 1);
   };
 
-  // Animated Loading Screen
+  // Loading Animation
   if (loading) {
     return (
       <motion.div
@@ -98,26 +100,38 @@ const ProductDetails = () => {
             <span className="re">({product.reviews})</span>
           </div>
 
+          {/* Color Selection */}
           <h3 className="co">Choose a Color</h3>
           <div className="color-options">
             {product.colors.map((color, index) => (
               <span
                 key={index}
-                className="color-circle"
+                className={`color-circle ${
+                  selectedColor === color ? "selected" : ""
+                }`}
                 style={{ backgroundColor: color }}
+                onClick={() => setSelectedColor(color)}
               ></span>
             ))}
           </div>
 
+          {/* Size Selection */}
           <h3 className="six">Select Size</h3>
           <div className="size-options">
             {product.sizes.map((size) => (
-              <button key={size} className="size-btn">
+              <button
+                key={size}
+                className={`size-btn ${
+                  selectedSize === size ? "selected" : ""
+                }`}
+                onClick={() => setSelectedSize(size)}
+              >
                 {size}
               </button>
             ))}
           </div>
 
+          {/* Quantity Selection */}
           <div className="quantity-section">
             <h3 className="quan">Quantity</h3>
             <div className="quantity-paren">
@@ -138,13 +152,26 @@ const ProductDetails = () => {
             </div>
           </div>
 
+          {/* Add to Cart Button */}
           <div className="actions">
             <button className="buy-now">Buy Now</button>
-            <button className="add-to-cart" onClick={() => addToCart(product)}>
+            <button
+              className="add-to-cart"
+              onClick={() => {
+                if (!selectedColor || !selectedSize) {
+                  alert(
+                    "Please select a color and size before adding to cart."
+                  );
+                  return;
+                }
+                addToCart(product, selectedColor, selectedSize, quantity);
+              }}
+            >
               Add to Cart
             </button>
           </div>
 
+          {/* Free Delivery Section */}
           <div className="free-delivery">
             <img src={store} alt="" />
             <div className="deli">

@@ -1,7 +1,7 @@
 import React from "react";
 import { useCart } from "../component/CartContext";
-import "../componentcss/CartSidebar.css"; // Make sure this contains the updated CSS
-import { FaTimes, FaTrash } from "react-icons/fa"; // Close & Delete Icons
+import "../componentcss/CartSidebar.css"; // Ensure the CSS is properly linked
+import { FaTimes, FaTrash } from "react-icons/fa";
 
 const CartSidebar = ({ isOpen, onClose }) => {
   const {
@@ -11,6 +11,9 @@ const CartSidebar = ({ isOpen, onClose }) => {
     decreaseQuantity,
     totalAmount,
   } = useCart();
+
+  // Debugging: Check if cartItems contain the correct data
+  console.log("Cart Items in Sidebar:", cartItems);
 
   return (
     <>
@@ -34,18 +37,22 @@ const CartSidebar = ({ isOpen, onClose }) => {
           {cartItems.length === 0 ? (
             <p className="empty-cart">Your cart is empty.</p>
           ) : (
-            cartItems.map((item) => (
-              <div key={item.id} className="cart-item">
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  className="cart-item-img"
-                />
+            cartItems.map((item) => {
+              if (!item.product) {
+                console.error("Product data missing for cart item:", item);
+                return null; // Skip rendering this item if product data is missing
+              }
 
-                <div className="cart-item-info">
-                  {/* Quantity Controls */}
-                  <div className="quantity-controls">
-                    <div className="add">
+              return (
+                <div key={item.id} className="cart-item">
+                  <img
+                    src={item.product.image || "/placeholder.jpg"} // ✅ Add fallback image
+                    alt={item.product.name || "Product"}
+                    className="cart-item-img"
+                  />
+
+                  <div className="cart-item-info">
+                    <div className="quantity-controls">
                       <button onClick={() => decreaseQuantity(item.id)}>
                         -
                       </button>
@@ -53,26 +60,25 @@ const CartSidebar = ({ isOpen, onClose }) => {
                       <button onClick={() => increaseQuantity(item.id)}>
                         +
                       </button>
+                      <FaTrash
+                        className="delete-icon"
+                        onClick={() => removeFromCart(item.id)}
+                      />
                     </div>
-                    <FaTrash
-                      className="delete-icon"
-                      onClick={() => removeFromCart(item.id)}
-                    />
-                  </div>
-                  <div className="first-info">
-                    <h4>{item.name}</h4>
+                    <h4>{item.product.name}</h4>
                     <p className="price">
-                      ₦{(item.price * item.quantity).toLocaleString()}
+                      ₦{(item.product.price * item.quantity).toLocaleString()}
+                    </p>
+                    <p className="colo">Color: {item.color || "N/A"}</p>
+                    <p className="si">Size: {item.size || "N/A"}</p>
+
+                    <p className="price2">
+                      ₦{(item.product.price * item.quantity).toLocaleString()}
                     </p>
                   </div>
-                  <p className="colo">Color: {item.color}</p>
-                  <p className="si">Size: {item.size}</p>
-                  <p className="price2">
-                    ₦{(item.price * item.quantity).toLocaleString()}
-                  </p>
                 </div>
-              </div>
-            ))
+              );
+            })
           )}
         </div>
 

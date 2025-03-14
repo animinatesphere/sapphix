@@ -2,12 +2,13 @@
 import React, { useState } from "react";
 import NavbarHead from "../navbar-component/NavbarHead";
 import "../componentcss/dashboard.css";
-import Navbar from "../navbar-component/navbar";
+
 import HeroSection from "../component/HeroSection";
 import SetForThisWeek from "../component/setForThisWeek";
 import Gift from "../component/Gift";
 import FashionSlider from "../component/FashionSlider";
 import FooterSection from "../component/FooterSection";
+import Navbar from "../navbar-component/Navbars1";
 // import { supabase } from "../../supabase";
 // import { ShiftingDropDown } from "../component/ShiftingDropDown";
 // const signOut = async () => {
