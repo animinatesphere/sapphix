@@ -27,7 +27,7 @@ const weeks = [
     text: "Afro Print Jacket",
   },
 ];
-const SetForThisWeek = () => {
+const SetWeek = () => {
   return (
     <>
       <div className="weeks-con">
@@ -49,4 +49,4 @@ const SetForThisWeek = () => {
   );
 };
 
-export default SetForThisWeek;
+export default SetWeek;
