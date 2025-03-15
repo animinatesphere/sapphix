@@ -29,7 +29,7 @@ const Login = () => {
 
       if (error.message === "Invalid login credentials") {
         // Try signing up the user
-        const { error: signUpError } = await supabase.auth.signUp({
+        const { data, error: signUpError } = await supabase.auth.signUp({
           email,
           password,
         });
@@ -40,10 +40,26 @@ const Login = () => {
         }
 
         console.log("User registered successfully!");
-      }
-    }
 
-    navigate("/dashboard"); // Redirect to Dashboard after login
+        // 🔥 Force login if email confirmation is NOT required
+        const { data: session, error: sessionError } =
+          await supabase.auth.getSession();
+        if (sessionError) {
+          setMessage(sessionError.message);
+          return;
+        }
+
+        if (session?.session) {
+          navigate("/dashboard"); // Redirect to Dashboard
+        } else {
+          setMessage(
+            "Check your email to confirm your account before logging in."
+          );
+        }
+      }
+    } else {
+      navigate("/dashboard"); // Redirect after successful login
+    }
   };
 
   // Random Login: Auto-generate user
@@ -55,7 +71,7 @@ const Login = () => {
     const randomPassword = Math.random().toString(36).slice(-8); // 8-character random password
 
     // Sign up the user
-    const { error: signUpError } = await supabase.auth.signUp({
+    const { data, error: signUpError } = await supabase.auth.signUp({
       email: randomEmail,
       password: randomPassword,
     });
@@ -68,19 +84,19 @@ const Login = () => {
 
     console.log("Signed up with:", randomEmail, randomPassword);
 
-    // Log in the user automatically
-    const { error: loginError } = await supabase.auth.signInWithPassword({
-      email: randomEmail,
-      password: randomPassword,
-    });
-
-    if (loginError) {
-      console.error("Login Error:", loginError.message);
-      setMessage(loginError.message);
+    // 🔥 Wait for session and force login
+    const { data: session, error: sessionError } =
+      await supabase.auth.getSession();
+    if (sessionError) {
+      setMessage(sessionError.message);
       return;
     }
 
-    navigate("/dashboard"); // Redirect to dashboard
+    if (session?.session) {
+      navigate("/dashboard"); // Redirect to Dashboard
+    } else {
+      setMessage("Check your email to confirm your account before logging in.");
+    }
   };
 
   // Handle Google Login
