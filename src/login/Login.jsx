@@ -12,20 +12,21 @@ const Login = () => {
   const [message, setMessage] = useState("");
   const navigate = useNavigate(); // Used to redirect users
 
-  // Handle Email & Password Login
   const handleSubmit = async (event) => {
     event.preventDefault();
     setMessage("");
 
-    const { error } = await supabase.auth.signInWithPassword({
+    const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
 
     if (error) {
+      console.error("Login Error:", error.message);
       setMessage(error.message);
     } else {
-      navigate("/dashboard"); // Redirect to Dashboard after login
+      console.log("Login Success:", data);
+      navigate("/dashboard"); // Redirect after login
     }
   };
 

@@ -16,7 +16,6 @@ import ProductDetails from "./component/ProductDetails";
 import HandleAuthRedirect from "./component/HandleAuthRedirect";
 import ProtectedRoute from "./component/ProtectedRoute";
 import Checkout from "./check/Checkout";
-import AuthRedirect from "./Auttts/AuthRedirect";
 // const ProtectedRoute = ({ children }) => {
 //   const { user, loading } = useContext(AuthContext);
 //   if (loading) return <p>Loading...</p>;
@@ -28,7 +27,6 @@ function App() {
     <AuthProvider>
       <CartProvider>
         <Router>
-          <AuthRedirect />
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/Admin-Login" element={<AdminLogin />} />
