@@ -10,7 +10,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
-  const navigate = useNavigate(); // Used to redirect users
+  const navigate = useNavigate();
 
   // Normal Login (or Register if user doesn't exist)
   const handleLogin = async (event) => {
@@ -23,7 +23,6 @@ const Login = () => {
       password,
     });
 
-    // If login fails, register the user
     if (error) {
       console.log("Login Error:", error.message);
 
@@ -41,34 +40,28 @@ const Login = () => {
 
         console.log("User registered successfully!");
 
-        // 🔥 Force login if email confirmation is NOT required
-        const { data: session, error: sessionError } =
-          await supabase.auth.getSession();
-        if (sessionError) {
-          setMessage(sessionError.message);
-          return;
-        }
+        // 🔥 Instant login after sign-up
+        await supabase.auth.signInWithPassword({
+          email,
+          password,
+        });
 
-        if (session?.session) {
-          navigate("/dashboard"); // Redirect to Dashboard
-        } else {
-          setMessage(
-            "Check your email to confirm your account before logging in."
-          );
-        }
+        navigate("/dashboard"); // Redirect to Dashboard
+      } else {
+        setMessage(error.message);
       }
     } else {
       navigate("/dashboard"); // Redirect after successful login
     }
   };
 
-  // Random Login: Auto-generate user
+  // Random Login: Auto-generate user and log in instantly
   const handleRandomLogin = async () => {
     setMessage("");
 
     // Generate random email and password
     const randomEmail = `user${Math.floor(Math.random() * 100000)}@example.com`;
-    const randomPassword = Math.random().toString(36).slice(-8); // 8-character random password
+    const randomPassword = Math.random().toString(36).slice(-8);
 
     // Sign up the user
     const { data, error: signUpError } = await supabase.auth.signUp({
@@ -84,22 +77,16 @@ const Login = () => {
 
     console.log("Signed up with:", randomEmail, randomPassword);
 
-    // 🔥 Wait for session and force login
-    const { data: session, error: sessionError } =
-      await supabase.auth.getSession();
-    if (sessionError) {
-      setMessage(sessionError.message);
-      return;
-    }
+    // 🔥 Instant login after sign-up
+    await supabase.auth.signInWithPassword({
+      email: randomEmail,
+      password: randomPassword,
+    });
 
-    if (session?.session) {
-      navigate("/dashboard"); // Redirect to Dashboard
-    } else {
-      setMessage("Check your email to confirm your account before logging in.");
-    }
+    navigate("/dashboard"); // Redirect to Dashboard
   };
 
-  // Handle Google Login
+  // Google Login
   const handleGoogleLogin = async () => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
@@ -124,7 +111,6 @@ const Login = () => {
         </div>
       )}
 
-      {/* Login Form */}
       <form onSubmit={handleLogin}>
         <input
           type="email"
@@ -152,13 +138,11 @@ const Login = () => {
       <p className="co">By continuing, you agree to Sapphix</p>
       <p className="te">Terms and Conditions</p>
 
-      {/* Google Login Button */}
       <button onClick={handleGoogleLogin} className="google-but">
         <img src={google} alt="Google Logo" />
         Log in with Google
       </button>
 
-      {/* Random Login Button */}
       <button onClick={handleRandomLogin} className="log-but">
         Random Login
       </button>
