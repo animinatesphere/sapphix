@@ -23,9 +23,9 @@ export const AuthProvider = ({ children }) => {
         if (session?.user && !localStorage.getItem("loggedIn")) {
           setUser(session.user);
           localStorage.setItem("supabase-auth-token", JSON.stringify(session));
-          localStorage.setItem("loggedIn", "true"); // ✅ Prevents infinite reload loop
-          window.location.href = "/dashboard";
+          localStorage.setItem("loggedIn", "true");
         } else if (!session) {
+          localStorage.removeItem("supabase-auth-token");
           localStorage.removeItem("loggedIn");
           setUser(null);
         }
