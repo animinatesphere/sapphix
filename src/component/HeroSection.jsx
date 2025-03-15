@@ -70,34 +70,44 @@ const HeroSection = () => {
     {
       image: slide2,
       text: "We merge the rich textures of history <br/> with the sleek, fluid forms of contemporary<br/> fashion, crafting a narrative that is both<br/> powerful and poetic",
+      butt: "Shop Now",
     },
     {
       image: slide3,
       text: "We merge the rich textures of history <br/> with the sleek, fluid forms of contemporary<br/> fashion, crafting a narrative that is both<br/> powerful and poetic",
+      butt: "Shop Now",
     },
     {
       image: slide4,
       text: "Rooted in tradition, elevated by modern <br/> craftsmanship—our pieces embody a style <br/> that transcends time, <br/>exuding confidence and cultural depth.",
+      butt: "Shop Now",
     },
     {
       image: slide5,
       text: "Rooted in tradition, elevated by modern <br/> craftsmanship—our pieces embody a style <br/> that transcends time, <br/>exuding confidence and cultural depth.",
+      butt: "Shop Now",
     },
     {
       image: slide6,
       text: "Every stitch carries the whispers of <br/> ancestral artistry, <br/> woven into the bold statements of today’s ever-evolving fashion <br/> landscape.",
+
+      butt: "Shop Now",
     },
     {
       image: slide7,
       text: "Our designs celebrate the echoes of <br/> ancient artistry, redefined through a lens of <br/>contemporary sophistication and effortless style.",
+      butt: "Shop Now",
     },
     {
       image: slide8,
       text: "Inspired by heritage, shaped by <br/> innovation—our fashion is a seamless dance <br/>between the elegance of tradition and the pulse of the future.",
+
+      butt: "Shop Now",
     },
     {
       image: slide9,
       text: "Blending cultural legacy with avant-garde <br/> aesthetics, our fashion tells a story of tradition <br/> reimagined for the bold, <br/>modern soul.",
+      butt: "Shop Now",
     },
   ];
   useEffect(() => {
