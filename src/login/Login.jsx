@@ -12,46 +12,63 @@ const Login = () => {
   const [message, setMessage] = useState("");
   const navigate = useNavigate(); // Used to redirect users
 
-  // Handle Email & Password Login
-  const handleSubmit = async (event) => {
+  // Normal Login (or Register if user doesn't exist)
+  const handleLogin = async (event) => {
     event.preventDefault();
     setMessage("");
 
-    const { error } = await supabase.auth.signInWithPassword({
+    // Try logging in
+    let { error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
 
+    // If login fails, register the user
     if (error) {
-      setMessage(error.message);
-    } else {
-      navigate("/dashboard"); // Redirect to Dashboard after login
+      console.log("Login Error:", error.message);
+
+      if (error.message === "Invalid login credentials") {
+        // Try signing up the user
+        const { error: signUpError } = await supabase.auth.signUp({
+          email,
+          password,
+        });
+
+        if (signUpError) {
+          setMessage(signUpError.message);
+          return;
+        }
+
+        console.log("User registered successfully!");
+      }
     }
+
+    navigate("/dashboard"); // Redirect to Dashboard after login
   };
 
-  // Handle Random Login
+  // Random Login: Auto-generate user
   const handleRandomLogin = async () => {
     setMessage("");
 
-    // Generate a random email and password
+    // Generate random email and password
     const randomEmail = `user${Math.floor(Math.random() * 100000)}@example.com`;
-    const randomPassword = Math.random().toString(36).slice(-8); // Random 8-character password
+    const randomPassword = Math.random().toString(36).slice(-8); // 8-character random password
 
     // Sign up the user
-    const { error } = await supabase.auth.signUp({
+    const { error: signUpError } = await supabase.auth.signUp({
       email: randomEmail,
       password: randomPassword,
     });
 
-    if (error) {
-      console.error("Signup Error:", error.message);
-      setMessage(error.message);
+    if (signUpError) {
+      console.error("Signup Error:", signUpError.message);
+      setMessage(signUpError.message);
       return;
     }
 
     console.log("Signed up with:", randomEmail, randomPassword);
 
-    // Automatically sign in the user
+    // Log in the user automatically
     const { error: loginError } = await supabase.auth.signInWithPassword({
       email: randomEmail,
       password: randomPassword,
@@ -63,12 +80,6 @@ const Login = () => {
       return;
     }
 
-    // Store credentials to keep the user logged in
-    localStorage.setItem(
-      "randomUser",
-      JSON.stringify({ email: randomEmail, password: randomPassword })
-    );
-
     navigate("/dashboard"); // Redirect to dashboard
   };
 
@@ -77,7 +88,7 @@ const Login = () => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: `${window.location.origin}/auth/callback`, // Redirect after Google login
+        redirectTo: `${window.location.origin}/auth/callback`,
       },
     });
 
@@ -97,8 +108,8 @@ const Login = () => {
         </div>
       )}
 
-      {/* Normal Login Form */}
-      <form onSubmit={handleSubmit}>
+      {/* Login Form */}
+      <form onSubmit={handleLogin}>
         <input
           type="email"
           value={email}
