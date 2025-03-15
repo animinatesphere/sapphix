@@ -12,22 +12,64 @@ const Login = () => {
   const [message, setMessage] = useState("");
   const navigate = useNavigate(); // Used to redirect users
 
+  // Handle Email & Password Login
   const handleSubmit = async (event) => {
     event.preventDefault();
     setMessage("");
 
-    const { data, error } = await supabase.auth.signInWithPassword({
+    const { error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
 
     if (error) {
-      console.error("Login Error:", error.message);
       setMessage(error.message);
     } else {
-      console.log("Login Success:", data);
-      navigate("/dashboard"); // Redirect after login
+      navigate("/dashboard"); // Redirect to Dashboard after login
     }
+  };
+
+  // Handle Random Login
+  const handleRandomLogin = async () => {
+    setMessage("");
+
+    // Generate a random email and password
+    const randomEmail = `user${Math.floor(Math.random() * 100000)}@example.com`;
+    const randomPassword = Math.random().toString(36).slice(-8); // Random 8-character password
+
+    // Sign up the user
+    const { error } = await supabase.auth.signUp({
+      email: randomEmail,
+      password: randomPassword,
+    });
+
+    if (error) {
+      console.error("Signup Error:", error.message);
+      setMessage(error.message);
+      return;
+    }
+
+    console.log("Signed up with:", randomEmail, randomPassword);
+
+    // Automatically sign in the user
+    const { error: loginError } = await supabase.auth.signInWithPassword({
+      email: randomEmail,
+      password: randomPassword,
+    });
+
+    if (loginError) {
+      console.error("Login Error:", loginError.message);
+      setMessage(loginError.message);
+      return;
+    }
+
+    // Store credentials to keep the user logged in
+    localStorage.setItem(
+      "randomUser",
+      JSON.stringify({ email: randomEmail, password: randomPassword })
+    );
+
+    navigate("/dashboard"); // Redirect to dashboard
   };
 
   // Handle Google Login
@@ -55,6 +97,7 @@ const Login = () => {
         </div>
       )}
 
+      {/* Normal Login Form */}
       <form onSubmit={handleSubmit}>
         <input
           type="email"
@@ -82,9 +125,15 @@ const Login = () => {
       <p className="co">By continuing, you agree to Sapphix</p>
       <p className="te">Terms and Conditions</p>
 
+      {/* Google Login Button */}
       <button onClick={handleGoogleLogin} className="google-but">
         <img src={google} alt="Google Logo" />
         Log in with Google
+      </button>
+
+      {/* Random Login Button */}
+      <button onClick={handleRandomLogin} className="log-but">
+        Random Login
       </button>
 
       <UserButtons />
