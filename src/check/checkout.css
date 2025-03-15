@@ -150,7 +150,7 @@
   display: flex;
   flex-direction: column;
   width: 424px;
-  height: 1022.0001220703125px;
+  height: auto;
   gap: 28px;
   border-radius: 10px;
   border-width: 1px;
