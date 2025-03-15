@@ -2,6 +2,7 @@ import React from "react";
 import { useCart } from "../component/CartContext";
 import "../componentcss/CartSidebar.css"; // Ensure the CSS is properly linked
 import { FaTimes, FaTrash } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const CartSidebar = ({ isOpen, onClose }) => {
   const {
@@ -53,22 +54,28 @@ const CartSidebar = ({ isOpen, onClose }) => {
 
                   <div className="cart-item-info">
                     <div className="quantity-controls">
-                      <button onClick={() => decreaseQuantity(item.id)}>
-                        -
-                      </button>
-                      <span>{item.quantity}</span>
-                      <button onClick={() => increaseQuantity(item.id)}>
-                        +
-                      </button>
-                      <FaTrash
-                        className="delete-icon"
-                        onClick={() => removeFromCart(item.id)}
-                      />
+                      <div className="incre">
+                        <button onClick={() => decreaseQuantity(item.id)}>
+                          -
+                        </button>
+                        <span>{item.quantity}</span>
+                        <button onClick={() => increaseQuantity(item.id)}>
+                          +
+                        </button>
+                      </div>
+                      <div className="dele">
+                        <FaTrash
+                          className="delete-icon"
+                          onClick={() => removeFromCart(item.id)}
+                        />
+                      </div>
                     </div>
-                    <h4>{item.product.name}</h4>
-                    <p className="price">
-                      ₦{(item.product.price * item.quantity).toLocaleString()}
-                    </p>
+                    <div className="second">
+                      <h4>{item.product.name}</h4>
+                      <p className="price">
+                        ₦{(item.product.price * item.quantity).toLocaleString()}
+                      </p>
+                    </div>
                     <p className="colo">Color: {item.color || "N/A"}</p>
                     <p className="si">Size: {item.size || "N/A"}</p>
 
@@ -88,7 +95,9 @@ const CartSidebar = ({ isOpen, onClose }) => {
             Subtotal:{" "}
             <span className="suu"> ₦{totalAmount.toLocaleString()}</span>
           </h3>
-          <button className="checkout-btn">Checkout</button>
+          <Link to="/checkout">
+            <button className="checkout-btn">Checkout</button>
+          </Link>
         </div>
       </div>
     </>

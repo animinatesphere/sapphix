@@ -15,6 +15,7 @@ import ProductListing from "./women/ProductListing";
 import ProductDetails from "./component/ProductDetails";
 import HandleAuthRedirect from "./component/HandleAuthRedirect";
 import ProtectedRoute from "./component/ProtectedRoute";
+import Checkout from "./check/Checkout";
 // const ProtectedRoute = ({ children }) => {
 //   const { user, loading } = useContext(AuthContext);
 //   if (loading) return <p>Loading...</p>;
@@ -31,7 +32,7 @@ function App() {
             <Route path="/Admin-Login" element={<AdminLogin />} />
             <Route path="/women" element={<ProductListing />} />
             <Route path="/product/:id" element={<ProductDetails />} />
-
+            <Route path="/checkout" element={<Checkout />} />
             {/* Handle Supabase OAuth Redirect */}
             <Route path="/auth/callback" element={<HandleAuthRedirect />} />
 
