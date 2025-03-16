@@ -96,7 +96,7 @@
   flex: 1;
   align-items: center;
   padding: 15px;
-  overflow-y: auto;
+  overflow: hidden;
 }
 
 .cart-item {
@@ -293,11 +293,12 @@
     display: flex;
     align-items: center;
     /* justify-content: space-between; */
-    width: 250px;
+    width: 200px;
+    overflow-y: hidden;
   }
 
   .cart-sidebar {
-    width: 275px;
+    width: 285px;
   }
   .cart-item {
     display: flex;

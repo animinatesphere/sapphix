@@ -1,30 +1,30 @@
 import React from "react";
 import "../componentcss/week.css";
-import set1 from "../forthisweekimage/Frame 314 (1).png";
-import set2 from "../forthisweekimage/Frame 314.png";
-import set3 from "../forthisweekimage/Scented candle (1).png";
-import set4 from "../forthisweekimage/Scented candle (2).png";
-import set5 from "../forthisweekimage/Scented candle.png";
+import floral1 from "../foestaimages/floral1.png";
+import wool1 from "../foestaimages/woo1.png";
+import skirl1 from "../foestaimages/skirl3.png";
+import leather1 from "../foestaimages/leather1.png";
+import jogger1 from "../foestaimages/jogger1.png";
 const weeks = [
   {
-    weekImage: set1,
+    weekImage: floral1,
+    text: "Sleeve Cotton Tiered Dress",
+  },
+  {
+    weekImage: skirl1,
+    text: "Seattle High-Rise Mini Skirt",
+  },
+  {
+    weekImage: wool1,
+    text: "Wool Blend Long-Sleeve Shirt",
+  },
+  {
+    weekImage: leather1,
     text: "Afro Print Jacket",
   },
   {
-    weekImage: set2,
-    text: "Afro Print Jacket",
-  },
-  {
-    weekImage: set3,
-    text: "Afro Print Jacket",
-  },
-  {
-    weekImage: set4,
-    text: "Afro Print Jacket",
-  },
-  {
-    weekImage: set5,
-    text: "Afro Print Jacket",
+    weekImage: jogger1,
+    text: "Black and Brown Leather Handbag",
   },
 ];
 const SetWeek = () => {
