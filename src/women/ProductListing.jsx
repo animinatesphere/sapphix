@@ -20,11 +20,15 @@ const ProductListing = () => {
   const [products, setProducts] = useState([]);
   const itemsPerPage = 9;
 
-  // Fetch products from Supabase
+  // Fetch products for men from Supabase
   useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true);
-      const { data, error } = await supabase.from("products").select("*"); // Adjust table name if different
+      const { data, error } = await supabase
+        .from("Admin-product") // Fetch from correct table
+        .select("*")
+        .eq("category", "Women"); // Only get Men’s products
+
       if (error) {
         console.error("Error fetching products:", error.message);
       } else {
@@ -54,11 +58,13 @@ const ProductListing = () => {
       <NavbarHead />
       <Navbar />
       <div className="bread">
-        <p>Home / Women / Lifestyle</p>
+        <p>
+          <Link to="/dashboard">Home</Link> / Women / Lifestyle
+        </p>
       </div>
       <div className="product-listing">
         {/* Sidebar */}
-        <aside className="sidebar">
+        <aside className="sideba">
           <h3 className="sidebar-title">Lifestyle</h3>
           <div className="search-container2">
             <input
@@ -96,9 +102,12 @@ const ProductListing = () => {
             {displayedProducts.length > 0 ? (
               displayedProducts.map((product) => (
                 <div className="product-card" key={product.id}>
-                  <Link to={`/product/${product.id}`} className="product-link">
+                  <Link
+                    to={`/men-product/${product.id}`}
+                    className="product-link"
+                  >
                     <img
-                      src={product.image}
+                      src={product.image || "/placeholder.png"}
                       alt={product.name}
                       className="product-image"
                     />
@@ -106,21 +115,23 @@ const ProductListing = () => {
                   <div className="title-price">
                     <p className="product-title">{product.name}</p>
                     <p className="product-price">
-                      N{product.price.toLocaleString()}
+                      N{product.price ? product.price.toLocaleString() : "0"}
                     </p>
                   </div>
-                  <p className="product-color">{product.colors}</p>
+                  <p className="product-color">{product.color || "N/A"}</p>
 
                   {/* Star Ratings */}
                   <div className="product-rating">
                     {Array.from({ length: 5 }, (_, index) =>
-                      index < Math.round(product.rating) ? (
+                      index < Math.round(product.rating || 0) ? (
                         <FaStar key={index} className="star filled" />
                       ) : (
                         <FaRegStar key={index} className="star" />
                       )
                     )}
-                    <span className="review-count">({product.reviews})</span>
+                    <span className="review-count">
+                      ({product.reviews || 0})
+                    </span>
                   </div>
 
                   <button

@@ -1,0 +1,145 @@
+/* 🔹 Admin Login Page Styles */
+.admin-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f4f4f4;
+}
+
+.admin-card {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+.admin-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.admin-subtitle {
+  font-size: 1rem;
+  color: #777;
+  margin-bottom: 1rem;
+}
+
+.admin-error {
+  background: #ffcccc;
+  color: #cc0000;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+}
+
+.admin-input-group {
+  margin-bottom: 1rem;
+}
+
+.admin-input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.admin-button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.admin-button-blue {
+  background-color: #007bff;
+  color: white;
+}
+
+.admin-button-blue:hover {
+  background-color: #0056b3;
+}
+
+.admin-button-green {
+  background-color: #28a745;
+  color: white;
+}
+
+.admin-button-green:hover {
+  background-color: #218838;
+}
+
+.admin-google-button {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.admin-google-button:hover {
+  background-color: #f1f1f1;
+}
+
+.admin-google-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.admin-text {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 1rem 0;
+}
+
+.admin-link {
+  color: #007bff;
+  cursor: pointer;
+}
+.loading-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: white;
+  z-index: 1000;
+}
+
+.notification {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+}
+
+.notification.success {
+  background: #4caf50;
+}
+
+.notification.error {
+  background: #f44336;
+}

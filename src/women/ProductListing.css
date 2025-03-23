@@ -21,7 +21,7 @@
   margin-top: 5rem;
 }
 
-.sidebar {
+.sideba {
   width: 250px;
   padding: 20px;
   /* background-color: #f8f8f8; */
@@ -73,8 +73,8 @@
   padding: 0 20px;
 }
 
-/* Sidebar */
-.sidebar-title {
+/* sideba */
+.sideba-title {
   font-family: inter;
   font-weight: 500;
   font-size: 20px;
@@ -194,7 +194,10 @@
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
+  /* grid-template-columns: repeat(4, 4fr); */
   margin-top: 3rem;
+  width: fit-content;
+  margin: 0 auto;
 }
 
 .product-card {
@@ -351,7 +354,7 @@
 }
 
 @media screen and (max-width: 400px) {
-  .sidebar {
+  .sideba {
     display: none;
   }
   .filter-parent {

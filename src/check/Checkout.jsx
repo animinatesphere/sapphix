@@ -6,7 +6,20 @@ import { Link } from "react-router-dom";
 import { useCart } from "../component/CartContext";
 
 const Checkout = () => {
-  const { cartItems, totalAmount } = useCart();
+  const { adminCartItems, totalAmount } = useCart();
+  const allCartItems = adminCartItems.map((cartItem) => {
+    const product = cartItem.product || {}; // Ensure product exists
+
+    return {
+      ...cartItem,
+      name: product.name || "Unnamed Product",
+      price: product.price || 0,
+      image: product.image || "/placeholder.jpg",
+    };
+  });
+  const adminTotalAmount = allCartItems.reduce((total, item) => {
+    return total + (item.price * item.quantity || 0);
+  }, 0);
   const [selected, setSelected] = useState(null);
   return (
     <>
@@ -31,14 +44,14 @@ const Checkout = () => {
           <div className="order-left-1">
             <h2 className="order">
               Order Summary{" "}
-              <span className="cart-length"> {cartItems.length}</span>
+              <span className="cart-length"> {allCartItems.length}</span>
             </h2>
             {/* Cart Items */}
             <div className="cart-items">
-              {cartItems.length === 0 ? (
+              {allCartItems.length === 0 ? (
                 <p className="empty-cart">Your cart is empty.</p>
               ) : (
-                cartItems.map((item) => {
+                allCartItems.map((item) => {
                   if (!item.product) {
                     console.error("Product data missing for cart item:", item);
                     return null; // Skip rendering this item if product data is missing
@@ -47,19 +60,16 @@ const Checkout = () => {
                   return (
                     <div key={item.id} className="cart-item">
                       <img
-                        src={item.product.image || "/placeholder.jpg"} // ✅ Add fallback image
-                        alt={item.product.name || "Product"}
+                        src={item.image || "/placeholder.jpg"} // ✅ Add fallback image
+                        alt={item.name || "Product"}
                         className="cart-item-img"
                       />
 
                       <div className="cart-item-info">
                         <div className="second">
-                          <h4>{item.product.name}</h4>
+                          <h4>{item.name}</h4>
                           <p className="price">
-                            ₦
-                            {(
-                              item.product.price * item.quantity
-                            ).toLocaleString()}
+                            ₦{(item.price * item.quantity).toLocaleString()}
                           </p>
                         </div>
                         <p className="colo">Color: {item.color || "N/A"}</p>
@@ -184,7 +194,10 @@ const Checkout = () => {
             <div className="cart-footer">
               <h3 className="surr">
                 Subtotal:{" "}
-                <span className="suu"> ₦{totalAmount.toLocaleString()}</span>
+                <span className="suu">
+                  {" "}
+                  ₦{adminTotalAmount.toLocaleString()}
+                </span>
               </h3>
               <h3 className="surr">
                 Tax (10%):
@@ -196,10 +209,16 @@ const Checkout = () => {
               </h3>
               <h3 className="surr">
                 Total:
-                <span className="suu"> ₦{totalAmount.toLocaleString()}</span>
+                <span className="suu">
+                  {" "}
+                  ₦{adminTotalAmount.toLocaleString()}
+                </span>
               </h3>
               <button className="total-bu">
-                <span className="su"> Pay ₦{totalAmount.toLocaleString()}</span>
+                <span className="su">
+                  {" "}
+                  Pay ₦{adminTotalAmount.toLocaleString()}
+                </span>
               </button>
             </div>
           </div>

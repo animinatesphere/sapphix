@@ -57,7 +57,8 @@
   gap: 20px;
   padding: 50px;
 }
-.product-info h1 {
+
+.product-inf h1 {
   font-family: inter;
   font-weight: 600;
   font-size: 32px;
@@ -76,6 +77,7 @@
   height: 606px;
   object-fit: cover;
   border-radius: 10px;
+  border: 1px solid var(--light-grey-300, #d7d7d7);
 }
 
 .thumbnails {
@@ -92,19 +94,23 @@
   object-fit: cover;
 }
 
-.product-info {
+.product-inf {
   flex: 1;
   padding: 20px;
+  border: 1px solid var(--light-grey-300, #d7d7d7);
+  border-radius: 2rem;
 }
 
 .description {
-  font-family: General Sans;
+  font-family: inter;
   font-weight: 400;
   font-size: 14px;
   line-height: 145%;
   letter-spacing: 0%;
   vertical-align: middle;
   color: var(--Text-Caption, #4d4c4a);
+  border-bottom: 1px solid var(--light-grey-300, #d7d7d7);
+  margin-bottom: 1rem;
 }
 
 .rating {
@@ -120,7 +126,7 @@
   color: var(--Surface-Default, #f58800);
 }
 .re {
-  font-family: General Sans;
+  font-family: inter;
   font-weight: 500;
   font-size: 14px;
   line-height: 145%;
@@ -144,8 +150,10 @@
 .color-options {
   display: flex;
   gap: 10px;
-  margin-bottom: 15px;
-  border-bottom: 2px solid #f0f2f5;
+  margin-bottom: 2rem;
+  border: 2px solid #f0f2f5;
+  border-radius: 2rem;
+  padding: 1rem;
 }
 
 .color-circle {
@@ -169,10 +177,12 @@
   display: flex;
   gap: 10px;
   margin-bottom: 15px;
-  border-bottom: 2px solid #f0f2f5;
+  border: 2px solid #f0f2f5;
+  border-radius: 2rem;
+  padding: 1rem;
 }
 .six {
-  font-family: General Sans;
+  font-family: inter;
   font-weight: 600;
   font-size: 14px;
   line-height: 145%;
@@ -217,7 +227,7 @@
   margin-bottom: 15px;
 }
 .quan {
-  font-family: General Sans;
+  font-family: inter;
   font-weight: 600;
   font-size: 16px;
   line-height: 145%;
@@ -236,7 +246,7 @@
   gap: 38px;
   border-radius: 24px;
   padding: 14px;
-  font-family: General Sans;
+  font-family: inter;
   font-weight: 600;
   font-size: 20px;
   line-height: 120%;
@@ -247,7 +257,7 @@
 }
 
 .quantity-btn {
-  font-family: General Sans;
+  font-family: inter;
   font-weight: 600;
   font-size: 20px;
   line-height: 120%;
@@ -339,7 +349,7 @@
   margin-top: 2rem;
 }
 .deli1 {
-  font-family: General Sans;
+  font-family: inter;
   font-weight: 600;
   font-size: 20px;
   line-height: 145%;
@@ -348,7 +358,7 @@
   color: var(--Text-Subtitle, #242322);
 }
 .deli2 {
-  font-family: General Sans;
+  font-family: inter;
   font-weight: 400;
   font-size: 16px;
   line-height: 145%;

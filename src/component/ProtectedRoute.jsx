@@ -1,23 +1,22 @@
 import { Navigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { supabase } from "../../supabase";
+import { useContext } from "react";
+import { AuthContext } from "../Auttts/AuthContext";
 
 const ProtectedRoute = ({ children }) => {
-  const [loading, setLoading] = useState(true);
-  const [user, setUser] = useState(null);
+  const { user, loading } = useContext(AuthContext);
 
-  useEffect(() => {
-    const checkUser = async () => {
-      const { data } = await supabase.auth.getUser();
-      setUser(data?.user);
-      setLoading(false);
-    };
-    checkUser();
-  }, []);
+  // Debug logs to help track issues
+  console.log("Protected Route Check:", {
+    loading,
+    authenticated: !!user,
+    userDetails: user ? `${user.email} (${user.role || "user"})` : "none",
+  });
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) {
+    return <p>Loading...</p>;
+  }
 
-  return user ? children : <Navigate to="/login" />;
+  return user ? children : <Navigate to="/adminlogin" />;
 };
 
 export default ProtectedRoute;

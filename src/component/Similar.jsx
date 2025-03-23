@@ -10,7 +10,9 @@ const Similar = () => {
   return (
     <>
       {/* Product Grid */}
-      <h1 className="like">Similar Items You Might Like</h1>
+      <h1 className="like" style={{ textAlign: "center" }}>
+        Similar Items You Might Like
+      </h1>
       <div className="product-grid">
         {Products.slice(0, 4).map((product) => (
           <div className="product-card" key={product.id}>

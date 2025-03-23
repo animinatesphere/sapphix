@@ -1,0 +1,154 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.admin-dashboard {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #fff;
+  border-right: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inter;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 120%;
+  letter-spacing: -4%;
+  gap: 20px;
+}
+.logo-search {
+  margin-bottom: 20px;
+}
+
+.search-ba {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #d0d5dd;
+  border-radius: 5px;
+  margin: 0 auto;
+  margin-top: 1rem;
+}
+
+.search-ba input {
+  border: none;
+  outline: none;
+  margin-left: 5px;
+  width: 100%;
+  height: 20px;
+  font-family: Inter;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 145%;
+  letter-spacing: 0%;
+  vertical-align: middle;
+  color: #98a2b3;
+}
+
+.nav-links ul {
+  list-style: none;
+  padding: 0;
+}
+.nav-links img {
+  width: 20px;
+  height: 20px;
+  margin-right: 3px;
+}
+.nav-links li {
+  padding: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: #555;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  font-family: inter;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 145%;
+  letter-spacing: 0%;
+}
+.nav-links li a {
+  font-family: General Sans;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 145%;
+  letter-spacing: 0%;
+}
+
+.nav-links li:hover {
+  background-color: #f1f1f1;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.user-profile img {
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.fiv {
+  display: flex;
+  gap: 8rem;
+}
+.fiv-im {
+  display: flex;
+  gap: 0;
+}
+.show {
+  display: flex;
+  flex-direction: column;
+}
+
+.sub-menu li a {
+  font-family: inter;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 145%;
+  letter-spacing: 0%;
+  color: var(--Text-Body, #1d1d1b);
+  margin-left: 1rem;
+}
+.sub-menu li a:active {
+  width: 240px;
+  height: 44px;
+  border-radius: 4px;
+  gap: 4px;
+  padding-top: 12px;
+  padding-right: 16px;
+  padding-bottom: 12px;
+  padding-left: 48px;
+
+  background: var(--Green-50, #becbcb);
+}
+.nav-links li a {
+  font-family: inter;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 145%;
+  letter-spacing: 0%;
+  color: var(--Text-Body, #1d1d1b);
+  margin-left: 1rem;
+}

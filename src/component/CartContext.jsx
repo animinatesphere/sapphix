@@ -4,9 +4,8 @@ import { supabase } from "../../supabase";
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-  const [cartItems, setCartItems] = useState([]);
-  const [wishlistItems, setWishlistItems] = useState([]);
   const [user, setUser] = useState(null);
+  const [adminCartItems, setAdminCartItems] = useState([]); // ✅ Only admin cart
 
   // ✅ Fetch user session on mount
   useEffect(() => {
@@ -26,9 +25,9 @@ export const CartProvider = ({ children }) => {
       (_event, session) => {
         setUser(session?.user || null);
         if (session?.user) {
-          fetchCart(session.user.id);
+          fetchAdminCart(session.user.id);
         } else {
-          setCartItems([]); // Clear cart when logged out
+          setAdminCartItems([]); // Clear admin cart when logged out
         }
       }
     );
@@ -37,22 +36,26 @@ export const CartProvider = ({ children }) => {
       authListener?.subscription?.unsubscribe();
     };
   }, []);
-
-  // ✅ Fetch cart when user logs in
   useEffect(() => {
-    if (user) {
-      fetchCart(user.id);
-    } else {
-      setCartItems([]); // Clear cart when logged out
+    const storedCart = localStorage.getItem("adminCart");
+    if (storedCart) {
+      setAdminCartItems(JSON.parse(storedCart));
     }
-  }, [user]);
+  }, []);
 
-  // ✅ Fetch Cart from Supabase
-  const fetchCart = async (userId) => {
+  // Save cart to localStorage whenever it updates
+  useEffect(() => {
+    if (adminCartItems.length > 0) {
+      localStorage.setItem("adminCart", JSON.stringify(adminCartItems));
+    }
+  }, [adminCartItems]);
+
+  // ✅ Fetch Admin Cart from Supabase
+  const fetchAdminCart = async (userId) => {
     if (!userId) return;
 
     const { data, error } = await supabase
-      .from("cart")
+      .from("admin_cart") // ✅ Fetch only from admin_cart
       .select(
         `
         id,
@@ -65,140 +68,114 @@ export const CartProvider = ({ children }) => {
       .eq("user_id", userId);
 
     if (error) {
-      console.error("Error fetching cart:", error);
+      console.error("Error fetching admin cart:", error);
     } else {
-      setCartItems(data || []);
+      setAdminCartItems(data || []);
     }
   };
 
-  // ✅ Add to Cart
-  const addToCart = async (product, selectedColor, selectedSize) => {
+  // ✅ Add to Admin Cart
+  const addToAdminCart = async ({ productId, quantity, color, size }) => {
     if (!user) {
-      alert("Please log in to add items to your cart.");
+      alert("Please log in to add items to the admin cart.");
       return;
     }
 
-    if (!selectedColor || !selectedSize) {
-      alert("Please select a color and size before adding to cart.");
+    // Fetch product details
+    const { data: product, error: productError } = await supabase
+      .from("Admin-product")
+      .select("price, image, name")
+      .eq("id", productId)
+      .single();
+
+    if (productError || !product) {
+      console.error(
+        "❌ Error fetching product details:",
+        productError?.message
+      );
       return;
     }
 
-    try {
-      // Check if item already exists in the cart
-      const { data: existingItem, error: productError } = await supabase
-        .from("cart")
-        .select("id, quantity")
-        .eq("user_id", user.id)
-        .eq("product_id", product.id)
-        .eq("color", selectedColor)
-        .eq("size", selectedSize)
-        .maybeSingle(); // ✅ Prevents the PGRST116 error
+    console.log("🛍 Adding to Admin Cart:", product);
 
-      if (productError) {
-        console.error("Error checking cart:", productError);
-        return;
-      }
+    // Insert into admin_cart
+    const { error: insertError } = await supabase.from("admin_cart").insert([
+      {
+        user_id: user.id,
+        product_id: productId,
+        quantity,
+        color,
+        size,
+        price: product.price, // ✅ Save price
+        image: product.image, // ✅ Save image
+      },
+    ]);
 
-      if (existingItem) {
-        // Update quantity if already in cart
-        const { error: updateError } = await supabase
-          .from("cart")
-          .update({ quantity: existingItem.quantity + 1 })
-          .eq("id", existingItem.id);
-
-        if (updateError) {
-          console.error("Error updating cart:", updateError);
-        }
-      } else {
-        // Insert new item
-        const { error: insertError } = await supabase.from("cart").insert([
-          {
-            user_id: user.id,
-            product_id: product.id,
-            quantity: 1,
-            color: selectedColor,
-            size: selectedSize,
-          },
-        ]);
-
-        if (insertError) {
-          console.error("Error adding to cart:", insertError);
-        }
-      }
-
-      fetchCart(user.id); // Refresh cart after adding
-    } catch (error) {
-      console.error("Error adding to cart:", error.message);
+    if (insertError) {
+      console.error("❌ Error adding to admin cart:", insertError);
+    } else {
+      console.log("✅ Successfully added to Admin Cart");
+      fetchAdminCart(user.id); // Refresh the admin cart
     }
   };
 
-  // ❌ Remove from Cart
-  const removeFromCart = async (id) => {
-    try {
-      const { error } = await supabase.from("cart").delete().eq("id", id);
-      if (error) throw error;
-
-      fetchCart(user.id);
-    } catch (error) {
-      console.error("Error removing item:", error.message);
+  // ❌ Remove from Admin Cart
+  const removeFromAdminCart = async (id) => {
+    const { error } = await supabase.from("admin_cart").delete().eq("id", id);
+    if (error) {
+      console.error("❌ Error removing from admin cart:", error);
+    } else {
+      fetchAdminCart(user.id); // ✅ Refresh admin cart after removal
     }
   };
 
-  // ✅ Increase Quantity
-  const increaseQuantity = async (id) => {
-    try {
-      const item = cartItems.find((item) => item.id === id);
-      if (!item) return;
+  // ➕ Increase quantity in Admin Cart
+  const increaseAdminQuantity = async (id) => {
+    const item = adminCartItems.find((cartItem) => cartItem.id === id); // ✅ Use adminCartItems
+    if (!item) return;
 
-      const { error } = await supabase
-        .from("cart")
-        .update({ quantity: item.quantity + 1 })
-        .eq("id", id);
-      if (error) throw error;
+    const { error } = await supabase
+      .from("admin_cart") // ✅ Use the correct table
+      .update({ quantity: item.quantity + 1 }) // ✅ Increase instead of decrease
+      .eq("id", id);
 
-      fetchCart(user.id);
-    } catch (error) {
-      console.error("Error increasing quantity:", error.message);
+    if (error) {
+      console.error("❌ Error increasing admin cart quantity:", error);
+    } else {
+      fetchAdminCart(user.id); // ✅ Fetch updated admin cart
     }
   };
 
-  // ➕ Decrease quantity or remove item
-  const decreaseQuantity = async (id) => {
-    const item = cartItems.find((cartItem) => cartItem.id === id); // ✅ Fixed condition
+  // ➖ Decrease quantity or remove from Admin Cart
+  const decreaseAdminQuantity = async (id) => {
+    const item = adminCartItems.find((cartItem) => cartItem.id === id); // ✅ Use adminCartItems
     if (!item) return;
 
     if (item.quantity > 1) {
       const { error } = await supabase
-        .from("cart")
+        .from("admin_cart") // ✅ Use the correct table
         .update({ quantity: item.quantity - 1 })
         .eq("id", id);
 
       if (error) {
-        console.error("Error decreasing quantity:", error);
+        console.error("❌ Error decreasing admin cart quantity:", error);
       } else {
-        fetchCart(user.id);
+        fetchAdminCart(user.id); // ✅ Fetch updated admin cart
       }
     } else {
-      await removeFromCart(id);
+      await removeFromAdminCart(id); // ✅ Remove item if quantity is 1
     }
   };
-
-  // ✅ Calculate total price
-  const totalAmount = cartItems.reduce(
-    (total, item) => total + item.quantity * item.product.price,
-    0
-  );
 
   return (
     <CartContext.Provider
       value={{
-        cartItems,
-        wishlistItems,
-        addToCart,
-        removeFromCart,
-        increaseQuantity,
-        decreaseQuantity,
-        totalAmount,
+        adminCartItems, // ✅ Only providing adminCartItems
+        fetchAdminCart,
+        addToAdminCart,
+        increaseAdminQuantity,
+        decreaseAdminQuantity,
+        removeFromAdminCart,
       }}
     >
       {children}

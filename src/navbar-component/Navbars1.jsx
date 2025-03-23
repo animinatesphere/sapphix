@@ -12,7 +12,7 @@ import "../navbar-component/navbar2.css";
 import { supabase } from "../../supabase";
 
 const Navbar = () => {
-  const { cartItems, wishlistItems } = useCart();
+  const { adminCartItems } = useCart();
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [open, itOpen] = useState(false);
@@ -110,15 +110,15 @@ const Navbar = () => {
             )}
             <div className="nav-images">
               <img src={wishlist} alt="Wishlist" />
-              {wishlistItems.length > 0 && (
+              {/* {wishlistItems.length > 0 && (
                 <span className="wishlist-count">{wishlistItems.length}</span>
-              )}
+              )} */}
             </div>
             {/* Cart Icon Clickable */}
             <div className="nav-images" onClick={() => setIsCartOpen(true)}>
               <img src={cart} alt="Cart" />
-              {cartItems.length > 0 && (
-                <span className="cart-count">{cartItems.length}</span>
+              {adminCartItems.length > 0 && (
+                <span className="cart-count">{adminCartItems.length}</span>
               )}
             </div>
           </div>

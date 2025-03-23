@@ -1,14 +1,17 @@
 import React from "react";
-import { supabase } from "../../supabase";
-const signOut = async () => {
-  const { error } = await supabase.auth.signOut();
-};
+import NavbarHead from "../navbar-component/NavbarHead";
+import AdminNavaabr from "./AdminNavaabr";
+import Men from "../men/Men";
+// import { supabase } from "../../supabase";
+
 const AdminDashboard = () => {
   return (
-    <div className="">
-      <p>AdminDashboard</p>
-      <button onClick={signOut}>signout</button>
-    </div>
+    <>
+      <NavbarHead />
+      <AdminNavaabr />
+      {/* <Men /> */}
+      <div className=""></div>
+    </>
   );
 };
 

@@ -325,7 +325,8 @@
     letter-spacing: 0%;
     text-align: center;
     vertical-align: middle;
-    width: 430px;
+    width: fit-content;
+    margin: 0 auto;
   }
   .log-form {
     width: 430px;
@@ -395,7 +396,8 @@
     letter-spacing: 0%;
     text-align: center;
     vertical-align: middle;
-    width: 400px;
+    width: fit-content;
+    margin: 0 auto;
   }
   .log-form {
     width: 400px;
@@ -457,6 +459,20 @@
   }
 }
 @media screen and (max-width: 401px) {
+  .login-container {
+    width: 350px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    animation: fadeIn 0.6s ease-in-out;
+    font-family: inter;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+  }
+
   .login-head2 {
     font-family: "Nunito Sans", sans-serif;
     font-weight: 400;
@@ -465,10 +481,11 @@
     letter-spacing: 0%;
     text-align: center;
     vertical-align: middle;
-    width: 380px;
+    width: fit-content;
+    margin: 0 auto;
   }
   .log-form {
-    width: 360px;
+    width: 300px;
     height: 40px;
     gap: 10px;
     padding: 10px;
@@ -484,7 +501,7 @@
     color: var(--Greyscale-Text-Disabled, #777475);
   }
   .log-but {
-    width: 360px;
+    width: 300px;
     height: 40px;
     border-radius: 4px;
     padding: 16px 20px;
@@ -505,7 +522,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 360px;
+    width: 300px;
     height: 40px;
     gap: 10px;
     border-radius: 4px;
@@ -549,10 +566,11 @@
     letter-spacing: 0%;
     text-align: center;
     vertical-align: middle;
-    width: 360px;
+    width: fit-content;
+    margin: 0 auto;
   }
   .log-form {
-    width: 340px;
+    width: 300px;
     height: 40px;
     gap: 10px;
     padding: 10px;
@@ -568,7 +586,7 @@
     color: var(--Greyscale-Text-Disabled, #777475);
   }
   .log-but {
-    width: 340px;
+    width: 300px;
     height: 40px;
     border-radius: 4px;
     padding: 16px 20px;
@@ -589,7 +607,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 340px;
+    width: 300px;
     height: 40px;
     gap: 10px;
     border-radius: 4px;
@@ -633,10 +651,11 @@
     letter-spacing: 0%;
     text-align: center;
     vertical-align: middle;
-    width: 360px;
+    width: fit-content;
+    margin: 0 auto;
   }
   .log-form {
-    width: 340px;
+    width: 300px;
     height: 40px;
     gap: 10px;
     padding: 10px;
@@ -652,7 +671,7 @@
     color: var(--Greyscale-Text-Disabled, #777475);
   }
   .log-but {
-    width: 340px;
+    width: 300px;
     height: 40px;
     border-radius: 4px;
     padding: 16px 20px;
@@ -673,7 +692,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 340px;
+    width: 300px;
     height: 40px;
     gap: 10px;
     border-radius: 4px;
@@ -709,6 +728,18 @@
   }
 }
 @media screen and (max-width: 361px) {
+  .login-container {
+    max-width: 320px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    animation: fadeIn 0.6s ease-in-out;
+    font-family: inter;
+    margin-top: 3rem;
+  }
   .login-head2 {
     font-family: "Nunito Sans", sans-serif;
     font-weight: 400;
@@ -717,10 +748,11 @@
     letter-spacing: 0%;
     text-align: center;
     vertical-align: middle;
-    width: 340px;
+    width: 280px;
+    margin: 0 auto;
   }
   .log-form {
-    width: 330px;
+    width: 280px;
     height: 40px;
     gap: 10px;
     padding: 10px;
@@ -736,7 +768,7 @@
     color: var(--Greyscale-Text-Disabled, #777475);
   }
   .log-but {
-    width: 330px;
+    width: 280px;
     height: 40px;
     border-radius: 4px;
     padding: 16px 20px;
@@ -757,7 +789,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 330px;
+    width: 280px;
     height: 40px;
     gap: 10px;
     border-radius: 4px;
@@ -776,6 +808,17 @@
     margin-top: 2rem;
     cursor: pointer;
     border: 2px solid var(--Green-400, #3d6463);
+  }
+  .co {
+    font-family: inter;
+    font-weight: 600;
+    font-size: 10px;
+    line-height: 145%;
+    letter-spacing: 0%;
+    text-align: center;
+    vertical-align: middle;
+    color: var(--Text-Title, #0f0f0e);
+    width: 220px;
   }
   .use-bu {
     width: 150px;
