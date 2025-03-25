@@ -1,45 +1,35 @@
 import React, { useState, useEffect } from "react";
 import { FiSearch, FiSettings, FiChevronDown, FiLogOut } from "react-icons/fi";
-import { supabase } from "../../supabase";
-// import { AiOutlineDashboard } from "react-icons/ai";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import dash from "../admin/admin-folder/dashboard.png";
 import shop from "../admin/admin-folder/shop.png";
 import shopping from "../admin/admin-folder/shopping-cart.png";
 import people from "../admin/admin-folder/people.png";
 import edit from "../admin/admin-folder/edit.png";
-import { Link, Outlet, useNavigate } from "react-router-dom";
-import "../admin/admindashboard2.css";
-// Adjust the path to your Supabase client
 import eagle from "../assets/Sapphix logo editable 1.png";
 import AdminNav from "./AdminNav";
+import "../admin/admindashboard2.css";
+
 const AdminDashboard2 = () => {
   const [showProducts, setShowProducts] = useState(false);
   const [showOrder, setShowOrder] = useState(false);
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
-  // Fetch user data from Supabase on component mount
+  // ✅ Get user from localStorage (No Supabase)
   useEffect(() => {
-    const fetchUser = async () => {
-      const {
-        data: { session },
-        error,
-      } = await supabase.auth.getSession();
-
-      if (error || !session) {
-        navigate("/Admin-Login"); // Redirect to login if not authenticated
-        return;
-      }
-
-      setUser(session.user);
-    };
-
-    fetchUser();
+    const adminEmail = localStorage.getItem("adminEmail");
+    if (!adminEmail) {
+      navigate("/Admin-Login"); // Redirect if no admin is logged in
+    } else {
+      setUser({ email: adminEmail });
+    }
   }, [navigate]);
 
-  // Log out function
-  const handleLogout = async () => {
-    await supabase.auth.signOut();
+  // ✅ Logout Function
+  const handleLogout = () => {
+    localStorage.removeItem("adminEmail");
+    localStorage.removeItem("userRole");
     navigate("/Admin-Login");
   };
 
@@ -71,7 +61,7 @@ const AdminDashboard2 = () => {
                 <div className="fiv">
                   <div className="fiv-im">
                     <img src={shop} alt="" /> Products
-                  </div>{" "}
+                  </div>
                   <FiChevronDown />
                 </div>
                 {showProducts && (
@@ -89,28 +79,28 @@ const AdminDashboard2 = () => {
                 )}
               </div>
             </li>
-            <li>
-              <li onClick={() => setShowOrder(!showOrder)}>
-                <div className="show">
-                  <div className="fiv">
-                    <div className="fiv-im">
-                      <img src={shopping} alt="" /> Order
-                    </div>
-                    <FiChevronDown />
+
+            <li onClick={() => setShowOrder(!showOrder)}>
+              <div className="show">
+                <div className="fiv">
+                  <div className="fiv-im">
+                    <img src={shopping} alt="" /> Order
                   </div>
-                  {showOrder && (
-                    <ul className="sub-menu">
-                      <li>
-                        <Link to="order/list">List of Orders</Link>
-                      </li>
-                      <li>
-                        <Link to="order/details">Order Details</Link>
-                      </li>
-                    </ul>
-                  )}
+                  <FiChevronDown />
                 </div>
-              </li>
+                {showOrder && (
+                  <ul className="sub-menu">
+                    <li>
+                      <Link to="order/list">List of Orders</Link>
+                    </li>
+                    <li>
+                      <Link to="order/details">Order Details</Link>
+                    </li>
+                  </ul>
+                )}
+              </div>
             </li>
+
             <li>
               <Link to="customers">
                 <img src={people} alt="" /> Customers
@@ -129,21 +119,24 @@ const AdminDashboard2 = () => {
           </ul>
         </nav>
 
-        {/* User Profile */}
+        {/* ✅ Fixed User Profile Section */}
         <div className="user-profile">
-          <img src="https://via.placeholder.com/40" alt="User" />
           <div>
-            <p>{user ? user.user_metadata.full_name : "Loading..."}</p>
+            <img
+              src={`https://ui-avatars.com/api/?name=${user?.email || "User"}`}
+              alt="User"
+            />
             <span>{user ? user.email : "Loading..."}</span>
           </div>
           <FiLogOut onClick={handleLogout} style={{ cursor: "pointer" }} />
         </div>
       </aside>
+
+      {/* Main Content */}
       <div className="con">
         <AdminNav />
-        {/* Main Content Area */}
         <main className="main-content">
-          <Outlet /> {/* Display the nested routes here */}
+          <Outlet /> {/* Display nested routes */}
         </main>
       </div>
     </div>

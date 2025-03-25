@@ -1,121 +1,58 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import { supabase } from "../../supabase";
 
-export const AuthContext = createContext(null);
+const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Check for authentication on mount
-    checkAuth();
+    const checkSession = async () => {
+      // Check if user is stored in localStorage (for admin persistence)
+      const storedUser =
+        localStorage.getItem("userRole") === "admin"
+          ? {
+              email: localStorage.getItem("adminEmail"),
+              role: "admin",
+              isAdmin: true,
+            }
+          : null;
 
-    // Subscribe to auth changes
-    const { data: authListener } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
-        if (session?.user) {
-          setUser(session.user);
-        } else {
-          // If no Supabase session, check for admin auth
-          checkAdminAuth();
-        }
+      if (storedUser) {
+        setUser(storedUser);
         setLoading(false);
+        return;
+      }
+
+      // Otherwise, check Supabase session
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+      setUser(session?.user || null);
+      setLoading(false);
+    };
+
+    checkSession();
+
+    // Listen for auth state changes
+    const { data: authListener } = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        setUser(session?.user || null);
       }
     );
 
     return () => {
-      authListener?.subscription?.unsubscribe();
+      authListener.subscription.unsubscribe();
     };
   }, []);
 
-  // Function to check both auth types
-  const checkAuth = async () => {
-    // First check for admin
-    const adminAuth = checkAdminAuth();
-    if (adminAuth) {
-      return; // Stop if admin auth found
-    }
-
-    // Otherwise check Supabase
-    try {
-      const { data } = await supabase.auth.getSession();
-      if (data?.session) {
-        setUser(data.session.user);
-      } else {
-        setUser(null);
-      }
-    } catch (error) {
-      console.error("Supabase auth check failed:", error);
-      setUser(null);
-    }
-
-    setLoading(false);
-  };
-
-  // Function to check admin auth
-  const checkAdminAuth = () => {
-    const userRole = localStorage.getItem("userRole");
-    const adminEmail = localStorage.getItem("adminEmail");
-
-    if (userRole === "admin" && adminEmail) {
-      setUser({
-        email: adminEmail,
-        role: "admin",
-        isAdmin: true,
-      });
-      setLoading(false);
-      return true;
-    }
-    return false;
-  };
-
-  // Login function for admin
-  const adminLogin = (email) => {
-    localStorage.setItem("userRole", "admin");
-    localStorage.setItem("adminEmail", email || "admin@sapphix.com");
-
-    setUser({
-      email: email || "admin@sapphix.com",
-      role: "admin",
-      isAdmin: true,
-    });
-
-    return true;
-  };
-
-  // Logout function
-  const logout = async () => {
-    // Clear admin auth
-    localStorage.removeItem("userRole");
-    localStorage.removeItem("adminEmail");
-
-    // Clear Supabase auth
-    await supabase.auth.signOut();
-
-    setUser(null);
-  };
-
   return (
-    <AuthContext.Provider
-      value={{
-        user,
-        loading,
-        isAuthenticated: !!user,
-        isAdmin: user?.isAdmin || user?.role === "admin",
-        adminLogin,
-        logout,
-      }}
-    >
+    <AuthContext.Provider value={{ user, setUser, loading }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
-export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error("useAuth must be used within an AuthProvider");
-  }
-  return context;
-};
+// Custom hook to use AuthContext
+export const useAuth = () => useContext(AuthContext);

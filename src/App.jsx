@@ -13,12 +13,11 @@ import AdminDashboard from "./admin/AdminDashboard";
 import ProductListing from "./women/ProductListing";
 import ProductDetails from "./component/ProductDetails";
 import HandleAuthRedirect from "./component/HandleAuthRedirect";
-import ProtectedRoute from "./component/ProtectedRoute"; // Make sure this is using the auth context
+import ProtectedRoute from "./component/ProtectedRoute";
 import Checkout from "./check/Checkout";
 import Men from "./men/Men";
 import OnSale from "./onsale/OnSale";
 import AdminDashboard2 from "./admin/AdminDashboard2";
-
 import DashboardContent from "./admin/DashboardContent";
 import ListProducts from "./admin/ListProducts";
 import AddProducts from "./admin/AddProducts";
@@ -35,22 +34,16 @@ function App() {
         <Router>
           <Routes>
             <Route path="/login" element={<Login />} />
-            <Route />
-            {/* Fix the path to match what's used in your ProtectedRoute component */}
             <Route path="/adminlogin" element={<AdminLogin />} />
-            <Route
-              path="/Admin-Login"
-              element={<Navigate to="/adminlogin" />}
-            />{" "}
-            {/* Add redirect for old path */}
             <Route path="/women" element={<ProductListing />} />
             <Route path="/men" element={<Men />} />
             <Route path="/onsale" element={<OnSale />} />
             <Route path="/product/:id" element={<ProductDetails />} />
             <Route path="/men-product/:id" element={<MenDetails />} />
             <Route path="/checkout" element={<Checkout />} />
-            {/* Handle Supabase OAuth Redirect */}
             <Route path="/auth/callback" element={<HandleAuthRedirect />} />
+
+            {/* 🔹 Normal Dashboard Route */}
             <Route
               path="/dashboard"
               element={
@@ -59,7 +52,8 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            <Route path="*" element={<Navigate to="/dashboard" />} />
+
+            {/* 🔹 Admin Dashboard */}
             <Route
               path="/admindashboard"
               element={
@@ -68,9 +62,10 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            {/* Admin Dashboard Layout with Nested Routes */}
+
+            {/* 🔹 Admin Panel with Nested Routes */}
             <Route
-              path="/admin/dashboard"
+              path="/admin/dashboard/*"
               element={
                 <ProtectedRoute>
                   <AdminDashboard2 />
@@ -85,6 +80,9 @@ function App() {
               <Route path="reviews" element={<ManageReviews />} />
               <Route path="settings" element={<Settings />} />
             </Route>
+
+            {/* 🔹 Catch-all Redirect */}
+            <Route path="*" element={<Navigate to="/dashboard" />} />
           </Routes>
         </Router>
       </CartProvider>

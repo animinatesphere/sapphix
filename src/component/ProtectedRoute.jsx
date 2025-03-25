@@ -1,22 +1,22 @@
 import { Navigate } from "react-router-dom";
-import { useContext } from "react";
-import { AuthContext } from "../Auttts/AuthContext";
+import { useEffect, useState } from "react";
 
 const ProtectedRoute = ({ children }) => {
-  const { user, loading } = useContext(AuthContext);
+  const [loading, setLoading] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  // Debug logs to help track issues
-  console.log("Protected Route Check:", {
-    loading,
-    authenticated: !!user,
-    userDetails: user ? `${user.email} (${user.role || "user"})` : "none",
-  });
+  useEffect(() => {
+    const adminEmail = localStorage.getItem("adminEmail");
+    if (adminEmail) {
+      setIsAuthenticated(true);
+    }
+    setLoading(false);
+  }, []);
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
+  if (loading) return <p>Loading...</p>;
+  if (!isAuthenticated) return <Navigate to="/adminlogin" replace />;
 
-  return user ? children : <Navigate to="/adminlogin" />;
+  return children;
 };
 
 export default ProtectedRoute;

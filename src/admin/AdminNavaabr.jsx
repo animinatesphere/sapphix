@@ -10,6 +10,7 @@ import SearchBar from "../componentcss/SearchBar";
 import CartSidebar from "../component/CartSidebar";
 import "../navbar-component/navbar2.css";
 import { supabase } from "../../supabase";
+import defaultProfile from "../foestaimages/Air1.png";
 
 const AdminNavaabr = () => {
   const { adminCartItems } = useCart();
@@ -54,9 +55,15 @@ const AdminNavaabr = () => {
           </div>
           <div className="nav-left-link">
             <ul>
-              <Link to="/men">Men</Link>
-              <Link to="/women">Women</Link>
-              <Link to="/onsale">On Sale</Link>
+              <li>
+                <Link to="/men">Men</Link>
+              </li>
+              <li>
+                <Link to="/women">Women</Link>
+              </li>
+              <li>
+                <Link to="/onsale">On Sale</Link>
+              </li>
             </ul>
           </div>
         </div>
@@ -77,10 +84,11 @@ const AdminNavaabr = () => {
             {open && (
               <div className="profile-dropdown">
                 <div className="profile-header">
-                  <img src="/profile.jpg" alt="User" className="profile-pic" />
                   <div className="profile-info">
-                    <h4>{user?.user_metadata?.full_name || "User"}</h4>
-                    <p>{user?.email || user?.phone || "No Contact Info"}</p>
+                    <h4>
+                      {user?.email === "admin@sapphix.com" ? "Admin" : "User"}
+                    </h4>
+                    <p>{user?.email || "No Email"}</p>
                   </div>
                 </div>
 
@@ -107,7 +115,9 @@ const AdminNavaabr = () => {
                     className="logout"
                     onClick={async () => {
                       await supabase.auth.signOut();
-                      window.location.reload(); // Refresh to logout
+                      localStorage.removeItem("userRole"); // Clear admin role
+                      localStorage.removeItem("adminEmail"); // Remove stored admin email
+                      window.location.href = "/adminlogin"; // Redirect to login page
                     }}
                   >
                     <LogOut size={18} /> Logout

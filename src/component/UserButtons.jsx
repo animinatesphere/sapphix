@@ -16,7 +16,7 @@ const UserButtons = () => {
       <Link to="/Admin-Login">
         <button
           className={`use-bu ${
-            location.pathname === "/Admin-Login" ? "active" : ""
+            location.pathname === "/adminLogin" ? "active" : ""
           }`}
         >
           Admin
