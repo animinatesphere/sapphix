@@ -72,14 +72,17 @@ function App() {
                 </ProtectedRoute>
               }
             >
-              <Route path="DashboardContent" element={<DashboardContent />} />
-              <Route path="products/list" element={<ListProducts />} />
-              <Route path="products/add" element={<AddProducts />} />
-              <Route path="orders" element={<Orders />} />
-              <Route path="customers" element={<Customers />} />
-              <Route path="reviews" element={<ManageReviews />} />
-              <Route path="settings" element={<Settings />} />
-            </Route>
+             <Route path="/admin/dashboard/*" element={<ProtectedRoute><AdminDashboard2 /></ProtectedRoute>}>
+  <Route path="DashboardContent" element={<DashboardContent />} />
+  <Route path="products/list" element={<ListProducts />} />
+  <Route path="products/add" element={<AddProducts />} />
+  <Route path="order/list" element={<Orders />} />
+  <Route path="order/details" element={<Orders />} />
+  <Route path="customers" element={<Customers />} />
+  <Route path="reviews" element={<ManageReviews />} />
+  <Route path="settings" element={<Settings />} />
+</Route>
+
 
             {/* 🔹 Catch-all Redirect */}
             <Route path="*" element={<Navigate to="/dashboard" />} />
