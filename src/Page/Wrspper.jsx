@@ -25,7 +25,7 @@ function Wrspper({ children }) {
   }
 
   if (!authenticated) {
-    return <Navigate to="/" />;
+    return <Navigate to="/login" />;
   }
 
   return <>{children}</>;

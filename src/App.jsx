@@ -30,7 +30,7 @@ function App() {
     <CartProvider>
       <Router>
         <Routes>
-          <Route path="/" element={<LoginPage />} />
+          <Route path="/login" element={<LoginPage />} />
           {/* <Route path="/login" element={<Login />} /> */}
           {/* register */}
           <Route path="/register" element={<Register />} />
