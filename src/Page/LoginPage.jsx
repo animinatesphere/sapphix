@@ -47,7 +47,7 @@ function LoginPage() {
     <div className="login-container">
       <div className="login-wrapper">
         <div className="login-logo">
-          <h2>Logo Here</h2>
+          <h2>SAPPHIX</h2>
         </div>
         <div className="login-form-container">
           <h1>Sign in</h1>
@@ -82,7 +82,7 @@ function LoginPage() {
               Sign in
             </button>
             <div className="signup-link">
-              Don't have an account? <a href="/Register">Sign up</a>
+              Don't have an account? <a href="/register">Sign up</a>
             </div>
           </form>
         </div>
