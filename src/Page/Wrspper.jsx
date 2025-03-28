@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../../supabase";
 import { Navigate, useLocation } from "react-router-dom";
+import EcommerceLoader from "../component/EcommerceLoader";
 
 function Wrspper({ children }) {
   const [authenticated, setAuthenticated] = useState(false);
@@ -21,7 +22,7 @@ function Wrspper({ children }) {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <EcommerceLoader />;
   }
 
   if (!authenticated) {
