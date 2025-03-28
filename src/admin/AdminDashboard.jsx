@@ -9,7 +9,7 @@ const AdminDashboard = () => {
     <>
       <NavbarHead />
       <AdminNavaabr />
-      {/* <Men /> */}
+      <Men />
       <div className=""></div>
     </>
   );

@@ -1,4 +1,4 @@
-/* 🔹 Admin Login Page Styles */
+/* 
 .admin-container {
   display: flex;
   justify-content: center;
@@ -142,4 +142,186 @@
 
 .notification.error {
   background: #f44336;
+} */
+/* ✅ General Styles */
+.login-container {
+  width: 100%;
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  background: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  text-align: center;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* 🔹 Hover Effect */
+.login-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* ✅ Title & Text */
+h2 {
+  font-size: 26px;
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 8px;
+  opacity: 0;
+  animation: fadeIn 0.8s ease-in-out forwards;
+}
+
+p {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 15px;
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
+/* ✅ Input Fields */
+input {
+  width: 90%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+/* 🔹 Input Focus */
+input:focus {
+  border-color: #4caf50;
+  outline: none;
+}
+
+/* ✅ Buttons */
+button {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  font-weight: bold;
+}
+
+/* 🔹 Primary Button */
+.log-but {
+  background: #4caf50;
+  color: white;
+}
+
+.log-but:hover {
+  background: #45a049;
+  transform: scale(1.05);
+}
+
+/* 🔹 Admin Button */
+.admin-button {
+  background: #ff5722;
+  color: white;
+}
+
+.admin-button:hover {
+  background: #e64a19;
+  transform: scale(1.05);
+}
+
+/* ✅ Google Login Button */
+.google-but {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: #4285f4;
+  color: white;
+  padding: 12px;
+  margin-top: 15px;
+  transition: all 0.3s ease-in-out;
+}
+
+.google-but:hover {
+  background: #357ae8;
+  transform: scale(1.05);
+}
+
+.google-but img {
+  width: 20px;
+  height: 20px;
+}
+
+/* ✅ Random Login Button */
+.random-but {
+  background: #ff9800;
+  color: white;
+}
+
+.random-but:hover {
+  background: #f57c00;
+  transform: scale(1.05);
+}
+
+/* ✅ Notification Messages */
+.notification {
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  font-size: 14px;
+  text-align: center;
+  opacity: 0;
+  animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+.notification.success {
+  background: #dff0d8;
+  color: #3c763d;
+}
+
+.notification.error {
+  background: #f2dede;
+  color: #a94442;
+}
+
+/* ✅ Responsive Design */
+@media screen and (max-width: 480px) {
+  .login-container {
+    max-width: 90%;
+    padding: 15px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  input {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .login-container {
+    max-width: 350px;
+  }
+}
+
+/* ✅ Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
