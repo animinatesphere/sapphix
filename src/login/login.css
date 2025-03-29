@@ -16,7 +16,8 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: var(--background-color);
+  /* background-color: var(--background-color); */
+  background-color: white;
   font-family: "Arial", sans-serif;
 }
 
@@ -25,15 +26,10 @@
   width: 100%;
   max-width: 1200px;
   background-color: white;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); */
   border-radius: 15px;
   overflow: hidden;
-}
-
-.login-logo {
-  padding: 20px;
-  color: var(--primary-color);
-  font-size: 1.2rem;
+  height: 600px;
 }
 
 .login-form-container {
@@ -46,8 +42,19 @@
 
 .login-form-container h1 {
   margin-bottom: 30px;
+  font-size: 2rem;
+  text-align: center;
+  font-family: inter;
+  font-weight: 500;
+  color: #f23e14;
+}
+.login-form-container p {
+  margin-bottom: 30px;
   color: var(--text-color);
   font-size: 2rem;
+  text-align: center;
+  font-family: inter;
+  font-weight: 500;
 }
 
 .login-form {
@@ -64,6 +71,8 @@
 .form-group {
   margin-bottom: 20px;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .form-group label {
@@ -78,6 +87,7 @@
   border: 1px solid var(--input-border-color);
   border-radius: 6px;
   font-size: 1rem;
+  outline: #f23e14;
 }
 
 .forgot-password {
@@ -117,7 +127,7 @@
 
 .login-illustration {
   flex: 1;
-  background-color: var(--background-color);
+  /* background-color: var(--background-color); */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -125,55 +135,25 @@
 }
 
 .illustration-content {
-  position: relative;
-  width: 300px;
-  height: 300px;
+  width: 100%;
+  height: 600px;
+  background: url("../loginimage/domino-studio-164_6wVEHfI-unsplash.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-
-.shopping-cart {
-  position: absolute;
-  bottom: 50px;
-  right: 50px;
-  width: 200px;
-  height: 150px;
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.cart-item {
-  width: 50px;
-  height: 50px;
-  background-color: #e0e0e0;
-  margin: 0 5px;
-  border-radius: 5px;
-}
-
-.cart-item-1 {
-  background-color: #4caf50;
-}
-.cart-item-2 {
-  background-color: #2196f3;
-}
-.cart-item-3 {
-  background-color: #ff9800;
-}
-
-.person-illustration {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 200px;
-  height: 300px;
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 300" fill="none"><rect width="200" height="300" fill="%23FFF5F0"/><circle cx="100" cy="100" r="50" fill="%23FF6347"/><rect x="75" y="160" width="50" height="140" fill="%23FF6347"/></svg>')
-    no-repeat center;
+.illustration-content2 {
+  width: 100%;
+  height: 600px;
+  background: url("../loginimage/joseph-barrientos-4qSb_FWhHKs-unsplash.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 @media (max-width: 768px) {
+  .login-parent {
+    height: 100vh;
+  }
+
   .login-wrapper {
     flex-direction: column;
   }

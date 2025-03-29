@@ -24,6 +24,7 @@ import MenDetails from "./men/MenDetails";
 import Register from "./login/Register";
 import LoginPage from "./Page/LoginPage";
 import Wrspper from "./Page/Wrspper";
+import AdminLogin from "./admin/AdminLogin";
 
 function App() {
   return (
@@ -33,6 +34,9 @@ function App() {
           {/* Public Routes */}
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<Register />} />
+
+          <Route path="/AdminLogin" element={<AdminLogin />} />
+
           <Route path="/women" element={<ProductListing />} />
           <Route path="/men" element={<Men />} />
           <Route path="/onsale" element={<OnSale />} />
@@ -51,7 +55,14 @@ function App() {
           />
 
           {/* Admin Routes */}
-          <Route path="/admindashboard" element={<AdminDashboard />} />
+          <Route
+            path="/admindashboard"
+            element={
+              <Wrspper>
+                <AdminDashboard />
+              </Wrspper>
+            }
+          />
 
           <Route path="/admin/dashboard/" element={<AdminDashboard2 />}>
             <Route path="DashboardContent" element={<DashboardContent />} />
