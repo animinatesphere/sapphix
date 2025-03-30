@@ -31,15 +31,7 @@ const Navbar = () => {
   }, []);
   return (
     <>
-      <div
-        className="nav-container"
-        style={{
-          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1) ",
-
-          overflow: "hidden",
-          zIndex: "1000",
-        }}
-      >
+      <div className="nav-container">
         <div className="nav-left-container">
           <div className="harm" onClick={() => setIsOpen(!isOpen)}>
             <div className="harm-1"></div>
