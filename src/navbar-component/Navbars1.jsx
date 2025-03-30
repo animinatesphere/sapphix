@@ -17,6 +17,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [open, itOpen] = useState(false);
   const [user, setUser] = useState(null); // Store user data
+  const { wishlistItems } = useCart();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -118,9 +119,9 @@ const Navbar = () => {
             )}
             <div className="nav-images">
               <img src={wishlist} alt="Wishlist" />
-              {/* {wishlistItems.length > 0 && (
-                <span className="wishlist-count">{wishlistItems.length}</span>
-              )} */}
+              {wishlistItems.length > 0 && (
+                <span className="wishlist-badge">{wishlistItems.length}</span>
+              )}
             </div>
             {/* Cart Icon Clickable */}
             <div className="nav-images" onClick={() => setIsCartOpen(true)}>

@@ -425,7 +425,8 @@
     gap: 20px;
     flex-wrap: wrap;
     margin-top: 3rem;
-    margin-left: -1rem;
+    margin: 0 auto;
+    margin-left: 1.5rem;
   }
   .add-to-cart {
     width: 204px;

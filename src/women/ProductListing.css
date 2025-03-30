@@ -197,7 +197,7 @@
   /* grid-template-columns: repeat(4, 4fr); */
   margin-top: 3rem;
   width: fit-content;
-  margin: 0 auto;
+  margin-left: 3rem;
 }
 
 .product-card {
@@ -367,7 +367,7 @@
     gap: 20px;
     flex-wrap: wrap;
     margin-top: 3rem;
-    /* margin-left: 1rem; */
+    margin-left: 2rem;
   }
   .bread p {
     font-family: inter;

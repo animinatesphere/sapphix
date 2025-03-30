@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { FiHeart } from "react-icons/fi";
+import { FaHeart } from "react-icons/fa";
 import { useCart } from "../component/CartContext";
 import { Link } from "react-router-dom";
 import "../women/ProductListing.css";
@@ -19,6 +21,7 @@ const Men = () => {
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
   const itemsPerPage = 9;
+  const { wishlistItems, addToWishlist } = useCart();
 
   // Fetch products for men from Supabase
   useEffect(() => {
@@ -39,6 +42,8 @@ const Men = () => {
 
     fetchProducts();
   }, []);
+
+  // Check if this product is in the wishlist
 
   const filteredProducts = products.filter((product) =>
     product.name.toLowerCase().includes(search.toLowerCase())
@@ -96,51 +101,68 @@ const Men = () => {
           </div>
 
           {/* Product Grid */}
+          {/* Product Grid */}
           <div className="product-grid">
             {displayedProducts.length > 0 ? (
-              displayedProducts.map((product) => (
-                <div className="product-card" key={product.id}>
-                  <Link
-                    to={`/men-product/${product.id}`}
-                    className="product-link"
-                  >
-                    <img
-                      src={product.image || "/placeholder.png"}
-                      alt={product.name}
-                      className="product-image"
-                    />
-                  </Link>
-                  <div className="title-price">
-                    <p className="product-title">{product.name}</p>
-                    <p className="product-price">
-                      N{product.price ? product.price.toLocaleString() : "0"}
-                    </p>
-                  </div>
-                  <p className="product-color">{product.color || "N/A"}</p>
+              displayedProducts.map((product) => {
+                const isInWishlist = wishlistItems.some(
+                  (item) => item.id === product.id
+                );
 
-                  {/* Star Ratings */}
-                  <div className="product-rating">
-                    {Array.from({ length: 5 }, (_, index) =>
-                      index < Math.round(product.rating || 0) ? (
-                        <FaStar key={index} className="star filled" />
+                return (
+                  <div className="product-card" key={product.id}>
+                    <Link
+                      to={`/men-product/${product.id}`}
+                      className="product-link"
+                    >
+                      <img
+                        src={product.image || "/placeholder.png"}
+                        alt={product.name}
+                        className="product-image"
+                      />
+                    </Link>
+                    <button
+                      onClick={() => addToWishlist(product)}
+                      className={`love-button ${isInWishlist ? "active" : ""}`}
+                    >
+                      {isInWishlist ? (
+                        <FaHeart color="red" size={20} />
                       ) : (
-                        <FaRegStar key={index} className="star" />
-                      )
-                    )}
-                    <span className="review-count">
-                      ({product.reviews || 0})
-                    </span>
-                  </div>
+                        <FiHeart size={20} />
+                      )}
+                    </button>
+                    <div className="title-price">
+                      <p className="product-title">{product.name}</p>
+                      <p className="product-price">
+                        N{product.price ? product.price.toLocaleString() : "0"}
+                      </p>
+                    </div>
+                    <p className="product-color">{product.color || "N/A"}</p>
 
-                  <button
-                    className="add-to-cart"
-                    onClick={() => addToCart(product)}
-                  >
-                    <img src={cart} alt="" />
-                    Add to Cart
-                  </button>
-                </div>
-              ))
+                    {/* Star Ratings */}
+                    <div className="product-rating">
+                      {Array.from({ length: 5 }, (_, index) =>
+                        index < Math.round(product.rating || 0) ? (
+                          <FaStar key={index} className="star filled" />
+                        ) : (
+                          <FaRegStar key={index} className="star" />
+                        )
+                      )}
+                      <span className="review-count">
+                        ({product.reviews || 0})
+                      </span>
+                    </div>
+
+                    <button
+                      className="add-to-cart"
+                      onClick={() => addToCart(product)}
+                    >
+                      <img src={cart} alt="" />
+                      Add to Cart
+                    </button>
+                  </div>
+                );
+              })
             ) : (
               <p className="no-results">No products found.</p>
             )}

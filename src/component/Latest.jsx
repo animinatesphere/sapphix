@@ -13,10 +13,7 @@ const Latest = () => {
       <h1 className="like" style={{ textAlign: "center", marginTop: "2rem" }}>
         Latest Women wears
       </h1>
-      <div
-        className="product-grid"
-        style={{ width: "fit-content", margin: "0 auto" }}
-      >
+      <div className="product-grid">
         {Products.slice(0, 4).map((product) => (
           <div className="product-card" key={product.id}>
             <Link to={`/product/${product.id}`} className="product-link">

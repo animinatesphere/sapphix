@@ -6,6 +6,80 @@ const CartContext = createContext();
 export const CartProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [adminCartItems, setAdminCartItems] = useState([]); // ✅ Only admin cart
+  const [wishlistItems, setWishlistItems] = useState([]);
+
+  // wishlist
+  const addToWishlist = async (product) => {
+    if (!user || !user.id) {
+      console.error("❌ No valid user found. Please log in.");
+      return;
+    }
+
+    console.log(
+      "🔍 Checking wishlist for user ID:",
+      user.id,
+      "Product ID:",
+      product.id
+    );
+
+    const { data: existingWishlist, error } = await supabase
+      .from("wishlist")
+      .select("*")
+      .eq("user_id", user.id)
+      .eq("product_id", parseInt(product.id)); // ✅ Ensure product.id is an integer
+
+    if (error) {
+      console.error("❌ Error checking wishlist:", error.message);
+      return;
+    }
+
+    if (existingWishlist?.length > 0) {
+      console.log("✅ Item is already in the wishlist.");
+      return;
+    }
+
+    const { error: insertError } = await supabase
+      .from("wishlist")
+      .insert([{ user_id: user.id, product_id: parseInt(product.id) }]); // ✅ Convert product.id to int
+
+    if (insertError) {
+      console.error("❌ Error adding to wishlist:", insertError.message);
+    } else {
+      console.log("✅ Product added to wishlist!");
+      fetchWishlist(); // Refresh wishlist
+    }
+  };
+
+  const fetchWishlist = async () => {
+    if (!user) return;
+
+    const { data, error } = await supabase
+      .from("wishlist")
+      .select(`product:product_id (id, name, price, image)`) // ✅ Fetch full product details
+      .eq("user_id", user.id);
+
+    if (error) {
+      console.error("Error fetching wishlist:", error.message);
+    } else {
+      setWishlistItems(data.map((item) => item.product)); // ✅ Store full product objects
+    }
+  };
+  // Remove from wishlist function
+  const removeFromWishlist = async (productId) => {
+    if (!user) return;
+
+    const { error } = await supabase
+      .from("wishlist")
+      .delete()
+      .eq("user_id", user.id)
+      .eq("product_id", productId);
+
+    if (error) {
+      console.error("Error removing from wishlist:", error.message);
+    } else {
+      setWishlistItems((prev) => prev.filter((item) => item.id !== productId)); // ✅ Remove from state
+    }
+  };
 
   // ✅ Fetch user session on mount
   useEffect(() => {
@@ -26,8 +100,10 @@ export const CartProvider = ({ children }) => {
         setUser(session?.user || null);
         if (session?.user) {
           fetchAdminCart(session.user.id);
+          fetchWishlist(session.user.id); // ✅ Fetch wishlist too
         } else {
-          setAdminCartItems([]); // Clear admin cart when logged out
+          setAdminCartItems([]);
+          setWishlistItems([]); // ✅ Clear wishlist on logout
         }
       }
     );
@@ -176,6 +252,9 @@ export const CartProvider = ({ children }) => {
         increaseAdminQuantity,
         decreaseAdminQuantity,
         removeFromAdminCart,
+        wishlistItems,
+        addToWishlist,
+        removeFromWishlist,
       }}
     >
       {children}
