@@ -1681,6 +1681,14 @@
   }
 }
 @media screen and (max-width: 400px) {
+  .checkout-head {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 3rem;
+    padding: 0rem;
+  }
   .order-container {
     display: flex;
     flex-direction: column;
@@ -1689,7 +1697,7 @@
   }
   .order-left-1 {
     border: 1px solid var(--light-grey-500, #c4c4c4);
-    width: 330px;
+    width: 300px;
     height: auto;
     gap: 24px;
     border-radius: 10px;
@@ -1697,7 +1705,7 @@
     padding: 32px;
   }
   .order-left-2 {
-    width: 330px;
+    width: 300px;
     height: 774px;
     gap: 24px;
     border-radius: 10px;
@@ -1718,7 +1726,7 @@
   .order-left-2-2row input,
   .order-left-2-3row input,
   .order-left-2-4row input {
-    width: 280px;
+    width: 250px;
     height: 56px;
     gap: 12px;
     border-radius: 6px;
@@ -1744,7 +1752,7 @@
   .order-right {
     display: flex;
     flex-direction: column;
-    width: 330px;
+    width: 300px;
     height: auto;
     gap: 28px;
     border-radius: 10px;
@@ -1753,7 +1761,7 @@
     border: 1px solid var(--light-grey-500, #c4c4c4);
   }
   .discount-input input {
-    width: 180px;
+    width: 160px;
     height: 50px;
     gap: 12px;
     border-radius: 30px;
@@ -1774,7 +1782,7 @@
     border: none;
   }
   .info-in1 input {
-    width: 280px;
+    width: 240px;
     height: 56px;
     gap: 12px;
     border-radius: 6px;
@@ -1814,7 +1822,7 @@
     padding: 16px;
   }
   .total-bu {
-    width: 280px;
+    width: 240px;
     height: 55px;
     gap: 10px;
     border-radius: 20px;
@@ -1824,6 +1832,6 @@
     padding-left: 24px;
     background: var(--Green-500, #184645);
     border: none;
-    margin-left: -2rem;
+    margin-left: -1.7rem;
   }
 }
