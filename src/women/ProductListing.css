@@ -199,7 +199,8 @@
   width: fit-content;
   /* margin-left: 3rem; */
   margin: 0 auto;
-  /* margin-left:t -2rem; */
+
+  margin-left: -1rem;
 }
 
 .product-card {
