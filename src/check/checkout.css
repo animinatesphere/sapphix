@@ -1704,6 +1704,7 @@
     border-width: 1px;
     padding: 32px;
     margin: 0 auto;
+    margin-left: -0.5rem;
     /* margin-left: -0.1rem; */
   }
   .order-left-2 {
@@ -1715,7 +1716,8 @@
     padding: 32px;
     background: var(--Color, #ffffff);
     border: 1px solid var(--light-grey-500, #c4c4c4);
-    margin: 0 auto;
+    /* margin: 0 auto; */
+    margin-left: -0.5rem;
   }
   .order-left-2-2row input {
     width: 280px;
@@ -1762,10 +1764,11 @@
     border-width: 1px;
     padding: 32px;
     border: 1px solid var(--light-grey-500, #c4c4c4);
-    margin: 0 auto;
+    /* margin: 0 auto; */
+    margin-left: -0.5rem;
   }
   .discount-input input {
-    width: 160px;
+    width: 150px;
     height: 50px;
     gap: 12px;
     border-radius: 30px;
@@ -1834,7 +1837,7 @@
     /* align-items: center; */
     flex-direction: column;
     gap: 0.5rem;
-    margin-left: -1rem;
+    margin-left: -0.4rem;
   }
   .expire1 input {
     font-family: Inter;
