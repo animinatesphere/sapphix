@@ -356,6 +356,35 @@
   font-weight: bold;
 }
 
+@media screen and (max-width: 760px) {
+  .sideba {
+    display: none;
+  }
+  .filter-parent {
+    display: flex;
+    flex-direction: column;
+  }
+  .product-grid {
+    display: flex;
+    width: fit-content;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 3rem;
+    margin-left: 2rem;
+  }
+  .bread p {
+    font-family: inter;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 145%;
+    letter-spacing: 0%;
+    /* vertical-align: middle; */
+    position: absolute;
+    padding-top: 3rem;
+    padding-left: 3rem;
+    text-align: center;
+  }
+}
 @media screen and (max-width: 400px) {
   .sideba {
     display: none;
