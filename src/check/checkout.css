@@ -1703,16 +1703,19 @@
     border-radius: 10px;
     border-width: 1px;
     padding: 32px;
+    margin: 0 auto;
+    /* margin-left: -0.1rem; */
   }
   .order-left-2 {
     width: 300px;
-    height: 774px;
+    height: auto;
     gap: 24px;
     border-radius: 10px;
     border-width: 1px;
     padding: 32px;
     background: var(--Color, #ffffff);
     border: 1px solid var(--light-grey-500, #c4c4c4);
+    margin: 0 auto;
   }
   .order-left-2-2row input {
     width: 280px;
@@ -1759,6 +1762,7 @@
     border-width: 1px;
     padding: 32px;
     border: 1px solid var(--light-grey-500, #c4c4c4);
+    margin: 0 auto;
   }
   .discount-input input {
     width: 160px;
@@ -1780,6 +1784,31 @@
     color: var(--greyscale-300, #6f6e6d);
     /* padding: 1rem; */
     border: none;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+  }
+  .discount-butt button {
+    width: 90px;
+    height: 55px;
+    gap: 10px;
+    border-radius: 30px;
+    padding-top: 16px;
+    padding-right: 24px;
+    padding-bottom: 16px;
+    padding-left: 24px;
+    background: var(--Green-500, #184645);
+    font-family: General Sans;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 145%;
+    letter-spacing: 0%;
+    text-align: center;
+    vertical-align: middle;
+    color: var(--Color, #ffffff);
+    border: none;
+    margin-top: 1.3rem;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
   }
   .info-in1 input {
     width: 240px;
@@ -1798,6 +1827,7 @@
     vertical-align: middle;
     color: var(--Text-Subtitle, #242322);
     outline: 1px solid var(--Green-300, #628181);
+    margin-left: -0.5rem;
   }
   .expire {
     display: flex;
