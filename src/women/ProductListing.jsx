@@ -98,7 +98,7 @@ const ProductListing = () => {
           </div>
 
           {/* Product Grid */}
-          <div className="product-grid">
+          <div className="product-grid2">
             {displayedProducts.length > 0 ? (
               displayedProducts.map((product) => (
                 <div className="product-card" key={product.id}>

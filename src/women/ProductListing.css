@@ -190,7 +190,7 @@
 } */
 
 /* Product Grid */
-.product-grid {
+.product-grid2 {
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
@@ -199,6 +199,7 @@
   width: fit-content;
   /* margin-left: 3rem; */
   margin: 0 auto;
+  /* margin-left:t -2rem; */
 }
 
 .product-card {

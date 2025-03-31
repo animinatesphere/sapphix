@@ -102,7 +102,7 @@ const Men = () => {
 
           {/* Product Grid */}
           {/* Product Grid */}
-          <div className="product-grid">
+          <div className="product-grid2">
             {displayedProducts.length > 0 ? (
               displayedProducts.map((product) => {
                 const isInWishlist = wishlistItems.some(
