@@ -1704,7 +1704,7 @@
     border-width: 1px;
     padding: 32px;
     margin: 0 auto;
-    margin-left: -0.5rem;
+    margin-left: -0.6rem;
     /* margin-left: -0.1rem; */
   }
   .order-left-2 {
@@ -1717,7 +1717,7 @@
     background: var(--Color, #ffffff);
     border: 1px solid var(--light-grey-500, #c4c4c4);
     /* margin: 0 auto; */
-    margin-left: -0.5rem;
+    margin-left: -0.6rem;
   }
   .order-left-2-2row input {
     width: 280px;
@@ -1765,7 +1765,7 @@
     padding: 32px;
     border: 1px solid var(--light-grey-500, #c4c4c4);
     /* margin: 0 auto; */
-    margin-left: -0.5rem;
+    margin-left: -0.6rem;
   }
   .discount-input input {
     width: 150px;
