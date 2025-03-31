@@ -272,6 +272,7 @@
 @media screen and (max-width: 760px) {
   .cart-sidebar {
     width: 400px;
+    height: auto;
   }
   .cart-header h2 {
     font-family: inter;
@@ -354,6 +355,7 @@
 @media screen and (max-width: 600px) {
   .cart-sidebar {
     width: 400px;
+    height: auto;
   }
   .cart-header h2 {
     font-family: inter;
@@ -436,6 +438,7 @@
 @media screen and (max-width: 500px) {
   .cart-sidebar {
     width: 305px;
+    height: auto;
   }
   .cart-header h2 {
     font-family: inter;
@@ -516,6 +519,9 @@
   }
 }
 @media screen and (max-width: 420px) {
+  .cart-sidebar {
+    height: auto;
+  }
   .cart-header h2 {
     font-family: inter;
     font-weight: 600;
@@ -598,6 +604,9 @@
   }
 }
 @media screen and (max-width: 400px) {
+  .cart-sidebar {
+    height: auto;
+  }
   .cart-header h2 {
     font-family: inter;
     font-weight: 600;
