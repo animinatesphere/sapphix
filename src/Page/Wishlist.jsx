@@ -5,6 +5,7 @@ import { FaHeart, FaStar, FaRegStar } from "react-icons/fa";
 import { FiHeart } from "react-icons/fi";
 import cart from "../assets/Cart.png"; // Make sure this path is correct
 import Navbar from "../navbar-component/Navbars1";
+import "../Page/wishlist.css";
 
 const Wishlist = () => {
   const { wishlistItems, removeFromWishlist, addToAdminCart } = useCart();

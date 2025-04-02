@@ -239,7 +239,7 @@
 @media screen and (max-width: 900px) {
   .footer-container {
     background: var(--light-grey-50, #eeeeee);
-    height: 581px;
+    height: auto;
     margin-top: 5rem;
   }
   .footer-first {
@@ -265,7 +265,7 @@
   }
   .footer-container {
     background: var(--light-grey-50, #eeeeee);
-    height: 581px;
+    height: auto;
     margin-top: 5rem;
   }
   .footer-first {
@@ -291,7 +291,7 @@
   }
   .footer-container {
     background: var(--light-grey-50, #eeeeee);
-    height: 581px;
+    height: auto;
     margin-top: 5rem;
   }
   .footer-first {
@@ -321,7 +321,7 @@
   }
   .footer-container {
     background: var(--light-grey-50, #eeeeee);
-    height: 581px;
+    height: auto;
     margin-top: 5rem;
   }
   .footer-first {
@@ -353,7 +353,7 @@
   }
   .footer-container {
     background: var(--light-grey-50, #eeeeee);
-    height: 911px;
+    height: auto;
     margin-top: 5rem;
   }
   .footer-first {
@@ -408,7 +408,7 @@
   }
   .footer-container {
     background: var(--light-grey-50, #eeeeee);
-    height: 900px;
+    height: auto;
     margin-top: 5rem;
   }
 
@@ -512,7 +512,7 @@
   }
   .footer-container {
     background: var(--light-grey-50, #eeeeee);
-    height: 900px;
+    height: auto;
     margin-top: 5rem;
   }
 
@@ -616,7 +616,7 @@
   }
   .footer-container {
     background: var(--light-grey-50, #eeeeee);
-    height: 900px;
+    height: auto;
     margin-top: 5rem;
   }
 

@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { FaStar, FaRegStar } from "react-icons/fa";
 import { FiHeart } from "react-icons/fi";
 import { FaHeart } from "react-icons/fa";
+import "../women/ProductListing.css";
 
 const Latest = () => {
   const { addToCart } = useCart();
@@ -39,7 +40,7 @@ const Latest = () => {
       <h1 className="like" style={{ textAlign: "center", marginTop: "2rem" }}>
         Latest Women wears
       </h1>
-      <div className="product-grid3">
+      <div className="product-grid2">
         {loading ? (
           <p>Loading...</p>
         ) : products.length > 0 ? (
