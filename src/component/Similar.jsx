@@ -60,7 +60,7 @@ const Similar = ({ category = "Clothing", currentProductId }) => {
       <h1 className="like" style={{ textAlign: "center" }}>
         Similar Items You Might Like
       </h1>
-      <div className="product-grid2">
+      <div className="product-grid3">
         {similarProducts && similarProducts.length > 0 ? (
           similarProducts.map((product) => (
             <div className="product-card" key={product.id}>
