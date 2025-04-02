@@ -59,10 +59,11 @@
 }
 .cart-count,
 .wishlist-count {
+  font-family: inter;
   position: absolute;
   top: -5px;
   right: -5px;
-  background: red;
+  background: black;
   color: white;
   font-size: 12px;
   font-weight: bold;
@@ -72,6 +73,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: inter;
 }
 
 .nav-images {

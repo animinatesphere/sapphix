@@ -7,8 +7,10 @@ import store from "../foestaimages/store.png";
 import "../componentcss/ProductDetails.css";
 import NavbarHead from "../navbar-component/NavbarHead";
 import Navbar from "../navbar-component/Navbars1";
-import Similar from "./Similar";
+// import Similar from "./Similar";
 import { useCart } from "./CartContext";
+import Similar from "./Similar";
+import FooterSection from "./FooterSection";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -183,7 +185,8 @@ const ProductDetails = () => {
           </div>
         </div>
       </div>
-      <Similar />
+      <Similar category={product.categories} currentProductId={product.id} />
+      <FooterSection />
     </>
   );
 };

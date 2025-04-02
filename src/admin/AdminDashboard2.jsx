@@ -9,7 +9,7 @@ import edit from "../admin/admin-folder/edit.png";
 import eagle from "../assets/Sapphix logo editable 1.png";
 import AdminNav from "./AdminNav";
 import "../admin/admindashboard2.css";
-
+import { supabase } from "../../supabase";
 const AdminDashboard2 = () => {
   const [showProducts, setShowProducts] = useState(false);
   const [showOrder, setShowOrder] = useState(false);
@@ -18,14 +18,43 @@ const AdminDashboard2 = () => {
 
   // ✅ Get user from localStorage (No Supabase)
   useEffect(() => {
-    const adminEmail = localStorage.getItem("adminEmail");
-    if (!adminEmail) {
-      navigate("/Admin-Login"); // Redirect if no admin is logged in
-    } else {
-      setUser({ email: adminEmail });
-    }
-  }, [navigate]);
+    const getUserDetails = async () => {
+      try {
+        // Get the current session from Supabase
+        const {
+          data: { session },
+        } = await supabase.auth.getSession();
 
+        if (session) {
+          // User is authenticated, set user details
+          setUser({
+            email: session.user.email,
+            id: session.user.id,
+            // Add any other user data you need from the session
+          });
+
+          // If you need additional user details from a profile table
+          // You can fetch them here
+          // const { data: profile } = await supabase
+          //   .from('profiles')
+          //   .select('*')
+          //   .eq('id', session.user.id)
+          //   .single();
+          //
+          // if (profile) {
+          //   setUser(prev => ({
+          //     ...prev,
+          //     ...profile
+          //   }));
+          // }
+        }
+      } catch (error) {
+        console.error("Error fetching user details:", error);
+      }
+    };
+
+    getUserDetails();
+  }, []);
   // ✅ Logout Function
   const handleLogout = () => {
     localStorage.removeItem("adminEmail");

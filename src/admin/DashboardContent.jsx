@@ -95,92 +95,94 @@ const DashboardContent = () => {
       </Card>
 
       <div className="stats-section">
-        <Card className="stat-card">
+        <div className="stat-card">
           <div className="text-in">
             <p>{random6Digit.toLocaleString()}</p>
             <h3>Total Revenue</h3>
             <span>10.24%</span>
           </div>
           <img src={naira} alt="" />
-        </Card>
-        <Card className="stat-card">
+        </div>
+        <div className="stat-card">
           <div className="text-in">
             <p>{random4Digit.toLocaleString()}</p>
             <h3>Orders</h3>
             <span>15.45%</span>
           </div>
           <img src={cart} alt="" />
-        </Card>
-        <Card className="stat-card">
+        </div>
+        <div className="stat-card">
           <div className="text-in">
             <p>{random2Digit}</p>
             <h3>Refunds</h3>
             <span>2%</span>
           </div>
           <img src={add} alt="" />
-        </Card>
-        <Card className="stat-card">
+        </div>
+        <div className="stat-card">
           <div className="text-in">
             <p>{random4Digit.toLocaleString()}</p>
             <h3>New Users</h3>
             <span>21%</span>
           </div>
           <img src={chart} alt="" />
-        </Card>
+        </div>
       </div>
 
       <div className="charts-section">
-        <div className="line-parent">
-          <div className="line-nav">
-            <p className="line-text1">Orders Over Time</p>
-            <p className="line-text2">
-              Last {random2Digit} Hours <FiChevronDown />
-            </p>
-          </div>
-          <div className="line-nav2">
-            <div className="line-nav2-left">
-              <div className="line-nav2-text1">
-                <h1>{random3Digit}</h1>
-                <p>orders on {randomMonth} 25</p>
+        <div className="line-real">
+          <div className="line-parent">
+            <div className="line-nav">
+              <p className="line-text1">Orders Over Time</p>
+              <p className="line-text2">
+                Last {random2Digit} Hours <FiChevronDown />
+              </p>
+            </div>
+            <div className="line-nav2">
+              <div className="line-nav2-left">
+                <div className="line-nav2-text1">
+                  <h1>{random3Digit}</h1>
+                  <p>orders on {randomMonth} 25</p>
+                </div>
+                <div className="line-nav2-text1">
+                  <h1>{random3Digit}</h1>
+                  <p>orders on {randomMonth} 24</p>
+                </div>
               </div>
-              <div className="line-nav2-text1">
-                <h1>{random3Digit}</h1>
-                <p>orders on {randomMonth} 24</p>
+              <div className="lin3-nav2-right">
+                <div className="right2-1">
+                  <div className="right1-point"></div>
+                  <p>
+                    {randomMonth} {random2Digit}
+                  </p>
+                </div>
+                <div className="right2-1">
+                  <div className="right2-point"></div>
+                  <p>
+                    {randomMonth} {random2Digit}
+                  </p>
+                </div>
               </div>
             </div>
-            <div className="lin3-nav2-right">
-              <div className="right2-1">
-                <div className="right1-point"></div>
-                <p>
-                  {randomMonth} {random2Digit}
-                </p>
-              </div>
-              <div className="right2-1">
-                <div className="right2-point"></div>
-                <p>
-                  {randomMonth} {random2Digit}
-                </p>
-              </div>
-            </div>
+            <LineChart
+              width={760}
+              height={447}
+              data={data}
+              style={{ paddingLeft: "-5rem" }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="hour" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Line
+                type="monotone"
+                dataKey="ordersDay1"
+                stroke=" var(--Surface-Default, #F58800"
+              />
+              <Line type="monotone" dataKey="ordersDay2" stroke="#8884d8" />
+            </LineChart>
           </div>
-          <LineChart
-            width={760}
-            height={447}
-            data={data}
-            style={{ paddingLeft: "-5rem" }}
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="hour" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Line
-              type="monotone"
-              dataKey="ordersDay1"
-              stroke=" var(--Surface-Default, #F58800"
-            />
-            <Line type="monotone" dataKey="ordersDay2" stroke="#8884d8" />
-          </LineChart>
         </div>
         <div className="bar-parent">
           <div className="bar-card">

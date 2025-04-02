@@ -1,70 +1,103 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { supabase } from "../../supabase";
+import Modal from "./Modal";
 
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [adminCartItems, setAdminCartItems] = useState([]); // ✅ Only admin cart
+  const [adminCartItems, setAdminCartItems] = useState([]);
   const [wishlistItems, setWishlistItems] = useState([]);
 
-  // wishlist
+  // Modal state
+  const [modal, setModal] = useState({
+    isOpen: false,
+    title: "",
+    message: "",
+  });
+
+  // Show modal function
+  const showModal = (title, message) => {
+    setModal({
+      isOpen: true,
+      title,
+      message,
+    });
+  };
+
+  // Close modal function
+  const closeModal = () => {
+    setModal({
+      ...modal,
+      isOpen: false,
+    });
+  };
+
+  // Update wishlist when user changes
+  useEffect(() => {
+    if (user?.id) {
+      fetchAdminCart(user.id);
+      fetchWishlist(user.id);
+    }
+  }, [user]);
+
   const addToWishlist = async (product) => {
     if (!user || !user.id) {
-      console.error("❌ No valid user found. Please log in.");
+      showModal(
+        "Sign In Required",
+        "Please log in to add items to your wishlist."
+      );
       return;
     }
-
-    console.log(
-      "🔍 Checking wishlist for user ID:",
-      user.id,
-      "Product ID:",
-      product.id
-    );
 
     const { data: existingWishlist, error } = await supabase
       .from("wishlist")
       .select("*")
       .eq("user_id", user.id)
-      .eq("product_id", parseInt(product.id)); // ✅ Ensure product.id is an integer
+      .eq("product_id", parseInt(product.id));
 
     if (error) {
-      console.error("❌ Error checking wishlist:", error.message);
+      showModal("Error", "Could not check wishlist status.");
       return;
     }
 
     if (existingWishlist?.length > 0) {
-      console.log("✅ Item is already in the wishlist.");
+      showModal(
+        "Already in Wishlist",
+        "This item is already in your wishlist."
+      );
       return;
     }
 
     const { error: insertError } = await supabase
       .from("wishlist")
-      .insert([{ user_id: user.id, product_id: parseInt(product.id) }]); // ✅ Convert product.id to int
+      .insert([{ user_id: user.id, product_id: parseInt(product.id) }]);
 
     if (insertError) {
-      console.error("❌ Error adding to wishlist:", insertError.message);
+      showModal("Error", "Failed to add item to wishlist. Please try again.");
     } else {
-      console.log("✅ Product added to wishlist!");
-      fetchWishlist(); // Refresh wishlist
+      fetchWishlist(user.id);
+      showModal("Success", "Item added to wishlist successfully!");
     }
   };
 
-  const fetchWishlist = async () => {
-    if (!user) return;
+  const fetchWishlist = async (userId = null) => {
+    const userToFetch = userId || user?.id;
+
+    if (!userToFetch) return;
 
     const { data, error } = await supabase
       .from("wishlist")
-      .select(`product:product_id (id, name, price, image)`) // ✅ Fetch full product details
-      .eq("user_id", user.id);
+      .select(`product:product_id (id, name, price, image)`)
+      .eq("user_id", userToFetch);
 
     if (error) {
-      console.error("Error fetching wishlist:", error.message);
+      // Silently handle error
     } else {
-      setWishlistItems(data.map((item) => item.product)); // ✅ Store full product objects
+      setWishlistItems(data.map((item) => item.product));
     }
   };
-  // Remove from wishlist function
+
   const removeFromWishlist = async (productId) => {
     if (!user) return;
 
@@ -75,18 +108,18 @@ export const CartProvider = ({ children }) => {
       .eq("product_id", productId);
 
     if (error) {
-      console.error("Error removing from wishlist:", error.message);
+      showModal("Error", "Failed to remove item from wishlist.");
     } else {
-      setWishlistItems((prev) => prev.filter((item) => item.id !== productId)); // ✅ Remove from state
+      setWishlistItems((prev) => prev.filter((item) => item.id !== productId));
+      showModal("Success", "Item removed from wishlist successfully!");
     }
   };
 
-  // ✅ Fetch user session on mount
+  // Fetch user session on mount
   useEffect(() => {
     const fetchUser = async () => {
       const { data, error } = await supabase.auth.getSession();
       if (error) {
-        console.error("Error fetching session:", error);
         return;
       }
       setUser(data?.session?.user || null);
@@ -100,10 +133,10 @@ export const CartProvider = ({ children }) => {
         setUser(session?.user || null);
         if (session?.user) {
           fetchAdminCart(session.user.id);
-          fetchWishlist(session.user.id); // ✅ Fetch wishlist too
+          fetchWishlist(session.user.id);
         } else {
           setAdminCartItems([]);
-          setWishlistItems([]); // ✅ Clear wishlist on logout
+          setWishlistItems([]);
         }
       }
     );
@@ -112,6 +145,7 @@ export const CartProvider = ({ children }) => {
       authListener?.subscription?.unsubscribe();
     };
   }, []);
+
   useEffect(() => {
     const storedCart = localStorage.getItem("adminCart");
     if (storedCart) {
@@ -126,12 +160,12 @@ export const CartProvider = ({ children }) => {
     }
   }, [adminCartItems]);
 
-  // ✅ Fetch Admin Cart from Supabase
+  // Fetch Admin Cart from Supabase
   const fetchAdminCart = async (userId) => {
     if (!userId) return;
 
     const { data, error } = await supabase
-      .from("admin_cart") // ✅ Fetch only from admin_cart
+      .from("admin_cart")
       .select(
         `
         id,
@@ -143,17 +177,15 @@ export const CartProvider = ({ children }) => {
       )
       .eq("user_id", userId);
 
-    if (error) {
-      console.error("Error fetching admin cart:", error);
-    } else {
+    if (!error) {
       setAdminCartItems(data || []);
     }
   };
 
-  // ✅ Add to Admin Cart
+  // Add to Admin Cart
   const addToAdminCart = async ({ productId, quantity, color, size }) => {
     if (!user) {
-      alert("Please log in to add items to the admin cart.");
+      showModal("Sign In Required", "Please log in to add items to the cart.");
       return;
     }
 
@@ -165,14 +197,9 @@ export const CartProvider = ({ children }) => {
       .single();
 
     if (productError || !product) {
-      console.error(
-        "❌ Error fetching product details:",
-        productError?.message
-      );
+      showModal("Error", "Could not find product details.");
       return;
     }
-
-    console.log("🛍 Adding to Admin Cart:", product);
 
     // Insert into admin_cart
     const { error: insertError } = await supabase.from("admin_cart").insert([
@@ -182,71 +209,65 @@ export const CartProvider = ({ children }) => {
         quantity,
         color,
         size,
-        price: product.price, // ✅ Save price
-        image: product.image, // ✅ Save image
+        price: product.price,
+        image: product.image,
       },
     ]);
 
     if (insertError) {
-      console.error("❌ Error adding to admin cart:", insertError);
+      showModal("Error", "Failed to add item to cart.");
     } else {
-      console.log("✅ Successfully added to Admin Cart");
-      fetchAdminCart(user.id); // Refresh the admin cart
+      fetchAdminCart(user.id);
+      showModal("Success", "Item added to cart successfully!");
     }
   };
 
-  // ❌ Remove from Admin Cart
+  // Remove from Admin Cart
   const removeFromAdminCart = async (id) => {
     const { error } = await supabase.from("admin_cart").delete().eq("id", id);
-    if (error) {
-      console.error("❌ Error removing from admin cart:", error);
-    } else {
-      fetchAdminCart(user.id); // ✅ Refresh admin cart after removal
+    if (!error) {
+      fetchAdminCart(user.id);
     }
   };
 
-  // ➕ Increase quantity in Admin Cart
+  // Increase quantity in Admin Cart
   const increaseAdminQuantity = async (id) => {
-    const item = adminCartItems.find((cartItem) => cartItem.id === id); // ✅ Use adminCartItems
+    const item = adminCartItems.find((cartItem) => cartItem.id === id);
     if (!item) return;
 
     const { error } = await supabase
-      .from("admin_cart") // ✅ Use the correct table
-      .update({ quantity: item.quantity + 1 }) // ✅ Increase instead of decrease
+      .from("admin_cart")
+      .update({ quantity: item.quantity + 1 })
       .eq("id", id);
 
-    if (error) {
-      console.error("❌ Error increasing admin cart quantity:", error);
-    } else {
-      fetchAdminCart(user.id); // ✅ Fetch updated admin cart
+    if (!error) {
+      fetchAdminCart(user.id);
     }
   };
 
-  // ➖ Decrease quantity or remove from Admin Cart
+  // Decrease quantity or remove from Admin Cart
   const decreaseAdminQuantity = async (id) => {
-    const item = adminCartItems.find((cartItem) => cartItem.id === id); // ✅ Use adminCartItems
+    const item = adminCartItems.find((cartItem) => cartItem.id === id);
     if (!item) return;
 
     if (item.quantity > 1) {
       const { error } = await supabase
-        .from("admin_cart") // ✅ Use the correct table
+        .from("admin_cart")
         .update({ quantity: item.quantity - 1 })
         .eq("id", id);
 
-      if (error) {
-        console.error("❌ Error decreasing admin cart quantity:", error);
-      } else {
-        fetchAdminCart(user.id); // ✅ Fetch updated admin cart
+      if (!error) {
+        fetchAdminCart(user.id);
       }
     } else {
-      await removeFromAdminCart(id); // ✅ Remove item if quantity is 1
+      await removeFromAdminCart(id);
     }
   };
 
   return (
     <CartContext.Provider
       value={{
-        adminCartItems, // ✅ Only providing adminCartItems
+        adminCartItems,
         fetchAdminCart,
         addToAdminCart,
         increaseAdminQuantity,
@@ -258,6 +279,12 @@ export const CartProvider = ({ children }) => {
       }}
     >
       {children}
+      <Modal
+        isOpen={modal.isOpen}
+        onClose={closeModal}
+        title={modal.title}
+        message={modal.message}
+      />
     </CartContext.Provider>
   );
 };

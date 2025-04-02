@@ -200,7 +200,7 @@
   /* margin-left: 3rem; */
   margin: 0 auto;
 
-  margin-left: -1rem;
+  /* margin-left: -1rem; */
 }
 
 .product-card {
@@ -355,6 +355,13 @@
   background: #fff;
   font-weight: bold;
 }
+.love-button {
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  margin-top: -23rem;
+  margin-left: 10rem;
+}
 
 @media screen and (max-width: 760px) {
   .sideba {
@@ -370,7 +377,8 @@
     gap: 20px;
     flex-wrap: wrap;
     margin-top: 3rem;
-    margin-left: 2rem;
+    margin: 0 auto;
+    /* margin-left: 2rem; */
   }
   .bread p {
     font-family: inter;
@@ -399,7 +407,8 @@
     gap: 20px;
     flex-wrap: wrap;
     margin-top: 3rem;
-    margin-left: 2rem;
+    margin: 0 auto;
+    /* margin-left: 2rem; */
   }
   .bread p {
     font-family: inter;

@@ -25,7 +25,7 @@
   top: 5rem;
   right: 100%; /* Initially hidden */
   width: 590px;
-  height: 989px;
+  height: auto;
   background: #ffffff;
   box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
   transition: right 0.3s ease-in-out;

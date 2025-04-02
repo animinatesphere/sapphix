@@ -218,7 +218,7 @@ const MenDetails = () => {
           </div>
         </div>
       </div>
-      <Similar />
+      <Similar category={product.categories} currentProductId={product.id} />
     </>
   );
 };

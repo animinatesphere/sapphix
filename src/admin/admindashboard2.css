@@ -152,3 +152,10 @@ body {
   color: var(--Text-Body, #1d1d1b);
   margin-left: 1rem;
 }
+
+/* hover */
+@media screen and (max-width: 760px) {
+  .sidebar {
+    display: none;
+  }
+}

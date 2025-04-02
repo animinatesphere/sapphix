@@ -9,8 +9,9 @@ import HeroSection from "../component/HeroSection";
 import FashionSlider from "../component/FashionSlider";
 import FooterSection from "../component/FooterSection";
 import Navbar from "../navbar-component/Navbars1";
-import SetWeek from "../component/SetWeek";
+// import SetWeek from "../component/SetWeek";
 import Latest from "../component/Latest";
+import Latest2 from "../component/Latest2";
 // import { supabase } from "../../supabase";
 // import { ShiftingDropDown } from "../component/ShiftingDropDown";
 // const signOut = async () => {
@@ -25,8 +26,9 @@ const DashBoard = () => {
         <NavbarHead />
         <Navbar />
         <HeroSection />
-        <SetWeek />
+        {/* <SetWeek /> */}
         <Latest />
+        <Latest2 />
         {/* <Gift /> */}
         {/* admin import */}
         {/*en of  admin import */}

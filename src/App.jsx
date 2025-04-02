@@ -25,6 +25,7 @@ import Register from "./login/Register";
 import LoginPage from "./Page/LoginPage";
 import Wrspper from "./Page/Wrspper";
 import AdminLogin from "./admin/AdminLogin";
+import Wishlist from "./Page/Wishlist";
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
           <Route path="/product/:id" element={<ProductDetails />} />
           <Route path="/men-product/:id" element={<MenDetails />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/wishlist" element={<Wishlist />} />
 
           {/* Protected Routes */}
           <Route
@@ -64,7 +66,15 @@ function App() {
             }
           />
 
-          <Route path="/admin/dashboard/" element={<AdminDashboard2 />}>
+          <Route
+            path="/admin/dashboard/"
+            element={
+              <Wrspper>
+                {" "}
+                <AdminDashboard2 />
+              </Wrspper>
+            }
+          >
             <Route path="DashboardContent" element={<DashboardContent />} />
             <Route path="products/list" element={<ListProducts />} />
             <Route path="products/add" element={<AddProducts />} />

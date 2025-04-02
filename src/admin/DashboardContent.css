@@ -65,6 +65,7 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
+  /* width: fit-content; */
 }
 
 .stat-card {
@@ -83,7 +84,7 @@
   background: #ffffff;
   padding: 50px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 22%;
+  /* width: 22%; */
   text-align: center;
   border: 1px solid var(--light-grey-100, #eaeaea);
 }
@@ -312,4 +313,54 @@ ul li {
   line-height: 50px;
   letter-spacing: 0px;
   color: #5a607f;
+}
+
+@media screen and (max-width: 768px) {
+  .admin-con {
+    display: none;
+  }
+  .dashboard-container {
+    flex-direction: column;
+  }
+  .stats-section {
+    /* display: grid;
+    grid-template-columns: repeat(2fr, 1fr);
+    width: fit-content; */
+    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: fit-content;
+    margin-left: 5rem;
+    gap: 30px;
+  }
+  .congratulation-card {
+    background-color: #f4f4f9;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    width: 600px;
+    margin-left: 2rem;
+  }
+  .charts-section {
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .transaction-section {
+    flex-direction: column;
+  }
+  .line-real {
+  }
+  .line-parent {
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    border: 1px solid var(--light-grey-100, #eaeaea);
+    gap: 10px;
+    padding-top: 12px;
+    padding-right: 16px;
+    padding-bottom: 12px;
+    padding-left: 16px;
+    border-width: 1px;
+    margin-left: -3.3rem;
+  }
 }

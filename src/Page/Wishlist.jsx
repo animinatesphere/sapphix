@@ -1,52 +1,58 @@
-import { useEffect, useState } from "react";
-import { supabase } from "../../supabase";
-import cart from "../assets/Cart.png";
+import React, { useEffect, useState } from "react";
 import { useCart } from "../component/CartContext";
 import { Link } from "react-router-dom";
-import { FaStar, FaRegStar } from "react-icons/fa";
+import { FaHeart, FaStar, FaRegStar } from "react-icons/fa";
 import { FiHeart } from "react-icons/fi";
-import { FaHeart } from "react-icons/fa";
+import cart from "../assets/Cart.png"; // Make sure this path is correct
+import Navbar from "../navbar-component/Navbars1";
 
-const Latest = () => {
-  const { addToCart } = useCart();
-  const [loading, setLoading] = useState(true);
-  const [products, setProducts] = useState([]);
-  const { wishlistItems, addToWishlist } = useCart();
+const Wishlist = () => {
+  const { wishlistItems, removeFromWishlist, addToAdminCart } = useCart();
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      setLoading(true);
-      const { data, error } = await supabase
-        .from("Admin-product")
-        .select("*")
-        .eq("category", "Women")
-        .limit(4); // Only fetch 4 products
-
-      if (error) {
-        console.error("Error fetching products:", error.message);
-      } else {
-        setProducts(data);
-      }
-      setLoading(false);
-    };
-
-    fetchProducts();
+    document.title = "My Wishlist";
   }, []);
+
+  // Function to add to cart (simplified version)
+  const addToCart = (product) => {
+    addToAdminCart({
+      productId: product.id,
+      quantity: 1,
+      color: product.color || "",
+      size: product.size || "",
+    });
+  };
+
+  if (wishlistItems.length === 0) {
+    return (
+      <div className="empty-wishlist-container">
+        <h2>Your Wishlist is Empty</h2>
+        <p>Add items to your wishlist to save them for later.</p>
+        <Link to="/dashboard" className="continue-shopping-btn">
+          Continue Shopping
+        </Link>
+      </div>
+    );
+  }
 
   return (
     <>
-      {/* Product Grid */}
-      <h1 className="like" style={{ textAlign: "center", marginTop: "2rem" }}>
-        Latest Women wears
-      </h1>
-      <div className="product-grid2">
-        {loading ? (
-          <p>Loading...</p>
-        ) : products.length > 0 ? (
-          products.map((product) => {
-            const isInWishlist = wishlistItems.some(
-              (item) => item.id === product.id
-            );
+      <Navbar />
+      <div className="wishlist-page-container">
+        <p className="wish-link">
+          {" "}
+          <Link to="/dashboard">Home > </Link> <p>Wishlist</p>
+        </p>
+        <div className="wish-head">
+          <h1 className="wishlist-heading">My Wishlist</h1>
+          <p className="wishlis-count">
+            ({wishlistItems.length} Products Found)
+          </p>
+        </div>
+        <div className="product-grid">
+          {wishlistItems.map((product) => {
+            // Every item in wishlist should have this set to true
+            const isInWishlist = true;
 
             return (
               <div className="product-card" key={product.id}>
@@ -61,14 +67,10 @@ const Latest = () => {
                   />
                 </Link>
                 <button
-                  onClick={() => addToWishlist(product)}
-                  className={`love-button ${isInWishlist ? "active" : ""}`}
+                  onClick={() => removeFromWishlist(product.id)}
+                  className={`love-button active`}
                 >
-                  {isInWishlist ? (
-                    <FaHeart color="red" size={20} />
-                  ) : (
-                    <FiHeart size={20} />
-                  )}
+                  <FaHeart color="red" size={20} />
                 </button>
                 <div className="title-price">
                   <p className="product-title">{product.name}</p>
@@ -99,13 +101,11 @@ const Latest = () => {
                 </button>
               </div>
             );
-          })
-        ) : (
-          <p className="no-results">No products found.</p>
-        )}
+          })}
+        </div>
       </div>
     </>
   );
 };
 
-export default Latest;
+export default Wishlist;

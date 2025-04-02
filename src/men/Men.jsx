@@ -12,8 +12,6 @@ import FooterSection from "../component/FooterSection";
 import ProductListingLoading from "../women/ProductListingLoading";
 import { supabase } from "../../supabase";
 
-const categories = ["Clothing", "Bags", "Accessories", "Headwear"];
-
 const Men = () => {
   const { addToCart } = useCart();
   const [search, setSearch] = useState("");
@@ -23,19 +21,33 @@ const Men = () => {
   const itemsPerPage = 9;
   const { wishlistItems, addToWishlist } = useCart();
 
-  // Fetch products for men from Supabase
+  // Add missing state for categories
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [filteredByCategory, setFilteredByCategory] = useState([]);
+
+  // Fetch all products from the "Men" category
   useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true);
       const { data, error } = await supabase
-        .from("Admin-product") // Fetch from correct table
+        .from("Admin-product")
         .select("*")
-        .eq("category", "Men"); // Only get Men’s products
+        .eq("category", "Men");
 
       if (error) {
         console.error("Error fetching products:", error.message);
       } else {
         setProducts(data);
+
+        // Extract unique categories (subcategories)
+        const uniqueCategories = [
+          ...new Set(data.map((product) => product.categories).filter(Boolean)),
+        ];
+        setCategories(uniqueCategories);
+
+        // Initially show all products
+        setFilteredByCategory(data);
       }
       setLoading(false);
     };
@@ -43,15 +55,30 @@ const Men = () => {
     fetchProducts();
   }, []);
 
-  // Check if this product is in the wishlist
+  const handleCategoryClick = (category) => {
+    if (selectedCategory === category) {
+      // If clicking the same category again, show all products
+      setSelectedCategory(null);
+      setFilteredByCategory(products);
+    } else {
+      // Filter products by the selected category
+      setSelectedCategory(category);
+      const filtered = products.filter(
+        (product) => product.categories === category
+      );
+      setFilteredByCategory(filtered);
+    }
+  };
 
-  const filteredProducts = products.filter((product) =>
+  // Apply search filter to the category-filtered products
+  const searchFilteredProducts = filteredByCategory.filter((product) =>
     product.name.toLowerCase().includes(search.toLowerCase())
   );
 
-  const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
+  // Calculate pagination
+  const totalPages = Math.ceil(searchFilteredProducts.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
-  const displayedProducts = filteredProducts.slice(
+  const paginatedProducts = searchFilteredProducts.slice(
     startIndex,
     startIndex + itemsPerPage
   );
@@ -63,7 +90,10 @@ const Men = () => {
       <NavbarHead />
       <Navbar />
       <div className="bread">
-        <p>Home / Men / Lifestyle</p>
+        <p>
+          <Link to="/dashboard">Home</Link> / <Link to="/men">Men</Link> /
+          Lifestyle
+        </p>
       </div>
       <div className="product-listing">
         {/* Sidebar */}
@@ -79,9 +109,18 @@ const Men = () => {
             />
           </div>
 
-          {categories.map((cat, index) => (
-            <button key={index} className="category-btn">
-              {cat} <p className="plus">+</p>
+          {categories.map((category, index) => (
+            <button
+              key={index}
+              className={`category-btn ${
+                selectedCategory === category ? "active" : ""
+              }`}
+              onClick={() => handleCategoryClick(category)}
+            >
+              {category}{" "}
+              <span className="plus">
+                {selectedCategory === category ? "-" : "+"}
+              </span>
             </button>
           ))}
         </aside>
@@ -101,10 +140,12 @@ const Men = () => {
           </div>
 
           {/* Product Grid */}
-          {/* Product Grid */}
-          <div className="product-grid2">
-            {displayedProducts.length > 0 ? (
-              displayedProducts.map((product) => {
+          <div
+            className="product-grid2"
+            style={{ margin: "0 auto", width: "fit-content" }}
+          >
+            {paginatedProducts.length > 0 ? (
+              paginatedProducts.map((product) => {
                 const isInWishlist = wishlistItems.some(
                   (item) => item.id === product.id
                 );

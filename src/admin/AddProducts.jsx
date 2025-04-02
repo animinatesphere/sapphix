@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../../supabase";
 import "../admin/AddProductForm.css";
+import marked from "../admin/admin-folder/icon-park-twotone_success.png";
 
 const AddProduct = () => {
   const navigate = useNavigate();
@@ -17,6 +18,7 @@ const AddProduct = () => {
     brand: "",
     manufacturer: "",
     category: "",
+    categories: "",
     length: "",
     width: "",
     height: "",
@@ -88,7 +90,7 @@ const AddProduct = () => {
       <h2 className="header">Add a New Product</h2>
       <h2 className="head2">Orders placed across your store</h2>
       <form onSubmit={handleSubmit} className="form-container">
-        <div className="form-group">
+        <div className="form-grou">
           <label className="sk">
             Product SKU*
             <input
@@ -166,13 +168,29 @@ const AddProduct = () => {
           </label>
           <label className="sk">
             Category
-            <input
-              type="text"
+            <select
               name="category"
-              placeholder="Category"
               value={formData.category}
               onChange={handleChange}
-            />
+            >
+              <option value="">Select Category</option>
+              <option value="Men">Men</option>
+              <option value="Women">Women</option>
+              <option value="Junior">Junior</option>
+            </select>
+          </label>
+          <label className="sk">
+            Type
+            <select
+              name="categories"
+              value={formData.categories}
+              onChange={handleChange}
+            >
+              <option value="">Select Type</option>
+              <option value="Men">Clothing</option>
+              <option value="Women">Shoe</option>
+              <option value="Junior">Accessories</option>
+            </select>
           </label>
           <label className="sk">
             Package Dimensions
@@ -262,8 +280,11 @@ const AddProduct = () => {
       {showModal && (
         <div className="modal-overlay">
           <div className="modal-content">
-            <h3>New Product Added</h3>
-            <p>You have successfully added a new product.</p>
+            <img src={marked} alt="" />
+            <h3 className="added">New Product Added</h3>
+            <p className="suces">
+              You have successfully added <br /> a new product.
+            </p>
             <button
               onClick={() => {
                 setShowModal(false);

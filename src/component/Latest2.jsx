@@ -7,7 +7,7 @@ import { FaStar, FaRegStar } from "react-icons/fa";
 import { FiHeart } from "react-icons/fi";
 import { FaHeart } from "react-icons/fa";
 
-const Latest = () => {
+const Latest2 = () => {
   const { addToCart } = useCart();
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
@@ -19,7 +19,7 @@ const Latest = () => {
       const { data, error } = await supabase
         .from("Admin-product")
         .select("*")
-        .eq("category", "Women")
+        .eq("category", "Men")
         .limit(4); // Only fetch 4 products
 
       if (error) {
@@ -37,9 +37,9 @@ const Latest = () => {
     <>
       {/* Product Grid */}
       <h1 className="like" style={{ textAlign: "center", marginTop: "2rem" }}>
-        Latest Women wears
+        Latest Men wears
       </h1>
-      <div className="product-grid2">
+      <div className="product-grid2" style={{ margin: "0 auto" }}>
         {loading ? (
           <p>Loading...</p>
         ) : products.length > 0 ? (
@@ -108,4 +108,4 @@ const Latest = () => {
   );
 };
 
-export default Latest;
+export default Latest2;
