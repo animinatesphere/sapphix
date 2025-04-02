@@ -39,7 +39,7 @@ const Latest = () => {
       <h1 className="like" style={{ textAlign: "center", marginTop: "2rem" }}>
         Latest Women wears
       </h1>
-      <div className="product-grid2">
+      <div className="product-grid3">
         {loading ? (
           <p>Loading...</p>
         ) : products.length > 0 ? (
