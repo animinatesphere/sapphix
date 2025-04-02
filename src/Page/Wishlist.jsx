@@ -6,6 +6,7 @@ import { FiHeart } from "react-icons/fi";
 import cart from "../assets/Cart.png"; // Make sure this path is correct
 import Navbar from "../navbar-component/Navbars1";
 import "../Page/wishlist.css";
+import FooterSection from "../component/FooterSection";
 
 const Wishlist = () => {
   const { wishlistItems, removeFromWishlist, addToAdminCart } = useCart();
@@ -105,6 +106,7 @@ const Wishlist = () => {
           })}
         </div>
       </div>
+      <FooterSection />
     </>
   );
 };
