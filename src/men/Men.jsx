@@ -140,10 +140,7 @@ const Men = () => {
           </div>
 
           {/* Product Grid */}
-          <div
-            className="product-grid2"
-            style={{ margin: "0 auto", width: "fit-content" }}
-          >
+          <div className="product-grid2">
             {paginatedProducts.length > 0 ? (
               paginatedProducts.map((product) => {
                 const isInWishlist = wishlistItems.some(
