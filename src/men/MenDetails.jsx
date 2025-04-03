@@ -9,6 +9,7 @@ import Navbar from "../navbar-component/Navbars1";
 import Similar from "../component/Similar";
 import { useCart } from "../component/CartContext";
 import { supabase } from "../../supabase"; // Import Supabase instance
+import FooterSection from "../component/FooterSection";
 
 const MenDetails = () => {
   const { id } = useParams();
@@ -222,7 +223,8 @@ const MenDetails = () => {
           </div>
         </div>
       </div>
-      <Similar category={product.categories} currentProductId={product.id} />
+      <Similar category={product.type} currentProductId={product.id} />
+      <FooterSection />
     </>
   );
 };
