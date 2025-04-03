@@ -26,7 +26,7 @@ const Similar = ({ category = "Clothing", currentProductId }) => {
         const { data, error } = await supabase
           .from("Admin-product")
           .select("*")
-          .eq("categories", category)
+          .eq("type", category)
           .neq("id", currentProductId)
           .limit(10);
 
