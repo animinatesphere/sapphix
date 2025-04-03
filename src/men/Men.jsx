@@ -26,14 +26,15 @@ const Men = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [filteredByCategory, setFilteredByCategory] = useState([]);
 
-  // Fetch all products from the "Men" category
+  // Fetch all products from the "Men" category that are visible
   useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true);
       const { data, error } = await supabase
         .from("Admin-product")
         .select("*")
-        .eq("category", "Men");
+        .eq("category", "Men")
+        .eq("visible", true); // Only get visible products
 
       if (error) {
         console.error("Error fetching products:", error.message);
@@ -42,7 +43,7 @@ const Men = () => {
 
         // Extract unique categories (subcategories)
         const uniqueCategories = [
-          ...new Set(data.map((product) => product.categories).filter(Boolean)),
+          ...new Set(data.map((product) => product.type).filter(Boolean)),
         ];
         setCategories(uniqueCategories);
 
@@ -63,9 +64,7 @@ const Men = () => {
     } else {
       // Filter products by the selected category
       setSelectedCategory(category);
-      const filtered = products.filter(
-        (product) => product.categories === category
-      );
+      const filtered = products.filter((product) => product.type === category);
       setFilteredByCategory(filtered);
     }
   };

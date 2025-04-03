@@ -28,7 +28,7 @@ const Similar = ({ category = "Clothing", currentProductId }) => {
           .select("*")
           .eq("categories", category)
           .neq("id", currentProductId)
-          .limit(4);
+          .limit(10);
 
         if (error) {
           throw error;

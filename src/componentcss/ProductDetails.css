@@ -57,6 +57,18 @@
   gap: 20px;
   padding: 50px;
 }
+.sample-image {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.image1 {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 2rem;
+  border: 4px rgb(229 231 235) solid;
+}
 
 .product-inf h1 {
   font-family: inter;
@@ -2067,6 +2079,6 @@
     color: var(--Green-500, #184645);
     /* margin-left: 2rem; */
     padding-top: 2rem;
-    text-align: center;
+    /* text-align: center; */
   }
 }

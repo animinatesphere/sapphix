@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { supabase } from "../../supabase";
 import "../admin/ProductList.css";
-import { FiMoreVertical, FiEdit, FiTrash } from "react-icons/fi";
+import { FiMoreVertical, FiEdit, FiTrash, FiSearch, FiX } from "react-icons/fi";
 import house from "../admin/admin-folder/house.png";
 import television from "../admin/admin-folder/television.png";
 import spend from "../admin/admin-folder/spend.png";
-import { FiSearch } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
 const ListProducts = () => {
@@ -15,40 +14,82 @@ const ListProducts = () => {
   const [random5Digit, setRandom5Digit] = useState("");
   const [random2Digit, setRandom2Digit] = useState("");
   const [random1Digit, setRandom1Digit] = useState("");
-  const [menuOpen, setMenuOpen] = useState(null); // Track which row's menu is open
+  const [menuOpen, setMenuOpen] = useState(null);
   const [loading, setLoading] = useState(false);
+
+  // Modal state
+  const [showModal, setShowModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
+  const [productToDelete, setProductToDelete] = useState(null);
+  const [confirmModalOpen, setConfirmModalOpen] = useState(false);
 
   const toggleMenu = (id) => {
     setMenuOpen(menuOpen === id ? null : id);
   };
 
-  const handleDelete = async (productId) => {
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete this product?"
-    );
-    if (!confirmDelete) return;
+  const openDeleteConfirmModal = (productId) => {
+    setProductToDelete(productId);
+    setConfirmModalOpen(true);
+  };
+
+  const handleDelete = async () => {
+    if (!productToDelete) return;
 
     setLoading(true);
+    setConfirmModalOpen(false);
 
-    // 🔍 Try deleting and log the response
-    const { error, data } = await supabase
+    const { error } = await supabase
       .from("Admin-product")
       .delete()
-      .eq("id", productId);
-
-    console.log("🗑 Delete response:", { data, error }); // Debug log
+      .eq("id", productToDelete);
 
     if (error) {
       console.error("🚨 Error deleting product:", error.message);
-      alert("Failed to delete product: " + error.message);
+      setModalMessage("Failed to delete product: " + error.message);
     } else {
-      alert("✅ Product deleted successfully!");
-
+      setModalMessage("✅ Product deleted successfully!");
       // Remove product from local state
-      setProducts((prev) => prev.filter((product) => product.id !== productId));
+      setProducts((prev) =>
+        prev.filter((product) => product.id !== productToDelete)
+      );
     }
 
+    setShowModal(true);
     setLoading(false);
+    setProductToDelete(null);
+  };
+
+  const handleVisibilityToggle = async (productId, currentStatus) => {
+    // Flip the visibility status
+    const newStatus = !currentStatus;
+
+    try {
+      const { error } = await supabase
+        .from("Admin-product")
+        .update({ visible: newStatus })
+        .eq("id", productId);
+
+      if (error) {
+        console.error("Error updating product visibility:", error.message);
+        setModalMessage(
+          "Failed to update product visibility: " + error.message
+        );
+        setShowModal(true);
+      } else {
+        // Update the local state
+        setProducts((prevProducts) =>
+          prevProducts.map((product) =>
+            product.id === productId
+              ? { ...product, visible: newStatus }
+              : product
+          )
+        );
+      }
+    } catch (err) {
+      console.error("Unexpected error:", err);
+      setModalMessage("An unexpected error occurred");
+      setShowModal(true);
+    }
   };
 
   // Pagination state
@@ -65,7 +106,12 @@ const ListProducts = () => {
           console.error("Error fetching products:", error.message);
         } else {
           console.log("Fetched products:", data);
-          setProducts(data);
+          // If 'visible' field doesn't exist, set it to true by default
+          const productsWithVisibility = data.map((product) => ({
+            ...product,
+            visible: product.visible === undefined ? true : product.visible,
+          }));
+          setProducts(productsWithVisibility);
         }
       } catch (err) {
         console.error("Unexpected error:", err);
@@ -97,7 +143,6 @@ const ListProducts = () => {
   );
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-  // Function to toggle menu for each product row
 
   return (
     <div className="product-list">
@@ -173,7 +218,7 @@ const ListProducts = () => {
           <tr className="tab">
             <th className="tab1">Product</th>
             <th>Category</th>
-            <th>Stock</th>
+            <th>Visibility</th>
             <th>SKU</th>
             <th>Price</th>
             <th>Quantity</th>
@@ -208,11 +253,16 @@ const ListProducts = () => {
                   <p className="tab-cat">{product.category}</p>
                 </td>
                 <td>
-                  <input
-                    type="checkbox"
-                    checked={product.quantity > 0}
-                    readOnly
-                  />
+                  <label className="switch">
+                    <input
+                      type="checkbox"
+                      checked={product.visible}
+                      onChange={() =>
+                        handleVisibilityToggle(product.id, product.visible)
+                      }
+                    />
+                    <span className="slider round"></span>
+                  </label>
                 </td>
                 <td>
                   <p className="tab-sku">{product.sku}</p>
@@ -249,7 +299,7 @@ const ListProducts = () => {
                       </Link>
                       <button
                         className="action-item delete"
-                        onClick={() => handleDelete(product.id)}
+                        onClick={() => openDeleteConfirmModal(product.id)}
                         disabled={loading}
                       >
                         {loading ? (
@@ -295,6 +345,66 @@ const ListProducts = () => {
           &gt;
         </button>
       </div>
+
+      {/* Confirmation Modal */}
+      {confirmModalOpen && (
+        <div className="modal">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h3>Confirm Delete</h3>
+              <button
+                onClick={() => setConfirmModalOpen(false)}
+                className="close-button"
+              >
+                <FiX />
+              </button>
+            </div>
+            <div className="modal-body">
+              <p>Are you sure you want to delete this product?</p>
+            </div>
+            <div className="modal-footer">
+              <button
+                onClick={() => setConfirmModalOpen(false)}
+                className="cancel-button"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleDelete}
+                className="delete-button"
+                disabled={loading}
+              >
+                {loading ? "Deleting..." : "Delete"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Notification Modal */}
+      {showModal && (
+        <div className="modal">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h3>Notification</h3>
+              <button
+                onClick={() => setShowModal(false)}
+                className="close-button"
+              >
+                <FiX />
+              </button>
+            </div>
+            <div className="modal-body">
+              <p>{modalMessage}</p>
+            </div>
+            <div className="modal-footer">
+              <button onClick={() => setShowModal(false)} className="ok-button">
+                OK
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

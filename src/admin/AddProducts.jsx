@@ -18,11 +18,14 @@ const AddProduct = () => {
     brand: "",
     manufacturer: "",
     category: "",
-    categories: "",
+
     length: "",
     width: "",
     height: "",
+    type: "",
     image: "",
+    image1: "",
+    image2: "",
     description: "",
     reviews: "",
     color: "",
@@ -31,17 +34,29 @@ const AddProduct = () => {
   });
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]:
+        name === "color" || name === "sizes"
+          ? value
+              .split(",") // Convert to array
+              .map((item) => item.trim()) // Remove extra spaces
+              .filter((item) => item !== "") // Remove empty strings
+          : value, // Keep other fields as strings
+    }));
   };
 
   // File image handling
   const handleFileChange = (e) => {
-    setFormData({ ...formData, image: e.target.files[0] });
+    setFormData({ ...formData, [e.target.name]: e.target.files[0] });
   };
 
   const handleUpload = async (file) => {
+    if (!file) return null;
     try {
-      const filePath = `images/${file.name}`;
+      const filePath = `images/${Date.now()}_${file.name}`;
       const { data, error } = await supabase.storage
         .from("product-images")
         .upload(filePath, file);
@@ -62,25 +77,37 @@ const AddProduct = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
-    const file = formData.image;
-    const imageUrl = await handleUpload(file);
 
-    if (!imageUrl) {
+    // Upload images
+    const imageUrls = await Promise.all([
+      handleUpload(formData.image),
+      handleUpload(formData.image1),
+      handleUpload(formData.image2),
+    ]);
+
+    // Check if any upload failed
+    if (imageUrls.includes(null)) {
       setLoading(false);
       setErrorModal(true);
       return;
     }
 
-    const { data, error } = await supabase
-      .from("Admin-product")
-      .insert([{ ...formData, image: imageUrl }]);
+    const [imageUrl, image1Url, image2Url] = imageUrls;
+
+    const { data, error } = await supabase.from("Admin-product").insert([
+      {
+        ...formData,
+        image: imageUrl,
+        image1: image1Url,
+        image2: image2Url,
+      },
+    ]);
 
     setLoading(false);
     if (error) {
       console.error("Error saving product:", error.message);
       setErrorModal(true);
     } else {
-      console.log("Product saved successfully:", data);
       setShowModal(true);
     }
   };
@@ -182,14 +209,14 @@ const AddProduct = () => {
           <label className="sk">
             Type
             <select
-              name="categories"
-              value={formData.categories}
+              name="type" // Change this from "categories" to "type"
+              value={formData.type} // Change this to match the new name
               onChange={handleChange}
             >
               <option value="">Select Type</option>
-              <option value="Men">Clothing</option>
-              <option value="Women">Shoe</option>
-              <option value="Junior">Accessories</option>
+              <option value="Clothing">Clothing</option>
+              <option value="Shoe">Shoe</option>
+              <option value="Accessories">Accessories</option>
             </select>
           </label>
           <label className="sk">
@@ -235,15 +262,16 @@ const AddProduct = () => {
           <input
             type="text"
             name="color"
-            placeholder="color"
-            value={formData.color}
+            placeholder="Enter colors (comma-separated)"
+            value={formData.color ? formData.color.join(", ") : ""} // Convert array back to string
             onChange={handleChange}
           />
+
           <input
             type="text"
             name="sizes"
-            placeholder="sizes"
-            value={formData.sizes}
+            placeholder="Enter size (comma-separated)"
+            value={formData.sizes ? formData.sizes.join(", ") : ""} // Convert array back to string
             onChange={handleChange}
           />
         </div>
@@ -252,6 +280,20 @@ const AddProduct = () => {
           type="file"
           accept="image/*"
           name="image"
+          onChange={handleFileChange}
+        />
+        <input
+          className="image-url"
+          type="file"
+          accept="image/*"
+          name="image1"
+          onChange={handleFileChange}
+        />
+        <input
+          className="image-url"
+          type="file"
+          accept="image/*"
+          name="image2"
           onChange={handleFileChange}
         />
         <label className="s">

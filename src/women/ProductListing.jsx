@@ -42,7 +42,7 @@ const ProductListing = () => {
 
         // Extract unique categories (subcategories)
         const uniqueCategories = [
-          ...new Set(data.map((product) => product.categories).filter(Boolean)),
+          ...new Set(data.map((product) => product.type).filter(Boolean)),
         ];
         setCategories(uniqueCategories);
 
@@ -63,9 +63,7 @@ const ProductListing = () => {
     } else {
       // Filter products by the selected category
       setSelectedCategory(category);
-      const filtered = products.filter(
-        (product) => product.categories === category
-      );
+      const filtered = products.filter((product) => product.type === category);
       setFilteredByCategory(filtered);
     }
   };

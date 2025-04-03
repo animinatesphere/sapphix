@@ -12,6 +12,7 @@ import Navbar from "../navbar-component/Navbars1";
 // import SetWeek from "../component/SetWeek";
 import Latest from "../component/Latest";
 import Latest2 from "../component/Latest2";
+import Exclusive from "../exc/Exclusive";
 // import { supabase } from "../../supabase";
 // import { ShiftingDropDown } from "../component/ShiftingDropDown";
 // const signOut = async () => {
@@ -26,6 +27,7 @@ const DashBoard = () => {
         <NavbarHead />
         <Navbar />
         <HeroSection />
+        <Exclusive />
         {/* <SetWeek /> */}
         <Latest />
         <Latest2 />

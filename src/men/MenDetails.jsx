@@ -109,6 +109,10 @@ const MenDetails = () => {
       <div className="product-details">
         <div className="product-images">
           <img src={product.image} alt={product.name} className="main-image" />
+          <div className="sample-image">
+            <img src={product.image1} alt="" className="image1" />
+            <img src={product.image2} alt="" className="image1" />
+          </div>
         </div>
 
         <div className="product-inf">
