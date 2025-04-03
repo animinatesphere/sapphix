@@ -64,7 +64,7 @@ const Similar = ({ category = "Clothing", currentProductId }) => {
         {similarProducts && similarProducts.length > 0 ? (
           similarProducts.map((product) => (
             <div className="product-card" key={product.id}>
-              <Link to={`/product/${product.id}`} className="product-link">
+              <Link to={`/men-product/${product.id}`} className="product-link">
                 <img
                   src={product.image || "/placeholder.png"}
                   alt={product.name}
