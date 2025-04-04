@@ -40,6 +40,7 @@ const Navbar = () => {
           </div>
           {isOpen && (
             <div className="dropdown-menu">
+              <Link to="/dashboard">Home</Link>
               <Link to="/men">Men</Link>
               <Link to="/women">Women</Link>
               <Link to="/junior">Junior</Link>
@@ -52,7 +53,9 @@ const Navbar = () => {
           <div className="nav-left-link">
             <ul>
               <Link to="/men">Men</Link>
-              <Link to="/women">Women</Link>
+              <Link to="/women">Junior</Link>
+              <Link to="/junior">Women</Link>
+
               <Link to="/onsale">On Sale</Link>
             </ul>
           </div>

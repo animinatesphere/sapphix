@@ -23,7 +23,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
       const { data, error } = await supabase.from("Admin-product").select("*");
 
       if (error) {
-        console.error("Error fetching products:", error.message);
+        // console.error("Error fetching products:", error.message);
       } else {
         setProducts(data); // ✅ Store fetched products
       }
@@ -45,9 +45,9 @@ const CartSidebar = ({ isOpen, onClose }) => {
     };
   });
 
-  console.log("🛒 Merged Cart Items:", allCartItems);
+  // console.log("🛒 Merged Cart Items:", allCartItems);
 
-  console.log("🛒 Merged Cart Items:", allCartItems);
+  // console.log("🛒 Merged Cart Items:", allCartItems);
   const adminTotalAmount = allCartItems.reduce((total, item) => {
     return total + (item.price * item.quantity || 0);
   }, 0);

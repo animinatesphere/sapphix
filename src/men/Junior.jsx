@@ -12,8 +12,7 @@ import FooterSection from "../component/FooterSection";
 import ProductListingLoading from "../women/ProductListingLoading";
 import { supabase } from "../../supabase";
 import filter from "../men/filter-line.png";
-
-const Men = () => {
+const Junior = () => {
   const { addToCart } = useCart();
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -22,6 +21,7 @@ const Men = () => {
   const itemsPerPage = 9;
   const { wishlistItems, addToWishlist } = useCart();
   const [open, setOpen] = useState(false);
+
   // Add missing state for categories
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -34,7 +34,7 @@ const Men = () => {
       const { data, error } = await supabase
         .from("Admin-product")
         .select("*")
-        .eq("category", "Men")
+        .eq("category", "Junior")
         .eq("visible", true); // Only get visible products
 
       if (error) {
@@ -91,7 +91,7 @@ const Men = () => {
       <Navbar />
       <div className="bread">
         <p>
-          <Link to="/dashboard">Home</Link> / <Link to="/men">Men</Link> /
+          <Link to="/dashboard">Home</Link> / <Link to="/junior">Junior</Link> /
           Lifestyle
         </p>
       </div>
@@ -277,4 +277,4 @@ const Men = () => {
   );
 };
 
-export default Men;
+export default Junior;

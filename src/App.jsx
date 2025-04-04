@@ -26,6 +26,7 @@ import LoginPage from "./Page/LoginPage";
 import Wrspper from "./Page/Wrspper";
 import AdminLogin from "./admin/AdminLogin";
 import Wishlist from "./Page/Wishlist";
+import Junior from "./men/Junior";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
 
           <Route path="/women" element={<ProductListing />} />
           <Route path="/men" element={<Men />} />
+          <Route path="/junior" element={<Junior />} />
           <Route path="/onsale" element={<OnSale />} />
           <Route path="/product/:id" element={<ProductDetails />} />
           <Route path="/men-product/:id" element={<MenDetails />} />

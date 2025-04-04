@@ -11,6 +11,7 @@ import { FaStar, FaRegStar } from "react-icons/fa";
 import FooterSection from "../component/FooterSection";
 import ProductListingLoading from "../women/ProductListingLoading";
 import { supabase } from "../../supabase";
+import filter from "../men/filter-line.png";
 
 const ProductListing = () => {
   const { addToCart } = useCart();
@@ -20,6 +21,7 @@ const ProductListing = () => {
   const [products, setProducts] = useState([]);
   const itemsPerPage = 9;
   const { wishlistItems, addToWishlist } = useCart();
+  const [open, setOpen] = useState(false);
 
   // Add missing state for categories
   const [categories, setCategories] = useState([]);
@@ -36,7 +38,7 @@ const ProductListing = () => {
         .eq("category", "Women");
 
       if (error) {
-        console.error("Error fetching products:", error.message);
+        // console.error("Error fetching products:", error.message);
       } else {
         setProducts(data);
 
@@ -133,7 +135,37 @@ const ProductListing = () => {
               <button className="filter-btn">Price</button>
             </div>
             <div className="sort-options">
-              <p>Sort by:</p> <span className="sort">Most Popular</span>
+              <div className="sort-opt">
+                <p>Sort by:</p> <span className="sort">Most Popular</span>
+              </div>
+
+              <div className="dropdown-container">
+                <button className="filter-but" onClick={() => setOpen(!open)}>
+                  <img src={filter} alt="Filter" />
+                </button>
+
+                {open && (
+                  <div className="dropdown-menu-container">
+                    <ul>
+                      {categories.map((category, index) => (
+                        <li key={index}>
+                          <button
+                            className={`dropdown-menu2 ${
+                              selectedCategory === category ? "active" : ""
+                            }`}
+                            onClick={() => handleCategoryClick(category)}
+                          >
+                            {category}
+                            <span className="plus">
+                              {selectedCategory === category ? "-" : "+"}
+                            </span>
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
 

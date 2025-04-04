@@ -24,7 +24,7 @@ const Latest = () => {
         .limit(4); // Only fetch 4 products
 
       if (error) {
-        console.error("Error fetching products:", error.message);
+        // console.error("Error fetching products:", error.message);
       } else {
         setProducts(data);
       }
