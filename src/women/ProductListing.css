@@ -1096,6 +1096,7 @@
     grid-template-columns: repeat(auto-fill, minmax(286px, 1fr));
     gap: 10px;
     margin: 0 auto;
+    margin-left: -1rem;
     /* margin-left: -2rem; */
   }
   .sideba {
