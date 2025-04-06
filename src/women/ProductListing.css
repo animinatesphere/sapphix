@@ -481,16 +481,106 @@
   background-color: #0d6efd;
   color: white;
 }
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1116px) {
   .product-grid3 {
     width: 80%;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 10px;
     /* width: 100%; */
     margin: 0 auto;
 
     /* margin-left: 1rem; */
+  }
+  .product-image {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  .love-button {
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    margin-top: 5rem;
+    margin-left: -3rem;
+  }
+
+  .dropdown-container {
+    position: relative;
+    display: flex;
+  }
+  .sideba {
+    display: none;
+  }
+  .filter-but {
+    display: flex;
+  }
+  .sort {
+    font-family: Inter;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 145%;
+    letter-spacing: 0%;
+    text-align: center;
+    vertical-align: middle;
+    color: var(--Green-500, #184645);
+  }
+  .sort-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60vw;
+  }
+  .filter-parent {
+    display: flex;
+    flex-direction: column;
+  }
+  .product-grid {
+    display: flex;
+    width: fit-content;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 3rem;
+    margin: 0 auto;
+    /* margin-left: 2rem; */
+  }
+  .bread p {
+    font-family: inter;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 145%;
+    letter-spacing: 0%;
+    /* vertical-align: middle; */
+    position: absolute;
+    padding-top: 3rem;
+    padding-left: 3rem;
+    text-align: center;
+  }
+}
+@media screen and (max-width: 900px) {
+  .product-grid3 {
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 10px;
+    /* width: 100%; */
+    margin: 0 auto;
+
+    /* margin-left: 1rem; */
+  }
+  .product-image {
+    width: 230px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  .love-button {
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    margin-top: 5rem;
+    margin-left: -3rem;
   }
   .dropdown-container {
     position: relative;

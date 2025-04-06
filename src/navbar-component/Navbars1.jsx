@@ -16,6 +16,7 @@ const Navbar = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [open, itOpen] = useState(false);
+  const [desOpen, desItOpen] = useState(false);
   const [user, setUser] = useState(null); // Store user data
   const { wishlistItems } = useCart();
 
@@ -51,13 +52,26 @@ const Navbar = () => {
             <img src={eagle} alt="Logo" />
           </div>
           <div className="nav-left-link">
-            <ul>Category</ul>
-            {/* <ul>
-              <Link to="/men">Men</Link>
-              <Link to="/women">Junior</Link>
-              <Link to="/junior">Women</Link>
-
+            <ul>
+              <Link to="/dashboard">Home</Link>
+              <p className="cat" onClick={() => desItOpen(!desOpen)}>
+                Category
+              </p>
               <Link to="/onsale">On Sale</Link>
+            </ul>
+            {desOpen && (
+              <div className="desktop-drop">
+                <div className="desktop-li">
+                  <Link to="/men">Men</Link>
+                  <Link to="/women">Junior</Link>
+                  <Link to="/junior">Women</Link>
+                </div>
+              </div>
+            )}
+            {/* <ul>
+              
+
+              
             </ul> */}
           </div>
         </div>
