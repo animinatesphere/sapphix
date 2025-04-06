@@ -1290,19 +1290,7 @@
     padding-left: 3rem;
     text-align: center;
   }
-  .product-grid3 {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    /* grid-template-columns: repeat(4, 4fr); */
 
-    width: fit-content;
-
-    margin: 0 auto;
-    margin-left: 1.5rem;
-    /* margin-left: -1rem; */
-    margin-top: 1.5rem;
-  }
   .sort {
     font-family: Inter;
     font-weight: 600;
@@ -1335,7 +1323,7 @@
     /* width: 100%; */
     margin: 0 auto;
 
-    margin-left: 2rem;
+    margin-left: 1.8rem;
   }
   .product-image {
     width: 300px;
