@@ -1,31 +1,47 @@
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
 .container2 {
-  display: flex;
-  /* grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); */
-  flex-wrap: wrap;
-  gap: 10px;
-  width: fit-content;
+  padding: 20px;
+  width: 80%;
   margin: 0 auto;
-  gap: 1rem;
-  margin-top: 3rem;
+  overflow: hidden;
 }
+
+.ex-scroll {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 10px;
+}
+
+.ex1 {
+  flex: 0 0 auto;
+  width: 100%;
+  max-width: 400px;
+  scroll-snap-align: start;
+}
+
 .ex1 img {
-  width: 330px;
-  object-fit: contain;
-  border-radius: 2rem;
+  width: 80%;
+  height: auto;
+  border-radius: 10px;
+  display: block;
+  object-fit: cover;
 }
-@media screen and (max-width: 400px) {
-  .ex1 img {
-    width: 300px;
-    object-fit: contain;
-    border-radius: 2rem;
-  }
-  .container2 {
-    /* margin: 0 auto; */
-    margin-left: 2.2rem;
+
+/* Hide scrollbar for Webkit */
+.ex-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Optional styling for Firefox */
+.ex-scroll {
+  scrollbar-width: none;
+}
+
+/* Responsive behavior */
+@media (max-width: 768px) {
+  .ex1 {
+    max-width: 85%;
   }
 }

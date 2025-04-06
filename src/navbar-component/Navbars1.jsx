@@ -51,13 +51,14 @@ const Navbar = () => {
             <img src={eagle} alt="Logo" />
           </div>
           <div className="nav-left-link">
-            <ul>
+            <ul>Category</ul>
+            {/* <ul>
               <Link to="/men">Men</Link>
               <Link to="/women">Junior</Link>
               <Link to="/junior">Women</Link>
 
               <Link to="/onsale">On Sale</Link>
-            </ul>
+            </ul> */}
           </div>
         </div>
 

@@ -13,6 +13,7 @@ import Navbar from "../navbar-component/Navbars1";
 import Latest from "../component/Latest";
 import Latest2 from "../component/Latest2";
 import Exclusive from "../exc/Exclusive";
+import AccessoriesSlider from "../component/AccessoriesSlider";
 // import { supabase } from "../../supabase";
 // import { ShiftingDropDown } from "../component/ShiftingDropDown";
 // const signOut = async () => {
@@ -27,13 +28,15 @@ const DashBoard = () => {
         <NavbarHead />
         <Navbar />
         <HeroSection />
-        <Exclusive />
+        {/* <Exclusive /> */}
+
         {/* <SetWeek /> */}
         <Latest />
         <Latest2 />
         {/* <Gift /> */}
         {/* admin import */}
         {/*en of  admin import */}
+        <AccessoriesSlider />
         <FashionSlider />
         <FooterSection />
       </div>
