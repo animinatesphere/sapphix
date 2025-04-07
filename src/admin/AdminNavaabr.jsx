@@ -19,7 +19,7 @@ const AdminNavaabr = () => {
   const [open, itOpen] = useState(false);
   const [user, setUser] = useState(null); // Store user data
   const [desOpen, desItOpen] = useState(false);
-
+  const { wishlistItems } = useCart();
   useEffect(() => {
     const fetchUser = async () => {
       const { data } = await supabase.auth.getUser();
@@ -136,12 +136,15 @@ const AdminNavaabr = () => {
                 </ul>
               </div>
             )}
-            <div className="nav-images">
-              <img src={wishlist} alt="Wishlist" />
-              {/* {wishlistItems.length > 0 && (
-                <span className="wishlist-count">{wishlistItems.length}</span>
-              )} */}
-            </div>
+            <Link to="/wishlist">
+              <div className="nav-images">
+                <img src={wishlist} alt="Wishlist" />
+
+                {wishlistItems.length > 0 && (
+                  <span className="wishlist-count">{wishlistItems.length}</span>
+                )}
+              </div>
+            </Link>
             {/* Cart Icon Clickable */}
             <div className="nav-images" onClick={() => setIsCartOpen(true)}>
               <img src={cart} alt="Cart" />

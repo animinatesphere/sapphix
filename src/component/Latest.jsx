@@ -21,7 +21,7 @@ const Latest = () => {
         .from("Admin-product")
         .select("*")
         .eq("category", "Women")
-        .limit(4); // Only fetch 4 products
+        .limit(10); // Only fetch 4 products
 
       if (error) {
         // console.error("Error fetching products:", error.message);
