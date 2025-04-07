@@ -5,6 +5,7 @@ import "../login/login.css";
 import UserButtons from "../component/UserButtons";
 import eagle from "../assets/Sapphix logo editable 1.png";
 import Navbar from "../navbar-component/Navbars1";
+import FooterSection from "../component/FooterSection";
 
 function AdminLogin() {
   const [email, setEmail] = useState("");
@@ -87,6 +88,8 @@ function AdminLogin() {
         </div>
         <UserButtons />
       </div>
+
+      <FooterSection />
     </>
   );
 }

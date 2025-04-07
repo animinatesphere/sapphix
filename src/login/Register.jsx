@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { supabase } from "../../supabase";
 import "../login/login.css";
 import Navbar from "../navbar-component/Navbars1";
+import FooterSection from "../component/FooterSection";
 // import UserButtons from "../component/UserButtons";
 // import { useNavigate } from "react-router-dom";
 function Register() {
@@ -101,6 +102,7 @@ function Register() {
         </div>
       </div>
       {/* <UserButtons /> */}
+      <FooterSection />
     </>
   );
 }

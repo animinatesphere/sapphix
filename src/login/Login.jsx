@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { supabase } from "../../supabase";
 import { Link, useNavigate } from "react-router-dom";
+import FooterSection from "../component/FooterSection";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -89,6 +90,7 @@ const Login = () => {
           </div>
         </div>
       )}
+      <FooterSection/>
     </>
   );
 };
