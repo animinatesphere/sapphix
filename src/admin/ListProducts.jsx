@@ -94,7 +94,7 @@ const ListProducts = () => {
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 5;
+  const productsPerPage = 15;
 
   useEffect(() => {
     const fetchProducts = async () => {
