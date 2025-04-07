@@ -10,7 +10,7 @@ import SearchBar from "../componentcss/SearchBar";
 import CartSidebar from "../component/CartSidebar";
 import "../navbar-component/navbar2.css";
 import { supabase } from "../../supabase";
-import defaultProfile from "../foestaimages/Air1.png";
+// import defaultProfile from "../foestaimages/Air1.png";
 
 const AdminNavaabr = () => {
   const { adminCartItems } = useCart();
@@ -18,6 +18,7 @@ const AdminNavaabr = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [open, itOpen] = useState(false);
   const [user, setUser] = useState(null); // Store user data
+  const [desOpen, desItOpen] = useState(false);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -55,16 +56,26 @@ const AdminNavaabr = () => {
           </div>
           <div className="nav-left-link">
             <ul>
-              <li>
-                <Link to="/men">Men</Link>
-              </li>
-              <li>
-                <Link to="/women">Women</Link>
-              </li>
-              <li>
-                <Link to="/onsale">On Sale</Link>
-              </li>
+              <Link to="/admindashboard">Home</Link>
+              <p className="cat" onClick={() => desItOpen(!desOpen)}>
+                Category
+              </p>
+              <Link to="/onsale">On Sale</Link>
             </ul>
+            {desOpen && (
+              <div className="desktop-drop">
+                <div className="desktop-li">
+                  <Link to="/men">Men</Link>
+                  <Link to="/women">Junior</Link>
+                  <Link to="/junior">Women</Link>
+                </div>
+              </div>
+            )}
+            {/* <ul>
+                       
+         
+                       
+                     </ul> */}
           </div>
         </div>
 
