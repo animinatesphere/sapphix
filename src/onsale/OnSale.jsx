@@ -19,7 +19,7 @@ const OnSale = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
-  const itemsPerPage = 9;
+  const itemsPerPage = 10;
   const { wishlistItems, addToWishlist } = useCart();
   const [open, setOpen] = useState(false);
   // Add missing state for categories
