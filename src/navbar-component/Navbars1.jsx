@@ -54,9 +54,11 @@ const Navbar = () => {
           <div className="nav-left-link">
             <ul>
               <Link to="/dashboard">Home</Link>
-              <p className="cat" onClick={() => desItOpen(!desOpen)}>
-                Category
-              </p>
+              <Link>
+                <p className="cat" onClick={() => desItOpen(!desOpen)}>
+                  Category
+                </p>
+              </Link>
               <Link to="/onsale">On Sale</Link>
             </ul>
             {desOpen && (

@@ -43,7 +43,7 @@ const Wishlist = () => {
       <div className="wishlist-page-container">
         <p className="wish-link">
           {" "}
-          <Link to="/dashboard">Home > </Link> <p>Wishlist</p>
+          <Link to="/dashboard">Home / </Link> <p>Wishlist</p>
         </p>
         <div className="wish-head">
           <h1 className="wishlist-heading">My Wishlist</h1>

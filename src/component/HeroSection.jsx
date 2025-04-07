@@ -66,6 +66,7 @@ const HeroSection = () => {
     {
       image: slide1,
       text: "Our fashion bridges the past and the <br/> present, celebrating the beauty of age-old <br/>techniques while embracing the innovation of tomorrow",
+      butt: "Shop Now",
     },
     {
       image: slide2,
@@ -90,7 +91,6 @@ const HeroSection = () => {
     {
       image: slide6,
       text: "Every stitch carries the whispers of <br/> ancestral artistry, <br/> woven into the bold statements of today’s ever-evolving fashion <br/> landscape.",
-
       butt: "Shop Now",
     },
     {
@@ -101,7 +101,6 @@ const HeroSection = () => {
     {
       image: slide8,
       text: "Inspired by heritage, shaped by <br/> innovation—our fashion is a seamless dance <br/>between the elegance of tradition and the pulse of the future.",
-
       butt: "Shop Now",
     },
     {

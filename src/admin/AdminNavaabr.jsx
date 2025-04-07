@@ -57,9 +57,11 @@ const AdminNavaabr = () => {
           <div className="nav-left-link">
             <ul>
               <Link to="/admindashboard">Home</Link>
-              <p className="cat" onClick={() => desItOpen(!desOpen)}>
-                Category
-              </p>
+              <Link>
+                <p className="cat" onClick={() => desItOpen(!desOpen)}>
+                  Category
+                </p>
+              </Link>
               <Link to="/onsale">On Sale</Link>
             </ul>
             {desOpen && (
