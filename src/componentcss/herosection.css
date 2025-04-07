@@ -25,7 +25,34 @@
   opacity: 0;
   transition: opacity 1s ease-in-out;
 }
+/* Add to your existing herosection.css file */
 
+.slider-dots {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  z-index: 10;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.active-dot {
+  background-color: white;
+  transform: scale(1.2);
+}
+/* end of slide dot */
 .slide.active {
   opacity: 1;
 }
@@ -63,7 +90,7 @@
     width: 320px;
     /* max-width: 600px; */
     background-position: center;
-    height: 312px;
+    height: 400px;
     margin: 0 auto;
     overflow: hidden;
     /* border-radius: 10px; */

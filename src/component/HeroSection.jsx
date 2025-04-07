@@ -24,7 +24,7 @@ const HeroSection = () => {
   const slides = [
     {
       image: first,
-      text: "It’s the season of love <br/> 20% off all Kimono pieces <br/> from now till Feb 15",
+      text: "It's the season of love <br/> 20% off all Kimono pieces <br/> from now till Feb 15",
       butt: "Shop Now",
       hasGradient: false,
     },
@@ -83,39 +83,20 @@ const HeroSection = () => {
       text: "Rooted in tradition, elevated by modern <br/> craftsmanship—our pieces embody a style <br/> that transcends time, <br/>exuding confidence and cultural depth.",
       butt: "Shop Now",
     },
-    {
-      image: slide5,
-      text: "Rooted in tradition, elevated by modern <br/> craftsmanship—our pieces embody a style <br/> that transcends time, <br/>exuding confidence and cultural depth.",
-      butt: "Shop Now",
-    },
-    {
-      image: slide6,
-      text: "Every stitch carries the whispers of <br/> ancestral artistry, <br/> woven into the bold statements of today’s ever-evolving fashion <br/> landscape.",
-      butt: "Shop Now",
-    },
-    {
-      image: slide7,
-      text: "Our designs celebrate the echoes of <br/> ancient artistry, redefined through a lens of <br/>contemporary sophistication and effortless style.",
-      butt: "Shop Now",
-    },
-    {
-      image: slide8,
-      text: "Inspired by heritage, shaped by <br/> innovation—our fashion is a seamless dance <br/>between the elegance of tradition and the pulse of the future.",
-      butt: "Shop Now",
-    },
-    {
-      image: slide9,
-      text: "Blending cultural legacy with avant-garde <br/> aesthetics, our fashion tells a story of tradition <br/> reimagined for the bold, <br/>modern soul.",
-      butt: "Shop Now",
-    },
   ];
+
+  // Handle dot click
+  const handleDotClick = (index) => {
+    setCurrentSlide(index);
+  };
+
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 5) % slides.length);
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 3000); // Change slide every 3 seconds
 
     return () => clearInterval(interval);
-  }, []);
+  }, [slides.length]);
 
   return (
     <>
@@ -133,11 +114,22 @@ const HeroSection = () => {
               style={{ width: slide.textWidth }}
               dangerouslySetInnerHTML={{
                 __html: slide.text.replace(/\n/g, "<br />"),
-              }} // Converts `\n` to `<br />`
+              }}
             />
             <Button>{slide.butt}</Button>
           </div>
         ))}
+
+        {/* Dot navigation */}
+        <div className="slider-dots">
+          {slides.map((_, index) => (
+            <span
+              key={index}
+              className={`dot ${index === currentSlide ? "active-dot" : ""}`}
+              onClick={() => handleDotClick(index)}
+            ></span>
+          ))}
+        </div>
       </div>
     </>
   );
