@@ -90,7 +90,7 @@ const OnSale = () => {
       <Navbar />
       <div className="bread">
         <p>
-          <Link to="/dashboard">Home</Link> / <Link to="/men">Men</Link> /
+          <Link to="/dashboard">Home</Link> / <Link to="/onsale">Onsale</Link> /
           Lifestyle
         </p>
       </div>
