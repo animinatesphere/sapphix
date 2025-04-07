@@ -66,8 +66,8 @@ const AdminNavaabr = () => {
               <div className="desktop-drop">
                 <div className="desktop-li">
                   <Link to="/men">Men</Link>
-                  <Link to="/women">Junior</Link>
-                  <Link to="/junior">Women</Link>
+                  <Link to="/junior">Junior</Link>
+                  <Link to="/women">Women</Link>
                 </div>
               </div>
             )}
