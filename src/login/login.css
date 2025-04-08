@@ -311,7 +311,7 @@
     font-weight: 500;
   }
   .signup-link {
-    margin-top: 20px;
+    margin-top: 30px;
     display: flex;
     flex-direction: column; /* Add this back */
     gap: 12px; /* Add this back */
