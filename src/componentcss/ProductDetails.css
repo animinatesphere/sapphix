@@ -102,7 +102,7 @@
   width: 100px;
   height: 100px;
   border-radius: 5px;
-  cursor: pointer;
+  /* cursor: pointer; */
   object-fit: cover;
 }
 
@@ -173,7 +173,7 @@
   height: 44px;
   border-radius: 50%;
   border: 2px solid #ddd;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 .color-circle:active {
   width: 60px;
@@ -218,7 +218,7 @@
   vertical-align: middle;
   color: #475367;
   border: none;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 .size-btn:active {
   width: 70px;
@@ -299,7 +299,7 @@
 .add-to-cart {
   padding: 15px;
   border-radius: 5px;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
 .buy-now {
@@ -1570,8 +1570,8 @@
     margin-top: 1rem;
   }
   .add-to-cart {
-    width: 204px;
-    height: 55px;
+    width: 150px;
+    height: 40px;
     gap: 10px;
     border-width: 1.5px;
     border-radius: 30px;
