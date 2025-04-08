@@ -185,6 +185,10 @@
     font-family: inter;
     font-weight: 500;
   }
+  .signup-link {
+    margin-top: 20px;
+    display: flex;
+  }
 }
 
 /* notification */
