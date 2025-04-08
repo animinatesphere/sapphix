@@ -3,6 +3,7 @@ import { supabase } from "../../supabase";
 import "../login/login.css";
 import Navbar from "../navbar-component/Navbars1";
 import FooterSection from "../component/FooterSection";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 function AdminRegister() {
   const [email, setEmail] = useState("");
@@ -15,6 +16,7 @@ function AdminRegister() {
   const [passwordStrength, setPasswordStrength] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [emailValid, setEmailValid] = useState(true);
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const showNotification = (message, type) => {
     setNotification({ message, type });
@@ -131,9 +133,16 @@ function AdminRegister() {
         }
 
         showNotification("Admin account created successfully!", "success");
+
+        // Reset form fields
         setEmail("");
         setPassword("");
         setAdminCode("");
+
+        // Redirect to login page after a brief delay to allow the user to see the success message
+        setTimeout(() => {
+          navigate("/login"); // Redirect to the login page
+        }, 1500); // 1.5 second delay
       }
     } catch (error) {
       showNotification(error.message, "error");
