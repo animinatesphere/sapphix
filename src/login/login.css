@@ -15,10 +15,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  /* min-height: 100vh; */
   /* background-color: var(--background-color); */
   background-color: white;
   font-family: "Arial", sans-serif;
+  margin-top: 3rem;
 }
 
 .login-wrapper {
@@ -322,5 +323,43 @@
     width: 90%;
     left: 5%;
     transform: translateX(0);
+  }
+}
+
+@media (max-width: 500px) {
+  .login-wrapper {
+    flex-direction: column;
+  }
+
+  .login-form-container,
+  .login-illustration {
+    flex: none;
+    width: 100%;
+  }
+
+  .login-illustration {
+    display: none;
+  }
+  .login-form-container p {
+    margin-bottom: 15px;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    text-align: center;
+    font-family: inter;
+    font-weight: 500;
+  }
+  .signup-link {
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column; /* Add this back */
+    gap: 12px; /* Add this back */
+  }
+  .login-form-container h1 {
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+    text-align: center;
+    font-family: inter;
+    font-weight: 500;
+    color: #f23e14;
   }
 }
