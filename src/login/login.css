@@ -115,14 +115,24 @@
 }
 
 .signup-link {
-  text-align: center;
   margin-top: 20px;
-  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: center;
+  font-size: 15px;
 }
 
 .signup-link a {
-  color: var(--primary-color);
+  color: #184645; /* Using your green brand color */
+  font-weight: 600;
   text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.signup-link a:hover {
+  color: #0d2c2b; /* Darker shade for hover */
+  text-decoration: underline;
 }
 
 .login-illustration {

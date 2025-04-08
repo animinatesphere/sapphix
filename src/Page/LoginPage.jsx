@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { supabase } from "../../supabase";
 import { useNavigate } from "react-router-dom";
 import "../login/login.css";
-import UserButtons from "../component/UserButtons";
-import eagle from "../assets/Sapphix logo editable 1.png";
+// import UserButtons from "../component/UserButtons";
+// import eagle from "../assets/Sapphix logo editable 1.png";
 import Navbar from "../navbar-component/Navbars1";
 import FooterSection from "../component/FooterSection";
 
@@ -35,10 +35,25 @@ function LoginPage() {
         showNotification(error.message, "error");
         return;
       }
-      // Successful login - redirect to dashboard
+
+      // Successful login
       if (data.user) {
-        showNotification("Login successfully!", "success");
-        navigate("/dashboard");
+        // Check if user is an admin
+        const { data: adminData } = await supabase
+          .from("admins")
+          .select("*")
+          .eq("user_id", data.user.id)
+          .single();
+
+        if (adminData) {
+          // User is an admin
+          showNotification("Admin login successful!", "success");
+          navigate("/admin/dashboard"); // Redirect to admin dashboard
+        } else {
+          // Regular user
+          showNotification("Login successful!", "success");
+          navigate("/dashboard"); // Redirect to regular dashboard
+        }
       }
     } catch (error) {
       showNotification(error.message, "error");
@@ -103,12 +118,13 @@ function LoginPage() {
                 </a>
                 <div className="signup-link">
                   Don't have an account? <a href="/register">Sign up</a>
+                  <br /> {/* Add line break for better spacing */}
+                  Register as Admin? <a href="/admin/register">Admin Sign up</a>
                 </div>
               </form>
             </div>
           </div>
         </div>
-        <UserButtons />
       </div>
       <FooterSection />
     </>

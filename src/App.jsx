@@ -27,6 +27,8 @@ import Wrspper from "./Page/Wrspper";
 import AdminLogin from "./admin/AdminLogin";
 import Wishlist from "./Page/Wishlist";
 import Junior from "./men/Junior";
+import AdminRegister from "./admin/AdminRegister";
+import AdminWrapper from "./Page/AdminWrapper";
 
 function App() {
   return (
@@ -40,6 +42,7 @@ function App() {
           <Route path="/AdminLogin" element={<AdminLogin />} />
 
           <Route path="/women" element={<ProductListing />} />
+          <Route path="/admin/register" element={<AdminRegister />} />
           <Route path="/men" element={<Men />} />
           <Route path="/junior" element={<Junior />} />
           <Route path="/onsale" element={<OnSale />} />
@@ -62,9 +65,9 @@ function App() {
           <Route
             path="/admindashboard"
             element={
-              <Wrspper>
+              <AdminWrapper>
                 <AdminDashboard />
-              </Wrspper>
+              </AdminWrapper>
             }
           />
 
