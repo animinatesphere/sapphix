@@ -326,7 +326,7 @@
 /* Pagination */
 .pagination {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   gap: 10px;
   margin: 20px 0;
@@ -340,10 +340,12 @@
   font-size: 14px;
   border-radius: 5px;
   transition: 0.3s;
+  font-family: inter;
 }
 
 .pagination-btn:hover {
-  background: #f4f4f4;
+  background: #f23e14;
+  color: white;
 }
 
 .pagination-btn:disabled {
@@ -357,7 +359,7 @@
   padding: 8px 12px;
   cursor: pointer;
   font-size: 14px;
-  border-radius: 5px;
+  border-radius: 60%;
   transition: 0.3s;
 }
 
@@ -366,9 +368,11 @@
 }
 
 .page-number.active {
-  border: 2px solid orange;
-  background: #fff;
+  border: 2px solid white;
+  background: #f23e14;
   font-weight: bold;
+  font-family: inter;
+  color: white;
 }
 .love-button {
   background-color: transparent;

@@ -244,7 +244,7 @@ const Men = () => {
                 onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
                 disabled={currentPage === 1}
               >
-                &lt; Previous
+                Previous
               </button>
               <div>
                 {[...Array(totalPages)].map((_, index) => (
@@ -266,7 +266,7 @@ const Men = () => {
                 }
                 disabled={currentPage === totalPages}
               >
-                Next &gt;
+                Next
               </button>
             </div>
           )}

@@ -38,25 +38,33 @@ const ListProducts = () => {
     setLoading(true);
     setConfirmModalOpen(false);
 
-    const { error } = await supabase
-      .from("Admin-product")
-      .delete()
-      .eq("id", productToDelete);
+    try {
+      // Note the double quotes around the table name if you must keep the hyphen
+      const { error } = await supabase
+        .from("Admin-product") // Use double quotes if keeping the hyphen
+        .delete()
+        .eq("id", productToDelete);
 
-    if (error) {
-      console.error("🚨 Error deleting product:", error.message);
-      setModalMessage("Failed to delete product: " + error.message);
-    } else {
-      setModalMessage("✅ Product deleted successfully!");
-      // Remove product from local state
-      setProducts((prev) =>
-        prev.filter((product) => product.id !== productToDelete)
-      );
+      if (error) {
+        console.error("🚨 Error deleting product:", error);
+        setModalMessage("Failed to delete product: " + error.message);
+        setShowModal(true);
+      } else {
+        // Remove product from local state
+        setProducts((prev) =>
+          prev.filter((product) => product.id !== productToDelete)
+        );
+        setModalMessage("✅ Product deleted successfully!");
+        setShowModal(true);
+      }
+    } catch (err) {
+      console.error("Unexpected error during delete:", err);
+      setModalMessage("An unexpected error occurred: " + err.message);
+      setShowModal(true);
+    } finally {
+      setLoading(false);
+      setProductToDelete(null);
     }
-
-    setShowModal(true);
-    setLoading(false);
-    setProductToDelete(null);
   };
 
   const handleVisibilityToggle = async (productId, currentStatus) => {
@@ -98,15 +106,19 @@ const ListProducts = () => {
 
   useEffect(() => {
     const fetchProducts = async () => {
+      setLoading(true);
       try {
+        // Again, use double quotes if keeping the hyphen in table name
         const { data, error } = await supabase
           .from("Admin-product")
           .select("*");
+
         if (error) {
-          console.error("Error fetching products:", error.message);
+          console.error("Error fetching products:", error);
+          setModalMessage("Failed to fetch products: " + error.message);
+          setShowModal(true);
         } else {
           console.log("Fetched products:", data);
-          // If 'visible' field doesn't exist, set it to true by default
           const productsWithVisibility = data.map((product) => ({
             ...product,
             visible: product.visible === undefined ? true : product.visible,
@@ -115,6 +127,10 @@ const ListProducts = () => {
         }
       } catch (err) {
         console.error("Unexpected error:", err);
+        setModalMessage("An unexpected error occurred: " + err.message);
+        setShowModal(true);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -322,27 +338,29 @@ const ListProducts = () => {
       {/* Pagination Controls */}
       <div className="pagination">
         <button
+          className="pagination-btn"
           onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
           disabled={currentPage === 1}
         >
-          &lt;
+          Previous
         </button>
         {[...Array(totalPages)].map((_, i) => (
           <button
             key={i}
-            onClick={() => paginate(i + 1)}
-            className={currentPage === i + 1 ? "active" : ""}
+            className={`page-number ${currentPage === i + 1 ? "active" : ""}`}
+            onClick={() => setCurrentPage(i + 1)}
           >
             {i + 1}
           </button>
         ))}
         <button
+          className="pagination-btn"
           onClick={() =>
             setCurrentPage((prev) => Math.min(prev + 1, totalPages))
           }
           disabled={currentPage === totalPages}
         >
-          &gt;
+          Next
         </button>
       </div>
 
