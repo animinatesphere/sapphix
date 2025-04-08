@@ -5,6 +5,24 @@
   /* color: black; */
   border: none;
 }
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Or target specific elements */
+.product-card,
+.product-image,
+.product-grid,
+.product-grid2,
+.product-grid3 {
+  -webkit-tap-highlight-color: transparent;
+  outline: none; /* This removes the focus outline as well */
+}
+
+/* If you want a subtle custom highlight instead */
+.product-card:active {
+  background-color: rgba(0, 0, 0, 0.05); /* Very light gray highlight */
+}
 a {
   color: black;
 }
