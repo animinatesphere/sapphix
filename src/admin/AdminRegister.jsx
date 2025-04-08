@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { supabase } from "../../supabase";
 import "../login/login.css";
 import Navbar from "../navbar-component/Navbars1";
@@ -10,20 +10,25 @@ function AdminRegister() {
   const [adminCode, setAdminCode] = useState("");
   const [error, setError] = useState(null);
   const [notification, setNotification] = useState(null);
-
+  const [random3Digit, setRandom3Digit] = useState("");
   const showNotification = (message, type) => {
     setNotification({ message, type });
     setTimeout(() => {
       setNotification(null);
     }, 5000);
   };
-
+  useEffect(() => {
+    const generateRandomNumbers = () => {
+      setRandom3Digit(Math.floor(Math.random() * (999 - 100 + 1)) + 100);
+    };
+    generateRandomNumbers();
+  }, []);
   const handleSignup = async (e) => {
     e.preventDefault();
 
     try {
       // First verify the admin code (you should store this securely)
-      const ADMIN_SECRET_CODE = "YourSecretAdminCode123"; // Replace with your actual code
+      const ADMIN_SECRET_CODE = `YourSecretAdminCode${random3Digit}`; // Replace with your actual code
 
       if (adminCode !== ADMIN_SECRET_CODE) {
         showNotification("Invalid admin registration code", "error");
@@ -117,7 +122,7 @@ function AdminRegister() {
               </div>
               <div className="form-group">
                 <label htmlFor="adminCode">
-                  Admin Registration Code(YourSecretAdminCode123)
+                  Admin Registration Code(YourSecretAdminCode{random3Digit})
                 </label>
                 <input
                   type="password"
