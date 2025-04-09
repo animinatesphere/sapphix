@@ -29,6 +29,7 @@ import Wishlist from "./Page/Wishlist";
 import Junior from "./men/Junior";
 import AdminRegister from "./admin/AdminRegister";
 import AdminWrapper from "./Page/AdminWrapper";
+import EditProduct from "./admin/EditProduct";
 
 function App() {
   return (
@@ -83,6 +84,7 @@ function App() {
             <Route path="DashboardContent" element={<DashboardContent />} />
             <Route path="products/list" element={<ListProducts />} />
             <Route path="products/add" element={<AddProducts />} />
+            <Route path="products/edit/:id" element={<EditProduct />} />
             <Route path="order/list" element={<Orders />} />
             <Route path="order/details" element={<Orders />} />
             <Route path="customers" element={<Customers />} />
