@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import cart from "../assets/Cart.png";
-import { useCart } from "../component/CartContext";
+// import cart from "../assets/Cart.png";
+// import { useCart } from "../component/CartContext";
 import { Link } from "react-router-dom";
 import { FaStar, FaRegStar } from "react-icons/fa";
 import FooterSection from "./FooterSection";
 import { supabase } from "../../supabase";
 
 const Similar = ({ category = "Clothing", currentProductId }) => {
-  const { addToCart } = useCart();
+  // const { addToCart } = useCart();
   const [similarProducts, setSimilarProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -91,13 +91,13 @@ const Similar = ({ category = "Clothing", currentProductId }) => {
                 <span className="review-count">({product.reviews || 0})</span>
               </div>
 
-              <button
+              {/* <button
                 className="add-to-cart"
                 onClick={() => addToCart(product)}
               >
                 <img src={cart} alt="" />
                 Add to Cart
-              </button>
+              </button> */}
             </div>
           ))
         ) : (

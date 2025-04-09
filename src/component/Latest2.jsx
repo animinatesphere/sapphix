@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../../supabase";
-import cart from "../assets/Cart.png";
+// import cart from "../assets/Cart.png";
 import { useCart } from "../component/CartContext";
 import { Link } from "react-router-dom";
 import { FaStar, FaRegStar } from "react-icons/fa";
@@ -8,7 +8,7 @@ import { FiHeart } from "react-icons/fi";
 import { FaHeart } from "react-icons/fa";
 
 const Latest2 = () => {
-  const { addToCart } = useCart();
+  // const { addToCart } = useCart();
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
   const { wishlistItems, addToWishlist } = useCart();
@@ -90,13 +90,13 @@ const Latest2 = () => {
                   <span className="review-count">({product.reviews || 0})</span>
                 </div>
 
-                <button
+                {/* <button
                   className="add-to-cart"
                   onClick={() => addToCart(product)}
                 >
                   <img src={cart} alt="" />
                   Add to Cart
-                </button>
+                </button> */}
               </div>
             );
           })

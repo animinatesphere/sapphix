@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import "../women/ProductListing.css";
 import Navbar from "../navbar-component/Navbars1";
 import NavbarHead from "../navbar-component/NavbarHead";
-import cart from "../assets/Cart.png";
+// import cart from "../assets/Cart.png";
 import { FaStar, FaRegStar } from "react-icons/fa";
 import FooterSection from "../component/FooterSection";
 import ProductListingLoading from "../women/ProductListingLoading";
@@ -14,7 +14,7 @@ import { supabase } from "../../supabase";
 import filter from "../men/filter-line.png";
 
 const ProductListing = () => {
-  const { addToCart } = useCart();
+  // const { addToCart } = useCart();
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
@@ -221,13 +221,13 @@ const ProductListing = () => {
                       </span>
                     </div>
 
-                    <button
+                    {/* <button
                       className="add-to-cart"
                       onClick={() => addToCart(product)}
                     >
                       <img src={cart} alt="" />
                       Add to Cart
-                    </button>
+                    </button> */}
                   </div>
                 );
               })

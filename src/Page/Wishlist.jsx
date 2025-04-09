@@ -3,27 +3,27 @@ import { useCart } from "../component/CartContext";
 import { Link } from "react-router-dom";
 import { FaHeart, FaStar, FaRegStar } from "react-icons/fa";
 import { FiHeart } from "react-icons/fi";
-import cart from "../assets/Cart.png"; // Make sure this path is correct
+// import cart from "../assets/Cart.png"; // Make sure this path is correct
 import Navbar from "../navbar-component/Navbars1";
 import "../Page/wishlist.css";
 import FooterSection from "../component/FooterSection";
 
 const Wishlist = () => {
-  const { wishlistItems, removeFromWishlist, addToAdminCart } = useCart();
+  const { wishlistItems, removeFromWishlist } = useCart();
 
   useEffect(() => {
     document.title = "My Wishlist";
   }, []);
 
   // Function to add to cart (simplified version)
-  const addToCart = (product) => {
-    addToAdminCart({
-      productId: product.id,
-      quantity: 1,
-      color: product.color || "",
-      size: product.size || "",
-    });
-  };
+  // const addToCart = (product) => {
+  //   addToAdminCart({
+  //     productId: product.id,
+  //     quantity: 1,
+  //     color: product.color || "",
+  //     size: product.size || "",
+  //   });
+  // };
 
   if (wishlistItems.length === 0) {
     return (
@@ -94,13 +94,13 @@ const Wishlist = () => {
                   <span className="review-count">({product.reviews || 0})</span>
                 </div>
 
-                <button
+                {/* <button
                   className="add-to-cart"
                   onClick={() => addToCart(product)}
                 >
                   <img src={cart} alt="" />
                   Add to Cart
-                </button>
+                </button> */}
               </div>
             );
           })}
