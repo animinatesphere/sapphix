@@ -74,7 +74,7 @@ const DashboardContent = () => {
   }, []);
 
   return (
-    <div className="dashboard-container">
+    <div className="dashboard-container2">
       <Card className="congratulation-card">
         <CardContent>
           <div className="card-content-parent">

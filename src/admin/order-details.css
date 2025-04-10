@@ -1,0 +1,414 @@
+/* Order Details Page Styling */
+.order-details-page {
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, sans-serif;
+}
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 24px;
+  color: #555;
+  font-weight: 500;
+}
+
+.back-button:hover {
+  color: #333;
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #eee;
+}
+
+.order-title h1 {
+  margin: 0 0 8px 0;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.order-badges {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.status-badge {
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.status-paid {
+  background-color: #e1f5ea;
+  color: #0a8043;
+}
+
+.status-delivered {
+  background-color: #e1f5ea;
+  color: #0a8043;
+}
+
+.status-pending {
+  background-color: #fff5e6;
+  color: #cc7a00;
+}
+
+.status-failed,
+.status-cancelled {
+  background-color: #ffebee;
+  color: #d32f2f;
+}
+
+.status-processing {
+  background-color: #e8eaf6;
+  color: #3f51b5;
+}
+
+.status-dispatched {
+  background-color: #e3f2fd;
+  color: #1976d2;
+}
+
+.status-pickup {
+  background-color: #e0f7fa;
+  color: #00acc1;
+}
+
+.order-date {
+  color: #666;
+  font-size: 14px;
+  margin: 0;
+}
+
+.order-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.export-btn,
+.edit-btn {
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border: none;
+}
+
+.export-btn {
+  background-color: white;
+  border: 1px solid #ddd;
+  color: #333;
+}
+
+.edit-btn,
+.edit-order {
+  background-color: #23b574;
+  color: white;
+  border: none;
+}
+
+.order-content {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 24px;
+}
+
+.section {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 24px;
+  padding: 20px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.section-header h2,
+.section-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.section-header h3 {
+  font-size: 16px;
+}
+
+.edit-section {
+  background: none;
+  border: none;
+  color: #23b574;
+  cursor: pointer;
+  font-weight: 500;
+  padding: 0;
+}
+
+.products-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.products-table th {
+  text-align: left;
+  padding: 12px 8px;
+  border-bottom: 1px solid #eee;
+  color: #666;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.products-table td {
+  padding: 12px 8px;
+  border-bottom: 1px solid #eee;
+}
+
+.product-cell {
+  width: 40%;
+}
+
+.product-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.product-image {
+  width: 48px;
+  height: 48px;
+  background: #f5f5f5;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-placeholder {
+  font-size: 24px;
+}
+
+.product-name {
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.product-description {
+  font-size: 12px;
+  color: #666;
+}
+
+.order-summary {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid #eee;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.summary-item.total {
+  font-weight: 600;
+  font-size: 16px;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid #eee;
+}
+
+.timeline {
+  margin-top: 24px;
+}
+
+.timeline-item {
+  display: flex;
+  gap: 16px;
+  position: relative;
+  padding-bottom: 24px;
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  top: 24px;
+  left: 8px;
+  bottom: 0;
+  width: 1px;
+  background-color: #ddd;
+}
+
+.timeline-item:last-child::before {
+  display: none;
+}
+
+.timeline-marker {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #ddd;
+  position: relative;
+  z-index: 1;
+}
+
+.timeline-item.completed .timeline-marker {
+  background: #23b574;
+}
+
+.timeline-item.active .timeline-marker {
+  background: #f59f00;
+}
+
+.timeline-content {
+  flex: 1;
+}
+
+.timeline-title {
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.timeline-subtitle {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 4px;
+}
+
+.timeline-date {
+  font-size: 12px;
+  color: #888;
+}
+
+.timeline-actions {
+  margin-top: 8px;
+}
+
+.confirm-btn {
+  background-color: #23b574;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.customer-section {
+  text-align: center;
+}
+
+.customer-avatar-large {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  overflow: hidden;
+}
+
+.avatar-placeholder-large {
+  font-size: 36px;
+  color: #666;
+}
+
+.customer-name-large {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.customer-id {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.customer-orders {
+  display: inline-block;
+  padding: 4px 12px;
+  background: #f5f5f5;
+  border-radius: 16px;
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 16px;
+}
+
+.contact-info {
+  text-align: left;
+  border-top: 1px solid #eee;
+  padding-top: 16px;
+  margin-top: 16px;
+}
+
+.contact-info h3 {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+}
+
+.contact-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.contact-item span:first-child {
+  color: #666;
+}
+
+.shipping-address,
+.billing-address {
+  margin-bottom: 16px;
+}
+
+.shipping-address p,
+.billing-address p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.payment-method,
+.card-number {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+  font-size: 14px;
+}
+
+.loading,
+.error {
+  padding: 40px;
+  text-align: center;
+  color: #666;
+}

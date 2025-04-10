@@ -30,6 +30,8 @@ import Junior from "./men/Junior";
 import AdminRegister from "./admin/AdminRegister";
 import AdminWrapper from "./Page/AdminWrapper";
 import EditProduct from "./admin/EditProduct";
+import OrderConfirmation from "./admin/OrderConfirmation";
+import OrderDetails from "./admin/OrderDetails";
 
 function App() {
   return (
@@ -51,6 +53,10 @@ function App() {
           <Route path="/men-product/:id" element={<MenDetails />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/wishlist" element={<Wishlist />} />
+          <Route
+            path="/order-confirmation/:orderId"
+            element={<OrderConfirmation />}
+          />
 
           {/* Protected Routes */}
           <Route
@@ -85,6 +91,7 @@ function App() {
             <Route path="products/list" element={<ListProducts />} />
             <Route path="products/add" element={<AddProducts />} />
             <Route path="products/edit/:id" element={<EditProduct />} />
+            <Route path="orders/:orderId" element={<OrderDetails />} />
             <Route path="order/list" element={<Orders />} />
             <Route path="order/details" element={<Orders />} />
             <Route path="customers" element={<Customers />} />

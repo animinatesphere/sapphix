@@ -81,6 +81,14 @@ export const CartProvider = ({ children }) => {
     }
   };
 
+  const clearCart = () => {
+    setAdminCartItems([]);
+  };
+
+  const totalAmount = adminCartItems.reduce((total, item) => {
+    return total + (item.price * item.quantity || 0);
+  }, 0);
+
   const fetchWishlist = async (userId = null) => {
     const userToFetch = userId || user?.id;
 
@@ -267,6 +275,7 @@ export const CartProvider = ({ children }) => {
   return (
     <CartContext.Provider
       value={{
+        clearCart,
         adminCartItems,
         fetchAdminCart,
         addToAdminCart,
