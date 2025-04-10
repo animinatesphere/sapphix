@@ -568,7 +568,7 @@
     position: absolute;
     padding-top: 3rem;
     padding-left: 3rem;
-    text-align: center;
+    /* text-align: center; */
   }
 }
 @media screen and (max-width: 900px) {
@@ -644,7 +644,7 @@
     position: absolute;
     padding-top: 3rem;
     padding-left: 3rem;
-    text-align: center;
+    /* text-align: center; */
   }
 }
 @media screen and (max-width: 760px) {
@@ -688,7 +688,7 @@
     position: absolute;
     padding-top: 3rem;
     padding-left: 3rem;
-    text-align: center;
+    /* text-align: center; */
   }
   .product-grid3 {
     width: 80%;
@@ -794,7 +794,7 @@
     position: absolute;
     padding-top: 3rem;
     padding-left: 3rem;
-    text-align: center;
+    /* text-align: center; */
   }
   .product-image {
     width: 250px;
@@ -884,7 +884,7 @@
     position: absolute;
     padding-top: 3rem;
     padding-left: 3rem;
-    text-align: center;
+    /* text-align: center; */
   }
   .product-grid3 {
     width: 80%;
@@ -1014,7 +1014,7 @@
     position: absolute;
     padding-top: 3rem;
     padding-left: 3rem;
-    text-align: center;
+    /* text-align: center; */
   }
 }
 @media screen and (max-width: 530px) {
@@ -1099,7 +1099,7 @@
     position: absolute;
     padding-top: 3rem;
     padding-left: 3rem;
-    text-align: center;
+    /* text-align: center; */
   }
   .product-grid3 {
     width: 80%;
@@ -1300,6 +1300,9 @@
     padding: 0px;
     margin-top: 2rem;
   }
+  .sort-opt {
+    display: none;
+  }
 }
 @media screen and (max-width: 380px) {
   .product-grid3 {
@@ -1375,7 +1378,7 @@
     line-height: 145%;
     position: relative;
     padding-top: 1.5rem;
-    text-align: center;
+    /* text-align: center; */
     width: 100%;
     padding-left: 0;
   }
