@@ -206,10 +206,10 @@ const OrderDetails = () => {
                       </td>
                       <td className="product-cell">
                         <div className="product-info">
-                          <div className="product-image">
-                            {item.products.image_url ? (
+                          <div className="product-image2">
+                            {item.products.image ? (
                               <img
-                                src={item.products.image_url}
+                                src={item.products.image}
                                 alt={item.products.name}
                               />
                             ) : (

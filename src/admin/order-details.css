@@ -1,5 +1,4 @@
-/* Order Details Page Styling */
-.order-details-page {
+Order Details Page Styling .order-details-page {
   padding: 24px;
   max-width: 1200px;
   margin: 0 auto;
@@ -192,7 +191,7 @@
   gap: 12px;
 }
 
-.product-image {
+.product-image2 {
   width: 48px;
   height: 48px;
   background: #f5f5f5;
@@ -203,7 +202,7 @@
   overflow: hidden;
 }
 
-.product-image img {
+.product-image2 img {
   width: 100%;
   height: 100%;
   object-fit: cover;
