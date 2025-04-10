@@ -4,6 +4,7 @@ import "../login/login.css";
 import Navbar from "../navbar-component/Navbars1";
 import FooterSection from "../component/FooterSection";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
+import LoginNavbar from "../login/LoginNavbar";
 
 function AdminRegister() {
   const [email, setEmail] = useState("");
@@ -168,7 +169,7 @@ function AdminRegister() {
 
   return (
     <>
-      <Navbar />
+      <LoginNavbar />
       <div className="login-container">
         {notification && (
           <div

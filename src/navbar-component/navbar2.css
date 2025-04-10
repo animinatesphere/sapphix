@@ -119,6 +119,36 @@
   text-decoration: none;
   width: 58px;
 }
+/* login navbar */
+.profile-menu-but {
+  display: flex;
+  place-items: center;
+  flex-direction: column;
+}
+
+.menu-sign-in {
+  background-color: coral;
+  width: 100px;
+  height: 30px;
+  font-size: 16px;
+  font-family: inter;
+  color: rgba(255, 255, 255, 0.97);
+  border-radius: 5rem;
+}
+.menu-sign-up {
+  background-color: blue;
+  width: 100px;
+  height: 30px;
+  font-size: 16px;
+  font-family: inter;
+  color: rgba(255, 255, 255, 0.97);
+  border-radius: 5rem;
+}
+.menu-sign-in:hover,
+.menu-sign-up:hover {
+  opacity: 0.5;
+}
+/* end of login navbar */
 @media screen and (min-width: 1115px) {
   .nav-container {
     display: flex;

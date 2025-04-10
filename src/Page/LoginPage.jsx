@@ -3,8 +3,8 @@ import { supabase } from "../../supabase";
 import { useNavigate } from "react-router-dom";
 import "../login/login.css";
 import "../Page/login2.css";
-import Navbar from "../navbar-component/Navbars1";
 import FooterSection from "../component/FooterSection";
+import LoginNavbar from "../login/LoginNavbar";
 
 function LoginPage() {
   const [email, setEmail] = useState("");
@@ -94,7 +94,7 @@ function LoginPage() {
   return (
     <>
       <div className="login-parent">
-        <Navbar />
+        <LoginNavbar />
         <div className="login-container">
           {notification && (
             <div

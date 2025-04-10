@@ -241,6 +241,7 @@ const AdminDashboard2 = () => {
             />
             <span>{user ? user.email : "Loading..."}</span>
           </div>
+          <br />
           <FiLogOut onClick={handleLogout} size={20} title="Logout" />
         </div>
       </aside>
