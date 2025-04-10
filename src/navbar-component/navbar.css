@@ -146,8 +146,8 @@
 
 .profile-dropdown {
   position: absolute;
-  top: 90px;
-  right: 3rem;
+  top: 130px;
+  right: 5rem;
   background: white;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   border-radius: 8px;
@@ -224,7 +224,6 @@
 }
 
 /*end profile */
-
 @media screen and (max-width: 1240px) {
   .container {
     display: flex;
