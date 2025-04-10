@@ -570,16 +570,16 @@
   }
   .profile-dropdown {
     position: absolute;
-    top: 120px;
-    right: -5rem;
+    top: 100px;
+    right: 5rem;
     background: white;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     border-radius: 8px;
     width: 220px;
-    height: 100%;
+    height: auto;
     z-index: 1000;
     padding: 10px;
     transition: all 0.3s ease-in-out;
-    height: 50%;
+    /* height: 50%; */
   }
 }

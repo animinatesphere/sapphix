@@ -80,20 +80,9 @@ const AdminDashboard2 = () => {
       <button
         className="mobile-menu-toggle"
         onClick={() => setSidebarOpen(!sidebarOpen)}
-        style={{
-          display: "none", // Hidden by default, shown in mobile via media query
-          position: "fixed",
-          zIndex: 100,
-          top: "20px",
-          left: "20px",
-          padding: "8px",
-          background: "#fff",
-          borderRadius: "8px",
-          boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
-          border: "1px solid #e5e7eb",
-        }}
+        style={{}}
       >
-        <FiMenu size={24} />
+        <FiMenu size={20} />
       </button>
 
       {/* Sidebar */}
@@ -242,7 +231,7 @@ const AdminDashboard2 = () => {
             <span>{user ? user.email : "Loading..."}</span>
           </div>
           <br />
-          <FiLogOut onClick={handleLogout} size={20} title="Logout" />
+          <FiLogOut onClick={handleLogout} size={40} title="Logout" />
         </div>
       </aside>
 

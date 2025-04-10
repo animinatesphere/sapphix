@@ -229,6 +229,7 @@ body {
   color: #6b7280;
   cursor: pointer;
   padding: 8px;
+  /* color: red; */
   border-radius: 6px;
   transition: all 0.2s ease;
 }
@@ -236,6 +237,18 @@ body {
 .user-profile svg:hover {
   background-color: #f3f4f6;
   color: #f43f5e;
+}
+.mobile-menu-toggle {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  top: 60px;
+  left: 20px;
+  padding: 8px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
 }
 
 /* Media Queries */
@@ -246,6 +259,9 @@ body {
 }
 
 @media screen and (max-width: 768px) {
+  .mobile-menu-toggle {
+    display: flex;
+  }
   .sidebar {
     position: fixed;
     transform: translateX(-100%);
