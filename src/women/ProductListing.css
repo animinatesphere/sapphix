@@ -1285,7 +1285,7 @@
     line-height: 145%;
     position: relative;
     padding-top: 1.5rem;
-    text-align: center;
+    /* text-align: center; */
     width: 100%;
     padding-left: 0;
   }
