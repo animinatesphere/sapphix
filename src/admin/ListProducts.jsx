@@ -8,6 +8,7 @@ import spend from "../admin/admin-folder/spend.png";
 import { Link } from "react-router-dom";
 
 const ListProducts = () => {
+  // Keep all existing state variables and functions
   const [search, setSearch] = useState("");
   const [products, setProducts] = useState([]);
   const [random6Digit, setRandom6Digit] = useState("");
@@ -16,13 +17,27 @@ const ListProducts = () => {
   const [random1Digit, setRandom1Digit] = useState("");
   const [menuOpen, setMenuOpen] = useState(null);
   const [loading, setLoading] = useState(false);
-
-  // Modal state
   const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
   const [productToDelete, setProductToDelete] = useState(null);
   const [confirmModalOpen, setConfirmModalOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 640);
+  const productsPerPage = 15;
 
+  // Add window resize listener to detect mobile screens
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 640);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  // Keep all existing functions: toggleMenu, openDeleteConfirmModal, handleDelete, etc.
   const toggleMenu = (id) => {
     setMenuOpen(menuOpen === id ? null : id);
   };
@@ -39,9 +54,8 @@ const ListProducts = () => {
     setConfirmModalOpen(false);
 
     try {
-      // Note the double quotes around the table name if you must keep the hyphen
       const { error } = await supabase
-        .from("Admin-product") // Use double quotes if keeping the hyphen
+        .from("Admin-product")
         .delete()
         .eq("id", productToDelete);
 
@@ -50,7 +64,6 @@ const ListProducts = () => {
         setModalMessage("Failed to delete product: " + error.message);
         setShowModal(true);
       } else {
-        // Remove product from local state
         setProducts((prev) =>
           prev.filter((product) => product.id !== productToDelete)
         );
@@ -68,7 +81,6 @@ const ListProducts = () => {
   };
 
   const handleVisibilityToggle = async (productId, currentStatus) => {
-    // Flip the visibility status
     const newStatus = !currentStatus;
 
     try {
@@ -84,7 +96,6 @@ const ListProducts = () => {
         );
         setShowModal(true);
       } else {
-        // Update the local state
         setProducts((prevProducts) =>
           prevProducts.map((product) =>
             product.id === productId
@@ -100,15 +111,12 @@ const ListProducts = () => {
     }
   };
 
-  // Pagination state
-  const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 15;
+  // Keep all existing useEffect hooks
 
   useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true);
       try {
-        // Again, use double quotes if keeping the hyphen in table name
         const { data, error } = await supabase
           .from("Admin-product")
           .select("*");
@@ -153,7 +161,16 @@ const ListProducts = () => {
   const totalPages = Math.ceil(products.length / productsPerPage);
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = products.slice(
+
+  // Filter by search term
+  const filteredProducts = products.filter(
+    (product) =>
+      product.name.toLowerCase().includes(search.toLowerCase()) ||
+      product.category.toLowerCase().includes(search.toLowerCase()) ||
+      product.sku.toLowerCase().includes(search.toLowerCase())
+  );
+
+  const currentProducts = filteredProducts.slice(
     indexOfFirstProduct,
     indexOfLastProduct
   );
@@ -229,28 +246,123 @@ const ListProducts = () => {
           </Link>
         </div>
       </div>
-      <table className="product-table">
-        <thead>
-          <tr className="tab">
-            <th className="tab1">Product</th>
-            <th>Category</th>
-            <th>Visibility</th>
-            <th>SKU</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Status</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {currentProducts.length === 0 ? (
-            <tr>
-              <td colSpan="8">No products found</td>
+
+      {!isMobile ? (
+        // Default table view for larger screens
+        <table className="product-table">
+          <thead>
+            <tr className="tab">
+              <th className="tab1">Product</th>
+              <th>Category</th>
+              <th>Visibility</th>
+              <th>SKU</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Status</th>
+              <th>Action</th>
             </tr>
+          </thead>
+          <tbody>
+            {currentProducts.length === 0 ? (
+              <tr>
+                <td colSpan="8">No products found</td>
+              </tr>
+            ) : (
+              currentProducts.map((product) => (
+                <tr key={product.id}>
+                  <td>
+                    <div className="product-info">
+                      <div className="square"></div>
+                      <img
+                        src={product.image || "/placeholder.png"}
+                        alt={product.name}
+                      />
+                      <div>
+                        <p className="product-name">{product.name}</p>
+                        <p className="product-description">
+                          {product.description.slice(0, 20)}
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <p className="tab-cat">{product.category}</p>
+                  </td>
+                  <td>
+                    <label className="switch">
+                      <input
+                        type="checkbox"
+                        checked={product.visible}
+                        onChange={() =>
+                          handleVisibilityToggle(product.id, product.visible)
+                        }
+                      />
+                      <span className="slider round"></span>
+                    </label>
+                  </td>
+                  <td>
+                    <p className="tab-sku">{product.sku}</p>
+                  </td>
+                  <td>
+                    <p className="retail">&#x20A6;{product.price}</p>
+                  </td>
+                  <td>
+                    <p className="tab-qua">{product.quantity}</p>
+                  </td>
+                  <td>
+                    <span
+                      className={`status ${
+                        product.quantity > 0 ? "published" : "inactive"
+                      }`}
+                    >
+                      {product.quantity > 0 ? "Published" : "Inactive"}
+                    </span>
+                  </td>
+                  <td className="action-cell">
+                    <button
+                      className="action-button"
+                      onClick={() => toggleMenu(product.id)}
+                    >
+                      <FiMoreVertical />
+                    </button>
+                    {menuOpen === product.id && (
+                      <div className="action-menu">
+                        <Link
+                          to={`/admin/dashboard/products/edit/${product.id}`}
+                          className="action-item"
+                        >
+                          <FiEdit /> Edit
+                        </Link>
+                        <button
+                          className="action-item delete"
+                          onClick={() => openDeleteConfirmModal(product.id)}
+                          disabled={loading}
+                        >
+                          {loading ? (
+                            "Deleting..."
+                          ) : (
+                            <>
+                              <FiTrash /> Delete
+                            </>
+                          )}
+                        </button>
+                      </div>
+                    )}
+                  </td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      ) : (
+        // Card view for mobile screens
+        <div className="mobile-product-cards">
+          {currentProducts.length === 0 ? (
+            <div className="empty-product-message">No products found</div>
           ) : (
             currentProducts.map((product) => (
-              <tr key={product.id}>
-                <td>
+              <div key={product.id} className="mobile-product-card">
+                <div className="mobile-product-header">
                   <div className="product-info">
                     <div className="square"></div>
                     <img
@@ -264,76 +376,84 @@ const ListProducts = () => {
                       </p>
                     </div>
                   </div>
-                </td>
-                <td>
-                  <p className="tab-cat">{product.category}</p>
-                </td>
-                <td>
-                  <label className="switch">
-                    <input
-                      type="checkbox"
-                      checked={product.visible}
-                      onChange={() =>
-                        handleVisibilityToggle(product.id, product.visible)
-                      }
-                    />
-                    <span className="slider round"></span>
-                  </label>
-                </td>
-                <td>
-                  <p className="tab-sku">{product.sku}</p>
-                </td>
-                <td>
-                  <p className="retail">&#x20A6;{product.price}</p>
-                </td>
-                <td>
-                  <p className="tab-qua">{product.quantity}</p>
-                </td>
-                <td>
-                  <span
-                    className={`status ${
-                      product.quantity > 0 ? "published" : "inactive"
-                    }`}
-                  >
-                    {product.quantity > 0 ? "Published" : "Inactive"}
-                  </span>
-                </td>
-                <td className="action-cell">
-                  <button
-                    className="action-button"
-                    onClick={() => toggleMenu(product.id)}
-                  >
-                    <FiMoreVertical />
-                  </button>
-                  {menuOpen === product.id && (
-                    <div className="action-menu">
-                      <Link
-                        to={`/admin/dashboard/products/edit/${product.id}`}
-                        className="action-item"
-                      >
-                        <FiEdit /> Edit
-                      </Link>
-                      <button
-                        className="action-item delete"
-                        onClick={() => openDeleteConfirmModal(product.id)}
-                        disabled={loading}
-                      >
-                        {loading ? (
-                          "Deleting..."
-                        ) : (
-                          <>
-                            <FiTrash /> Delete
-                          </>
-                        )}
-                      </button>
-                    </div>
-                  )}
-                </td>
-              </tr>
+                  <div className="action-cell">
+                    <button
+                      className="action-button"
+                      onClick={() => toggleMenu(product.id)}
+                    >
+                      <FiMoreVertical />
+                    </button>
+                    {menuOpen === product.id && (
+                      <div className="action-menu">
+                        <Link
+                          to={`/admin/dashboard/products/edit/${product.id}`}
+                          className="action-item"
+                        >
+                          <FiEdit /> Edit
+                        </Link>
+                        <button
+                          className="action-item delete"
+                          onClick={() => openDeleteConfirmModal(product.id)}
+                          disabled={loading}
+                        >
+                          {loading ? (
+                            "Deleting..."
+                          ) : (
+                            <>
+                              <FiTrash /> Delete
+                            </>
+                          )}
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                </div>
+                <div className="mobile-product-details">
+                  <div className="mobile-product-detail-item">
+                    <span className="detail-label">Category:</span>
+                    <span className="tab-cat">{product.category}</span>
+                  </div>
+                  <div className="mobile-product-detail-item">
+                    <span className="detail-label">Visibility:</span>
+                    <label className="switch">
+                      <input
+                        type="checkbox"
+                        checked={product.visible}
+                        onChange={() =>
+                          handleVisibilityToggle(product.id, product.visible)
+                        }
+                      />
+                      <span className="slider round"></span>
+                    </label>
+                  </div>
+                  <div className="mobile-product-detail-item">
+                    <span className="detail-label">SKU:</span>
+                    <span className="tab-sku">{product.sku}</span>
+                  </div>
+                  <div className="mobile-product-detail-item">
+                    <span className="detail-label">Price:</span>
+                    <span className="retail">&#x20A6;{product.price}</span>
+                  </div>
+                  <div className="mobile-product-detail-item">
+                    <span className="detail-label">Quantity:</span>
+                    <span className="tab-qua">{product.quantity}</span>
+                  </div>
+                  <div className="mobile-product-detail-item">
+                    <span className="detail-label">Status:</span>
+                    <span
+                      className={`status ${
+                        product.quantity > 0 ? "published" : "inactive"
+                      }`}
+                    >
+                      {product.quantity > 0 ? "Published" : "Inactive"}
+                    </span>
+                  </div>
+                </div>
+              </div>
             ))
           )}
-        </tbody>
-      </table>
+        </div>
+      )}
 
       {/* Pagination Controls */}
       <div className="pagination">
@@ -344,15 +464,67 @@ const ListProducts = () => {
         >
           Previous
         </button>
-        {[...Array(totalPages)].map((_, i) => (
-          <button
-            key={i}
-            className={`page-number ${currentPage === i + 1 ? "active" : ""}`}
-            onClick={() => setCurrentPage(i + 1)}
-          >
-            {i + 1}
-          </button>
-        ))}
+        {totalPages <= 5 ? (
+          // Show all page numbers if 5 or fewer
+          [...Array(totalPages)].map((_, i) => (
+            <button
+              key={i}
+              className={`page-number ${currentPage === i + 1 ? "active" : ""}`}
+              onClick={() => setCurrentPage(i + 1)}
+            >
+              {i + 1}
+            </button>
+          ))
+        ) : (
+          // Show limited page numbers with ellipsis
+          <>
+            <button
+              className={`page-number ${currentPage === 1 ? "active" : ""}`}
+              onClick={() => setCurrentPage(1)}
+            >
+              1
+            </button>
+
+            {currentPage > 3 && <span className="ellipsis">...</span>}
+
+            {currentPage > 2 && currentPage < totalPages && (
+              <>
+                {currentPage > 2 && (
+                  <button
+                    className="page-number"
+                    onClick={() => setCurrentPage(currentPage - 1)}
+                  >
+                    {currentPage - 1}
+                  </button>
+                )}
+
+                <button className="page-number active">{currentPage}</button>
+
+                {currentPage < totalPages - 1 && (
+                  <button
+                    className="page-number"
+                    onClick={() => setCurrentPage(currentPage + 1)}
+                  >
+                    {currentPage + 1}
+                  </button>
+                )}
+              </>
+            )}
+
+            {currentPage < totalPages - 2 && (
+              <span className="ellipsis">...</span>
+            )}
+
+            <button
+              className={`page-number ${
+                currentPage === totalPages ? "active" : ""
+              }`}
+              onClick={() => setCurrentPage(totalPages)}
+            >
+              {totalPages}
+            </button>
+          </>
+        )}
         <button
           className="pagination-btn"
           onClick={() =>

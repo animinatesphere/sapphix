@@ -229,3 +229,111 @@ button:hover {
   gap: 10px;
   background: var(--Green-500, #184645);
 }
+
+/* Loading overlay */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.loading-spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #184645;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive media queries */
+@media screen and (max-width: 1200px) {
+  .form-grou {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .form-grou input,
+  .form-grou select {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .form-grou {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-content {
+    width: 90%;
+    max-width: 515px;
+    height: auto;
+    min-height: 300px;
+    padding: 20px 15px;
+  }
+
+  .button-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .button-group button[type="button"],
+  .button-group button[type="submit"] {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  textarea {
+    height: 250px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .add-product-container {
+    padding: 15px 10px;
+  }
+
+  .header {
+    font-size: 20px;
+  }
+
+  .head2 {
+    font-size: 14px;
+  }
+
+  .form-grou label {
+    font-size: 14px;
+  }
+
+  .form-grou input,
+  .form-grou select {
+    height: 48px;
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  .modal-content button {
+    width: 100%;
+    max-width: 219px;
+  }
+
+  .added {
+    font-size: 22px;
+  }
+}

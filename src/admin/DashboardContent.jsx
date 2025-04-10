@@ -9,12 +9,10 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
+  ResponsiveContainer,
 } from "recharts";
 import { FiChevronDown } from "react-icons/fi";
 import { BarChart, Bar } from "recharts";
-// import { Avatar } from "@/components/ui/avatar";
-// import { Badge } from "@/components/ui/badge";
-// import { FiArrowUp, FiArrowDown } from "react-icons/fi";
 import "../admin/DashboardContent.css";
 import naira from "../admin/admin-folder/naira.png";
 import cart from "../admin/admin-folder/Cart (1).png";
@@ -45,7 +43,8 @@ const DashboardContent = () => {
   const [random2Digit, setRandom2Digit] = useState("");
   const [random3Digit, setRandom3Digit] = useState("");
   const [random4Digit, setRandom4Digit] = useState("");
-  const [randomMonth, setRandomMONTH] = useState("");
+  const [randomMonth, setRandomMonth] = useState("");
+
   useEffect(() => {
     const generateRandomNumbers = () => {
       setRandom6Digit(
@@ -56,20 +55,20 @@ const DashboardContent = () => {
       setRandom3Digit(Math.floor(Math.random() * (999 - 100 + 1)) + 100);
       setRandom4Digit(Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000);
       const months = [
-        "Ja",
+        "Jan",
         "Feb",
         "Mar",
         "Apr",
         "May",
-        "Ju",
+        "Jun",
         "Jul",
-        "Au",
+        "Aug",
         "Sep",
         "Oct",
         "Nov",
         "Dec",
       ];
-      setRandomMONTH(months[Math.floor(Math.random() * months.length)]);
+      setRandomMonth(months[Math.floor(Math.random() * months.length)]);
     };
     generateRandomNumbers();
   }, []);
@@ -82,7 +81,7 @@ const DashboardContent = () => {
             <img src={fire} alt="" className="fire" />
             <div className="card-text">
               <h2>
-                Congratulations,<span className="sp">Admin</span>
+                Congratulations, <span className="sp">Admin</span>
               </h2>
               <p className="do">
                 You have done{" "}
@@ -130,76 +129,87 @@ const DashboardContent = () => {
       </div>
 
       <div className="charts-section">
-        <div className="line-real">
-          <div className="line-parent">
-            <div className="line-nav">
-              <p className="line-text1">Orders Over Time</p>
-              <p className="line-text2">
-                Last {random2Digit} Hours <FiChevronDown />
-              </p>
+        <div className="line-chart-container">
+          <div className="line-header">
+            <div className="line-title">
+              <p>Orders Over Time</p>
+              <div className="period-selector">
+                <p>
+                  Last {random2Digit} Hours <FiChevronDown />
+                </p>
+              </div>
             </div>
-            <div className="line-nav2">
-              <div className="line-nav2-left">
-                <div className="line-nav2-text1">
-                  <h1>{random3Digit}</h1>
+            <div className="line-stats">
+              <div className="stats-group">
+                <div className="stat-item">
+                  <h3>{random3Digit}</h3>
                   <p>orders on {randomMonth} 25</p>
                 </div>
-                <div className="line-nav2-text1">
-                  <h1>{random3Digit}</h1>
+                <div className="stat-item">
+                  <h3>{random3Digit}</h3>
                   <p>orders on {randomMonth} 24</p>
                 </div>
               </div>
-              <div className="lin3-nav2-right">
-                <div className="right2-1">
-                  <div className="right1-point"></div>
+              <div className="chart-legend">
+                <div className="legend-item">
+                  <div className="legend-color day1"></div>
                   <p>
                     {randomMonth} {random2Digit}
                   </p>
                 </div>
-                <div className="right2-1">
-                  <div className="right2-point"></div>
+                <div className="legend-item">
+                  <div className="legend-color day2"></div>
                   <p>
                     {randomMonth} {random2Digit}
                   </p>
                 </div>
               </div>
             </div>
-            <LineChart
-              width={760}
-              height={447}
-              data={data}
-              style={{ paddingLeft: "-5rem" }}
-            >
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="hour" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Line
-                type="monotone"
-                dataKey="ordersDay1"
-                stroke=" var(--Surface-Default, #F58800"
-              />
-              <Line type="monotone" dataKey="ordersDay2" stroke="#8884d8" />
-            </LineChart>
+          </div>
+          <div className="chart-wrapper">
+            <ResponsiveContainer width="100%" height={300}>
+              <LineChart data={data}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="hour" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Line
+                  type="monotone"
+                  dataKey="ordersDay1"
+                  stroke="#F58800"
+                  activeDot={{ r: 8 }}
+                />
+                <Line type="monotone" dataKey="ordersDay2" stroke="#8884d8" />
+              </LineChart>
+            </ResponsiveContainer>
           </div>
         </div>
-        <div className="bar-parent">
-          <div className="bar-card">
-            <p className="bar1">Last {random1Digit} Days Sales</p>
-            <h1 className="bar4">
-              {random4Digit.toLocaleString()} <p>Items Sold</p>
-            </h1>
-            <h1 className="bar6">
-              {random6Digit.toLocaleString()} <p>Revenue</p>
-            </h1>
+
+        <div className="bar-chart-container">
+          <div className="bar-header">
+            <p>Last {random1Digit} Days Sales</p>
+            <div className="bar-stats">
+              <div className="bar-stat-item">
+                <h3>{random4Digit.toLocaleString()}</h3>
+                <p>Items Sold</p>
+              </div>
+              <div className="bar-stat-item">
+                <h3>{random6Digit.toLocaleString()}</h3>
+                <p>Revenue</p>
+              </div>
+            </div>
           </div>
-          <BarChart width={240} height={300} data={salesData}>
-            <XAxis dataKey="day" />
-            <YAxis />
-            <Tooltip />
-            <Bar dataKey="revenue" fill="#1FD286" />
-          </BarChart>
+          <div className="bar-chart-wrapper">
+            <ResponsiveContainer width="100%" height={200}>
+              <BarChart data={salesData}>
+                <XAxis dataKey="day" />
+                <YAxis />
+                <Tooltip />
+                <Bar dataKey="revenue" fill="#1FD286" />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
         </div>
       </div>
 
