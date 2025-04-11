@@ -168,7 +168,7 @@ const OrderDetails = () => {
             <span className="icon">↓</span> Export
           </button>
           <button className="edit-btn" onClick={handleEditOrder}>
-            <span className="icon">✏️</span> Edit Order
+            <span className="icon">+</span> Edit Order
           </button>
         </div>
       </div>
@@ -278,7 +278,9 @@ const OrderDetails = () => {
                   <div className="timeline-subtitle">
                     Your order was placed successfully
                   </div>
-                  <div className="timeline-date">Tuesday 01:24am</div>
+                  <div className="timeline-date">
+                    {new Date(order.created_at).toLocaleString()}
+                  </div>
                 </div>
               </div>
 
@@ -290,7 +292,9 @@ const OrderDetails = () => {
                     <div className="timeline-subtitle">
                       Your order is being processed
                     </div>
-                    <div className="timeline-date">Wednesday 01:24am</div>
+                    <div className="timeline-date">
+                      {new Date(order.created_at).toLocaleString()}
+                    </div>
                     <div className="timeline-actions">
                       <button
                         className="confirm-btn"
@@ -318,7 +322,9 @@ const OrderDetails = () => {
                     <div className="timeline-subtitle">
                       Pick-up scheduled with courier
                     </div>
-                    <div className="timeline-date">Wednesday 01:24am</div>
+                    <div className="timeline-date">
+                      {new Date(order.created_at).toLocaleString()}
+                    </div>
                   </div>
                 </div>
               )}
@@ -378,7 +384,7 @@ const OrderDetails = () => {
                 {order.customer_name || "Customer"}
               </div>
               <div className="customer-id">
-                Customer ID: #{order.customer_id || "N/A"}
+                Customer ID: #{order.id || "N/A"}
               </div>
               <div className="customer-orders">12 Orders</div>
             </div>

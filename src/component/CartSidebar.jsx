@@ -117,10 +117,10 @@ const CartSidebar = ({ isOpen, onClose }) => {
             Subtotal:{" "}
             <span className="suu">₦{adminTotalAmount.toLocaleString()}</span>
           </h3>
-
           <Link to="/checkout">
             <button className="checkout-btn">Checkout</button>
-          </Link>
+          </Link>{" "}
+          callisto protocol
         </div>
       </div>
     </>

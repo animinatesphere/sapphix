@@ -2,7 +2,11 @@ import { useState, useEffect } from "react";
 import { supabase } from "../../supabase";
 import "../admin/order.css";
 import { useNavigate } from "react-router-dom";
-
+import pend from "../admin/pemding.png";
+import comp from "../admin/completed.png";
+import fail from "../admin/failed.png";
+import ref from "../admin/refunded.png";
+import { FiSearch } from "react-icons/fi";
 const Orders = () => {
   const [orders, setOrders] = useState([]);
   const [stats, setStats] = useState({
@@ -175,34 +179,43 @@ const Orders = () => {
       <div className="order-stats">
         <div className="stat-card">
           <div className="stat-number">{stats.pendingPayment}</div>
-          <div className="stat-icon pending-icon">📅</div>
+          <div className="stat-icon pending-icon">
+            {" "}
+            <img src={pend} alt="" />{" "}
+          </div>
           <div className="stat-label">Pending Payment</div>
         </div>
         <div className="stat-card">
           <div className="stat-number">{stats.completed}</div>
-          <div className="stat-icon completed-icon">✓</div>
+          <div className="stat-icon completed-icon">
+            <img src={comp} alt="" />
+          </div>
           <div className="stat-label">Completed</div>
         </div>
         <div className="stat-card">
           <div className="stat-number">{stats.failed}</div>
-          <div className="stat-icon failed-icon">❌</div>
+          <div className="stat-icon failed-icon">
+            <img src={fail} alt="" />
+          </div>
           <div className="stat-label">Failed</div>
         </div>
         <div className="stat-card">
           <div className="stat-number">{stats.refunded}</div>
-          <div className="stat-icon refunded-icon">↩️</div>
+          <div className="stat-icon refunded-icon">
+            <img src={ref} alt="" />
+          </div>
           <div className="stat-label">Refunded</div>
         </div>
       </div>
 
       <div className="order-filters">
-        <div className="search-container">
+        <div className="search-list">
+          <FiSearch />
           <input
             type="text"
-            placeholder="Search..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="search-input"
+            placeholder="Search"
+            // value={search}
+            // onChange={(e) => setSearch(e.target.value)}
           />
         </div>
         <div className="filter-dropdown">
