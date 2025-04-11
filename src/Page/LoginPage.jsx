@@ -216,12 +216,12 @@ function LoginPage() {
                       Sign up
                     </a>
                   </div>
-                  <div className="signup-option">
+                  {/* <div className="signup-option">
                     <span>Register as Admin?</span>
                     <a href="/admin/register" className="admin-signup-btn">
                       Admin Sign up
                     </a>
-                  </div>
+                  </div> */}
                 </div>
               </form>
             </div>
