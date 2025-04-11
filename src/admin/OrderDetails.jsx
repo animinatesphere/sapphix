@@ -31,16 +31,12 @@ const OrderDetails = () => {
       if (orderData) {
         setOrder(orderData);
 
-        // Fetch products for this order
-        const { data: productsData, error: productsError } = await supabase
-          .from("order_products")
-          .select("*, products(*)")
-          .eq("order_id", orderId);
-
-        if (productsError) throw productsError;
-
-        if (productsData) {
-          setOrderProducts(productsData);
+        // Fetch product data from the order_details
+        if (orderData.order_details && orderData.order_details.items) {
+          setOrderProducts(orderData.order_details.items);
+        } else {
+          console.log("No order items found in order_details");
+          setOrderProducts([]);
         }
       }
     } catch (error) {
@@ -52,7 +48,7 @@ const OrderDetails = () => {
 
   const handleExport = () => {
     // Generate CSV of order details
-    if (!order) return;
+    if (!order || !orderProducts.length) return;
 
     const headers = ["Product", "Price", "Quantity", "Total"];
 
@@ -60,10 +56,10 @@ const OrderDetails = () => {
       headers.join(","),
       ...orderProducts.map((item) =>
         [
-          item.products.name,
-          `₦${item.unit_price.toFixed(2)}`,
-          item.quantity,
-          `₦${(item.unit_price * item.quantity).toFixed(2)}`,
+          item.name || "Unknown Product",
+          `₦${(item.price || 0).toFixed(2)}`,
+          item.quantity || 0,
+          `₦${((item.price || 0) * (item.quantity || 0)).toFixed(2)}`,
         ].join(",")
       ),
     ].join("\n");
@@ -137,6 +133,9 @@ const OrderDetails = () => {
     return <div className="error">Order not found</div>;
   }
 
+  // Access shipping address data safely
+  const shippingAddress = order.order_details?.shipping_address || {};
+
   return (
     <div className="order-details-page">
       <div className="back-button" onClick={handleBack}>
@@ -199,36 +198,41 @@ const OrderDetails = () => {
                     <td colSpan="5">No products found</td>
                   </tr>
                 ) : (
-                  orderProducts.map((item) => (
-                    <tr key={item.id}>
+                  orderProducts.map((item, index) => (
+                    <tr key={index}>
                       <td>
                         <input type="checkbox" />
                       </td>
                       <td className="product-cell">
                         <div className="product-info">
                           <div className="product-image2">
-                            {item.products.image ? (
-                              <img
-                                src={item.products.image}
-                                alt={item.products.name}
-                              />
+                            {item.image ? (
+                              <img src={item.image} alt={item.name} />
                             ) : (
                               <div className="image-placeholder">📦</div>
                             )}
                           </div>
                           <div className="product-details">
                             <div className="product-name">
-                              {item.products.name}
+                              {item.name || "Unnamed Product"}
                             </div>
                             <div className="product-description">
-                              {item.products.description}
+                              {item.description || ""}
+                              {item.color && item.color !== "N/A" && (
+                                <span> • Color: {item.color}</span>
+                              )}
+                              {item.size && item.size !== "N/A" && (
+                                <span> • Size: {item.size}</span>
+                              )}
                             </div>
                           </div>
                         </div>
                       </td>
-                      <td>₦{item.unit_price.toFixed(2)}</td>
-                      <td>{item.quantity}</td>
-                      <td>₦{(item.unit_price * item.quantity).toFixed(2)}</td>
+                      <td>₦{(item.price || 0).toFixed(2)}</td>
+                      <td>{item.quantity || 0}</td>
+                      <td>
+                        ₦{((item.price || 0) * (item.quantity || 0)).toFixed(2)}
+                      </td>
                     </tr>
                   ))
                 )}
@@ -366,11 +370,13 @@ const OrderDetails = () => {
                   <img src={order.customer_avatar} alt={order.customer_name} />
                 ) : (
                   <div className="avatar-placeholder-large">
-                    {order.customer_name.charAt(0)}
+                    {order.customer_name?.charAt(0) || "C"}
                   </div>
                 )}
               </div>
-              <div className="customer-name-large">{order.customer_name}</div>
+              <div className="customer-name-large">
+                {order.customer_name || "Customer"}
+              </div>
               <div className="customer-id">
                 Customer ID: #{order.customer_id || "N/A"}
               </div>
@@ -381,7 +387,7 @@ const OrderDetails = () => {
               <h3>Contact Info</h3>
               <div className="contact-item">
                 <span>Email:</span>
-                <span>{order.customer_email}</span>
+                <span>{order.customer_email || "N/A"}</span>
               </div>
               <div className="contact-item">
                 <span>Mobile:</span>
@@ -396,7 +402,16 @@ const OrderDetails = () => {
                 <h3>Shipping Address</h3>
                 <button className="edit-section">Edit</button>
               </div>
-              <p>{order.shipping_address || "No shipping address provided"}</p>
+              <p>
+                {shippingAddress.address ||
+                  order.shipping_address ||
+                  "No shipping address provided"}
+              </p>
+              {shippingAddress.city && (
+                <p>
+                  {shippingAddress.city}, {shippingAddress.zipCode || ""}
+                </p>
+              )}
             </div>
 
             <div className="billing-address">
@@ -407,7 +422,11 @@ const OrderDetails = () => {
               <p>{order.billing_address || "Same as shipping address"}</p>
               <div className="payment-method">
                 <span>Payment Method:</span>
-                <span>{order.payment_method || "Credit Card"}</span>
+                <span>
+                  {order.order_details?.payment_method ||
+                    order.payment_method ||
+                    "Credit Card"}
+                </span>
               </div>
               {order.card_number && (
                 <div className="card-number">

@@ -1124,6 +1124,9 @@
     margin-top: 2rem;
     margin-left: -3rem;
   }
+  .sort-opt {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 516px) {
@@ -1209,6 +1212,9 @@
   .sort-opt p {
     font-size: 12px;
     text-align: center;
+  }
+  .sort-opt {
+    display: none;
   }
 }
 @media screen and (max-width: 400px) {

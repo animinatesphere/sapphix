@@ -65,19 +65,19 @@ const CartSidebar = ({ isOpen, onClose }) => {
           <FaTimes className="close-icon" onClick={onClose} />
         </div>
 
-        <div className="cart-items">
+        <div className="cart-items2">
           {allCartItems.length === 0 ? (
             <p className="empty-cart">Your cart is empty.</p>
           ) : (
             allCartItems.map((item) => (
-              <div key={item.id} className="cart-item">
+              <div key={item.id} className="cart-item2">
                 <img
                   src={item.image || "/placeholder.jpg"}
                   alt={item.name || "Product"}
-                  className="cart-item-img"
+                  className="cart-item-img2"
                 />
 
-                <div className="cart-item-info">
+                <div className="cart-item-info2">
                   <div className="quantity-controls">
                     <div className="incre">
                       <button onClick={() => decreaseAdminQuantity(item.id)}>
@@ -113,7 +113,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
         </div>
 
         <div className="cart-footer">
-          <h3 className="surr">
+          <h3 className="surr2">
             Subtotal:{" "}
             <span className="suu">₦{adminTotalAmount.toLocaleString()}</span>
           </h3>

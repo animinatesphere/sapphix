@@ -130,7 +130,7 @@ const AddProduct = () => {
             />
           </label>
           <label className="sk">
-            Product Name
+            Product Name*
             <input
               type="text"
               name="name"
@@ -152,7 +152,7 @@ const AddProduct = () => {
             />
           </label>
           <label className="sk">
-            Purchase Price
+            Purchase Price*
             <input
               type="number"
               name="purchase_price"
@@ -174,7 +174,7 @@ const AddProduct = () => {
             />
           </label>
           <label className="sk">
-            Brand
+            Brand*
             <input
               type="text"
               name="brand"
@@ -184,7 +184,7 @@ const AddProduct = () => {
             />
           </label>
           <label className="sk">
-            Manufacturer
+            Manufacturer*
             <input
               type="text"
               name="manufacturer"
@@ -194,7 +194,7 @@ const AddProduct = () => {
             />
           </label>
           <label className="sk">
-            Category
+            Category*
             <select
               name="category"
               value={formData.category}
@@ -207,7 +207,7 @@ const AddProduct = () => {
             </select>
           </label>
           <label className="sk">
-            Type
+            Type*
             <select
               name="type" // Change this from "categories" to "type"
               value={formData.type} // Change this to match the new name
@@ -220,7 +220,7 @@ const AddProduct = () => {
             </select>
           </label>
           <label className="sk">
-            Package Dimensions
+            Package Dimensions*
             <input
               type="number"
               name="length"
@@ -230,6 +230,7 @@ const AddProduct = () => {
             />
           </label>
           <label className="sk">
+            width*
             <input
               type="number"
               name="width"
@@ -238,42 +239,56 @@ const AddProduct = () => {
               onChange={handleChange}
             />
           </label>
-          <input
-            type="number"
-            name="height"
-            placeholder="Height in inches"
-            value={formData.height}
-            onChange={handleChange}
-          />
-          <input
-            type="number"
-            name="reviews"
-            placeholder="reviews"
-            value={formData.reviews}
-            onChange={handleChange}
-          />
-          <input
-            type="number"
-            name="rating"
-            placeholder="rating"
-            value={formData.rating}
-            onChange={handleChange}
-          />
-          <input
-            type="text"
-            name="color"
-            placeholder="Enter colors (comma-separated)"
-            value={formData.color ? formData.color.join(", ") : ""} // Convert array back to string
-            onChange={handleChange}
-          />
-
-          <input
-            type="text"
-            name="sizes"
-            placeholder="Enter size (comma-separated)"
-            value={formData.sizes ? formData.sizes.join(", ") : ""} // Convert array back to string
-            onChange={handleChange}
-          />
+          <label className="sk">
+            Height*
+            <input
+              type="number"
+              name="height"
+              placeholder="Height in inches"
+              value={formData.height}
+              onChange={handleChange}
+            />
+          </label>
+          <label className="sk">
+            Reviews*
+            <input
+              type="number"
+              name="reviews"
+              placeholder="reviews"
+              value={formData.reviews}
+              onChange={handleChange}
+            />
+          </label>
+          <label className="sk">
+            Rating*
+            <input
+              type="number"
+              name="rating"
+              placeholder="rating"
+              value={formData.rating}
+              onChange={handleChange}
+            />
+          </label>
+          <label className="sk">
+            Color*
+            <input
+              type="text"
+              name="color"
+              placeholder="Enter colors (comma-separated)"
+              value={formData.color ? formData.color.join(", ") : ""} // Convert array back to string
+              onChange={handleChange}
+            />
+          </label>
+          <label className="sk">
+            Sizes*
+            <input
+              type="text"
+              name="sizes"
+              placeholder="Enter size (comma-separated)"
+              value={formData.sizes ? formData.sizes.join(", ") : ""} // Convert array back to string
+              onChange={handleChange}
+            />
+          </label>
         </div>
         <input
           className="image-url"
