@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { supabase } from "../../supabase";
 import "../admin/order-details.css";
+import { Link } from "react-router-dom";
 
 const OrderDetails = () => {
   const { orderId } = useParams();
