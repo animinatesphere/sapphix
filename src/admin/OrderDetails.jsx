@@ -192,7 +192,7 @@ const OrderDetails = () => {
                   <th>Total</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="order-flow">
                 {orderProducts.length === 0 ? (
                   <tr>
                     <td colSpan="5">No products found</td>

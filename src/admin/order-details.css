@@ -133,6 +133,16 @@ Order Details Page Styling .order-details-page {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   margin-bottom: 24px;
   padding: 20px;
+  height: 400px;
+  overflow: auto;
+  /* overflow: hidden; */
+}
+.section::-webkit-scrollbar {
+  display: none;
+}
+.section {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .section-header {
