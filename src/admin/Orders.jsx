@@ -7,6 +7,7 @@ import comp from "../admin/completed.png";
 import fail from "../admin/failed.png";
 import ref from "../admin/refunded.png";
 import { FiSearch } from "react-icons/fi";
+
 const Orders = () => {
   const [orders, setOrders] = useState([]);
   const [stats, setStats] = useState({
@@ -21,17 +22,15 @@ const Orders = () => {
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 10;
-  // Pagination logic
-  const totalPages = Math.ceil(orders.length / productsPerPage);
-  const indexOfLastProduct = currentPage * productsPerPage;
-  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  // const getFilteredOrders = filteredProducts.slice(
-  //   indexOfFirstProduct,
-  //   indexOfLastProduct
-  // );
+
   useEffect(() => {
     fetchOrders();
   }, []);
+
+  // Reset to first page when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm, filterStatus]);
 
   const fetchOrders = async () => {
     setIsLoading(true);
@@ -112,7 +111,8 @@ const Orders = () => {
     navigate("/admin/orders/new");
   };
 
-  const getFilteredOrders = () => {
+  // This function filters orders without pagination
+  const filterOrders = () => {
     return orders.filter((order) => {
       const matchesSearch =
         order.id.toString().includes(searchTerm) ||
@@ -139,6 +139,18 @@ const Orders = () => {
       }
     });
   };
+
+  // Get filtered orders with pagination applied
+  const getFilteredOrders = () => {
+    const filteredOrders = filterOrders();
+    const indexOfLastProduct = currentPage * productsPerPage;
+    const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+
+    return filteredOrders.slice(indexOfFirstProduct, indexOfLastProduct);
+  };
+
+  // Calculate total pages based on filtered orders
+  const totalPages = Math.ceil(filterOrders().length / productsPerPage);
 
   const getStatusClass = (status) => {
     switch (status) {
@@ -223,8 +235,8 @@ const Orders = () => {
           <input
             type="text"
             placeholder="Search"
-            // value={search}
-            // onChange={(e) => setSearch(e.target.value)}
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
         <div className="filter-dropdown">
@@ -337,86 +349,91 @@ const Orders = () => {
           </tbody>
         </table>
       </div>
-      {/* Pagination Controls */}
-      <div className="pagination">
-        <button
-          className="pagination-btn"
-          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-          disabled={currentPage === 1}
-        >
-          Previous
-        </button>
-        {totalPages <= 5 ? (
-          // Show all page numbers if 5 or fewer
-          [...Array(totalPages)].map((_, i) => (
-            <button
-              key={i}
-              className={`page-number ${currentPage === i + 1 ? "active" : ""}`}
-              onClick={() => setCurrentPage(i + 1)}
-            >
-              {i + 1}
-            </button>
-          ))
-        ) : (
-          // Show limited page numbers with ellipsis
-          <>
-            <button
-              className={`page-number ${currentPage === 1 ? "active" : ""}`}
-              onClick={() => setCurrentPage(1)}
-            >
-              1
-            </button>
 
-            {currentPage > 3 && <span className="ellipsis">...</span>}
+      {/* Only show pagination if there are orders and more than one page */}
+      {!isLoading && filterOrders().length > 0 && totalPages > 0 && (
+        <div className="pagination">
+          <button
+            className="pagination-btn"
+            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+            disabled={currentPage === 1}
+          >
+            Previous
+          </button>
+          {totalPages <= 5 ? (
+            // Show all page numbers if 5 or fewer
+            [...Array(totalPages)].map((_, i) => (
+              <button
+                key={i}
+                className={`page-number ${
+                  currentPage === i + 1 ? "active" : ""
+                }`}
+                onClick={() => setCurrentPage(i + 1)}
+              >
+                {i + 1}
+              </button>
+            ))
+          ) : (
+            // Show limited page numbers with ellipsis
+            <>
+              <button
+                className={`page-number ${currentPage === 1 ? "active" : ""}`}
+                onClick={() => setCurrentPage(1)}
+              >
+                1
+              </button>
 
-            {currentPage > 2 && currentPage < totalPages && (
-              <>
-                {currentPage > 2 && (
-                  <button
-                    className="page-number"
-                    onClick={() => setCurrentPage(currentPage - 1)}
-                  >
-                    {currentPage - 1}
-                  </button>
-                )}
+              {currentPage > 3 && <span className="ellipsis">...</span>}
 
-                <button className="page-number active">{currentPage}</button>
+              {currentPage > 2 && currentPage < totalPages && (
+                <>
+                  {currentPage > 2 && (
+                    <button
+                      className="page-number"
+                      onClick={() => setCurrentPage(currentPage - 1)}
+                    >
+                      {currentPage - 1}
+                    </button>
+                  )}
 
-                {currentPage < totalPages - 1 && (
-                  <button
-                    className="page-number"
-                    onClick={() => setCurrentPage(currentPage + 1)}
-                  >
-                    {currentPage + 1}
-                  </button>
-                )}
-              </>
-            )}
+                  <button className="page-number active">{currentPage}</button>
 
-            {currentPage < totalPages - 2 && (
-              <span className="ellipsis">...</span>
-            )}
+                  {currentPage < totalPages - 1 && (
+                    <button
+                      className="page-number"
+                      onClick={() => setCurrentPage(currentPage + 1)}
+                    >
+                      {currentPage + 1}
+                    </button>
+                  )}
+                </>
+              )}
 
-            <button
-              className={`page-number ${
-                currentPage === totalPages ? "active" : ""
-              }`}
-              onClick={() => setCurrentPage(totalPages)}
-            >
-              {totalPages}
-            </button>
-          </>
-        )}
-        <button
-          className="pagination-btn"
-          onClick={() =>
-            setCurrentPage((prev) => Math.min(prev + 1, totalPages))
-          }
-          disabled={currentPage === totalPages}
-        >
-          Next
-        </button>
-      </div>
+              {currentPage < totalPages - 2 && (
+                <span className="ellipsis">...</span>
+              )}
+
+              <button
+                className={`page-number ${
+                  currentPage === totalPages ? "active" : ""
+                }`}
+                onClick={() => setCurrentPage(totalPages)}
+              >
+                {totalPages}
+              </button>
+            </>
+          )}
+          <button
+            className="pagination-btn"
+            onClick={() =>
+              setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+            }
+            disabled={currentPage === totalPages || totalPages === 0}
+          >
+            Next
+          </button>
+        </div>
+      )}
     </div>
   );
 };

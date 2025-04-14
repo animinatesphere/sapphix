@@ -32,6 +32,7 @@ import AdminWrapper from "./Page/AdminWrapper";
 import EditProduct from "./admin/EditProduct";
 import OrderConfirmation from "./admin/OrderConfirmation";
 import OrderDetails from "./admin/OrderDetails";
+import TrackOrder from "./admin/TrackOrder";
 
 function App() {
   return (
@@ -51,6 +52,7 @@ function App() {
           <Route path="/onsale" element={<OnSale />} />
           <Route path="/product/:id" element={<ProductDetails />} />
           <Route path="/men-product/:id" element={<MenDetails />} />
+          <Route path="/track-order/:orderId" element={<TrackOrder />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/wishlist" element={<Wishlist />} />
           <Route

@@ -9,6 +9,7 @@ const OrderDetails = () => {
   const [order, setOrder] = useState(null);
   const [orderProducts, setOrderProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isUpdating, setIsUpdating] = useState(false);
 
   useEffect(() => {
     if (orderId) {
@@ -76,9 +77,9 @@ const OrderDetails = () => {
     navigate(`/admin/orders/edit/${orderId}`);
   };
 
-  const handleBack = () => {
-    navigate("/admin/orders");
-  };
+  // const handleBack = () => {
+  //   navigate("order/list");
+  // };
 
   const getStatusClass = (status) => {
     switch (status) {
@@ -103,12 +104,24 @@ const OrderDetails = () => {
     }
   };
 
-  // Function to update order status
-  const updateOrderStatus = async (newStatus) => {
+  // Function to update order status - modified to update both delivery and payment status
+  const updateOrderStatus = async (
+    newDeliveryStatus,
+    newPaymentStatus = null
+  ) => {
+    setIsUpdating(true);
     try {
+      // Create update object
+      const updateData = { delivery_status: newDeliveryStatus };
+
+      // Add payment_status to update if provided
+      if (newPaymentStatus) {
+        updateData.payment_status = newPaymentStatus;
+      }
+
       const { error } = await supabase
         .from("orders")
-        .update({ delivery_status: newStatus })
+        .update(updateData)
         .eq("id", orderId);
 
       if (error) throw error;
@@ -117,12 +130,15 @@ const OrderDetails = () => {
       fetchOrderDetails();
     } catch (error) {
       console.error("Error updating order status:", error);
+    } finally {
+      setIsUpdating(false);
     }
   };
 
   // Function to confirm processing
   const confirmProcessing = () => {
-    updateOrderStatus("dispatched");
+    // Update both delivery status to "dispatched" and payment status to "paid"
+    updateOrderStatus("dispatched", "paid");
   };
 
   if (isLoading) {
@@ -138,10 +154,10 @@ const OrderDetails = () => {
 
   return (
     <div className="order-details-page">
-      <div className="back-button" onClick={handleBack}>
-        &larr; Back to Orders
-      </div>
-
+      <Link>
+        {" "}
+        <div className="back-button">&larr; Back to Orders</div>
+      </Link>
       <div className="order-header">
         <div className="order-title">
           <h1>Order #{orderId}</h1>
@@ -299,8 +315,11 @@ const OrderDetails = () => {
                       <button
                         className="confirm-btn"
                         onClick={confirmProcessing}
+                        disabled={isUpdating}
                       >
-                        Confirm Processing
+                        {isUpdating
+                          ? "Updating..."
+                          : "Confirm Processing & Payment"}
                       </button>
                     </div>
                   </div>
